@@ -1,0 +1,559 @@
+
+*******************************************************************
+==>> Run on: 2020-11-20 23:24:05
+==>> Seed was set to: 1
+==>> Dataset used: imagenet2012
+==>> Batch size: 1024
+==>> Total training batches: 1252
+==>> Total validation batches: 0
+==>> Total testing batches: 49
+DataParallel(
+  (module): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer3): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer4): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+    (fc): Linear(in_features=512, out_features=1000, bias=True)
+  )
+)
+Total 11166912 prunable parameters!
+Prunable layer-wise: [9408, 36864, 36864, 36864, 36864, 73728, 147456, 8192, 147456, 147456, 294912, 589824, 32768, 589824, 589824, 1179648, 2359296, 131072, 2359296, 2359296]
+
+Starting layer sensitivity analysis...
+
+Pruning prunable layer with index 0:
+==>>> Prunable layer 0 | pruned [0.01]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 0 | pruned [5.01]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 0 | pruned [10.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 0 | pruned [15.01]  | val loss: 1.245449, val acc: 0.6976
+==>>> Prunable layer 0 | pruned [20.00]  | val loss: 1.245458, val acc: 0.6977
+==>>> Prunable layer 0 | pruned [25.00]  | val loss: 1.246065, val acc: 0.6971
+==>>> Prunable layer 0 | pruned [30.01]  | val loss: 1.248257, val acc: 0.6965
+==>>> Prunable layer 0 | pruned [35.00]  | val loss: 1.248744, val acc: 0.6969
+==>>> Prunable layer 0 | pruned [40.00]  | val loss: 1.255217, val acc: 0.6946
+==>>> Prunable layer 0 | pruned [45.00]  | val loss: 1.275419, val acc: 0.6899
+==>>> Prunable layer 0 | pruned [50.00]  | val loss: 1.282574, val acc: 0.6886
+==>>> Prunable layer 0 | pruned [55.00]  | val loss: 1.296894, val acc: 0.6858
+==>>> Prunable layer 0 | pruned [60.00]  | val loss: 1.315604, val acc: 0.6805
+==>>> Prunable layer 0 | pruned [65.00]  | val loss: 1.355987, val acc: 0.6714
+==>>> Prunable layer 0 | pruned [69.99]  | val loss: 1.582152, val acc: 0.6238
+==>>> Prunable layer 0 | pruned [75.00]  | val loss: 2.012025, val acc: 0.5468
+==>>> Prunable layer 0 | pruned [80.00]  | val loss: 3.301015, val acc: 0.3580
+==>>> Prunable layer 0 | pruned [84.99]  | val loss: 4.984118, val acc: 0.1695
+==>>> Prunable layer 0 | pruned [90.00]  | val loss: 6.696897, val acc: 0.0609
+==>>> Prunable layer 0 | pruned [94.99]  | val loss: 7.859625, val acc: 0.0194
+==>>> Prunable layer 0 | pruned [100.00]  | val loss: 7.941894, val acc: 0.0010
+
+Pruning prunable layer with index 1:
+==>>> Prunable layer 1 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 1 | pruned [5.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 1 | pruned [10.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 1 | pruned [15.00]  | val loss: 1.245405, val acc: 0.6977
+==>>> Prunable layer 1 | pruned [20.00]  | val loss: 1.245537, val acc: 0.6973
+==>>> Prunable layer 1 | pruned [25.00]  | val loss: 1.245660, val acc: 0.6979
+==>>> Prunable layer 1 | pruned [30.00]  | val loss: 1.245478, val acc: 0.6977
+==>>> Prunable layer 1 | pruned [35.00]  | val loss: 1.248189, val acc: 0.6965
+==>>> Prunable layer 1 | pruned [40.00]  | val loss: 1.253668, val acc: 0.6946
+==>>> Prunable layer 1 | pruned [45.00]  | val loss: 1.261504, val acc: 0.6938
+==>>> Prunable layer 1 | pruned [50.00]  | val loss: 1.274396, val acc: 0.6893
+==>>> Prunable layer 1 | pruned [55.00]  | val loss: 1.290158, val acc: 0.6853
+==>>> Prunable layer 1 | pruned [60.00]  | val loss: 1.312156, val acc: 0.6810
+==>>> Prunable layer 1 | pruned [65.00]  | val loss: 1.340269, val acc: 0.6742
+==>>> Prunable layer 1 | pruned [70.00]  | val loss: 1.483271, val acc: 0.6440
+==>>> Prunable layer 1 | pruned [75.00]  | val loss: 1.823556, val acc: 0.5816
+==>>> Prunable layer 1 | pruned [80.00]  | val loss: 2.201173, val acc: 0.5186
+==>>> Prunable layer 1 | pruned [85.00]  | val loss: 3.222954, val acc: 0.3792
+==>>> Prunable layer 1 | pruned [90.00]  | val loss: 3.963396, val acc: 0.3040
+==>>> Prunable layer 1 | pruned [95.00]  | val loss: 5.629637, val acc: 0.1636
+==>>> Prunable layer 1 | pruned [100.00]  | val loss: 10.533427, val acc: 0.0015
+
+Pruning prunable layer with index 2:
+==>>> Prunable layer 2 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 2 | pruned [5.00]  | val loss: 1.245510, val acc: 0.6975
+==>>> Prunable layer 2 | pruned [10.00]  | val loss: 1.245336, val acc: 0.6975
+==>>> Prunable layer 2 | pruned [15.00]  | val loss: 1.245359, val acc: 0.6975
+==>>> Prunable layer 2 | pruned [20.00]  | val loss: 1.245901, val acc: 0.6976
+==>>> Prunable layer 2 | pruned [25.00]  | val loss: 1.246400, val acc: 0.6978
+==>>> Prunable layer 2 | pruned [30.00]  | val loss: 1.246827, val acc: 0.6972
+==>>> Prunable layer 2 | pruned [35.00]  | val loss: 1.247503, val acc: 0.6964
+==>>> Prunable layer 2 | pruned [40.00]  | val loss: 1.249332, val acc: 0.6966
+==>>> Prunable layer 2 | pruned [45.00]  | val loss: 1.249857, val acc: 0.6968
+==>>> Prunable layer 2 | pruned [50.00]  | val loss: 1.253665, val acc: 0.6957
+==>>> Prunable layer 2 | pruned [55.00]  | val loss: 1.259172, val acc: 0.6948
+==>>> Prunable layer 2 | pruned [60.00]  | val loss: 1.262207, val acc: 0.6939
+==>>> Prunable layer 2 | pruned [65.00]  | val loss: 1.274770, val acc: 0.6915
+==>>> Prunable layer 2 | pruned [70.00]  | val loss: 1.295461, val acc: 0.6861
+==>>> Prunable layer 2 | pruned [75.00]  | val loss: 1.310462, val acc: 0.6829
+==>>> Prunable layer 2 | pruned [80.00]  | val loss: 1.352352, val acc: 0.6744
+==>>> Prunable layer 2 | pruned [85.00]  | val loss: 1.387114, val acc: 0.6669
+==>>> Prunable layer 2 | pruned [90.00]  | val loss: 1.495717, val acc: 0.6443
+==>>> Prunable layer 2 | pruned [95.00]  | val loss: 1.596323, val acc: 0.6247
+==>>> Prunable layer 2 | pruned [100.00]  | val loss: 9.014982, val acc: 0.0488
+
+Pruning prunable layer with index 3:
+==>>> Prunable layer 3 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 3 | pruned [5.00]  | val loss: 1.245285, val acc: 0.6977
+==>>> Prunable layer 3 | pruned [10.00]  | val loss: 1.245171, val acc: 0.6975
+==>>> Prunable layer 3 | pruned [15.00]  | val loss: 1.246450, val acc: 0.6972
+==>>> Prunable layer 3 | pruned [20.00]  | val loss: 1.248453, val acc: 0.6964
+==>>> Prunable layer 3 | pruned [25.00]  | val loss: 1.248360, val acc: 0.6967
+==>>> Prunable layer 3 | pruned [30.00]  | val loss: 1.248218, val acc: 0.6975
+==>>> Prunable layer 3 | pruned [35.00]  | val loss: 1.255793, val acc: 0.6949
+==>>> Prunable layer 3 | pruned [40.00]  | val loss: 1.260573, val acc: 0.6938
+==>>> Prunable layer 3 | pruned [45.00]  | val loss: 1.275654, val acc: 0.6908
+==>>> Prunable layer 3 | pruned [50.00]  | val loss: 1.272572, val acc: 0.6910
+==>>> Prunable layer 3 | pruned [55.00]  | val loss: 1.301017, val acc: 0.6843
+==>>> Prunable layer 3 | pruned [60.00]  | val loss: 1.319385, val acc: 0.6802
+==>>> Prunable layer 3 | pruned [65.00]  | val loss: 1.326397, val acc: 0.6771
+==>>> Prunable layer 3 | pruned [70.00]  | val loss: 1.331740, val acc: 0.6765
+==>>> Prunable layer 3 | pruned [75.00]  | val loss: 1.458280, val acc: 0.6491
+==>>> Prunable layer 3 | pruned [80.00]  | val loss: 1.610638, val acc: 0.6196
+==>>> Prunable layer 3 | pruned [85.00]  | val loss: 1.736007, val acc: 0.5961
+==>>> Prunable layer 3 | pruned [90.00]  | val loss: 2.217547, val acc: 0.5176
+==>>> Prunable layer 3 | pruned [95.00]  | val loss: 4.486211, val acc: 0.2506
+==>>> Prunable layer 3 | pruned [100.00]  | val loss: 9.151858, val acc: 0.0027
+
+Pruning prunable layer with index 4:
+==>>> Prunable layer 4 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 4 | pruned [5.00]  | val loss: 1.245487, val acc: 0.6977
+==>>> Prunable layer 4 | pruned [10.00]  | val loss: 1.245454, val acc: 0.6974
+==>>> Prunable layer 4 | pruned [15.00]  | val loss: 1.245645, val acc: 0.6978
+==>>> Prunable layer 4 | pruned [20.00]  | val loss: 1.245616, val acc: 0.6973
+==>>> Prunable layer 4 | pruned [25.00]  | val loss: 1.245777, val acc: 0.6974
+==>>> Prunable layer 4 | pruned [30.00]  | val loss: 1.248069, val acc: 0.6971
+==>>> Prunable layer 4 | pruned [35.00]  | val loss: 1.249947, val acc: 0.6967
+==>>> Prunable layer 4 | pruned [40.00]  | val loss: 1.252477, val acc: 0.6960
+==>>> Prunable layer 4 | pruned [45.00]  | val loss: 1.253049, val acc: 0.6953
+==>>> Prunable layer 4 | pruned [50.00]  | val loss: 1.258236, val acc: 0.6942
+==>>> Prunable layer 4 | pruned [55.00]  | val loss: 1.272135, val acc: 0.6908
+==>>> Prunable layer 4 | pruned [60.00]  | val loss: 1.289175, val acc: 0.6866
+==>>> Prunable layer 4 | pruned [65.00]  | val loss: 1.311370, val acc: 0.6821
+==>>> Prunable layer 4 | pruned [70.00]  | val loss: 1.359608, val acc: 0.6726
+==>>> Prunable layer 4 | pruned [75.00]  | val loss: 1.367074, val acc: 0.6700
+==>>> Prunable layer 4 | pruned [80.00]  | val loss: 1.419315, val acc: 0.6584
+==>>> Prunable layer 4 | pruned [85.00]  | val loss: 1.429324, val acc: 0.6544
+==>>> Prunable layer 4 | pruned [90.00]  | val loss: 1.516142, val acc: 0.6373
+==>>> Prunable layer 4 | pruned [95.00]  | val loss: 1.657904, val acc: 0.6101
+==>>> Prunable layer 4 | pruned [100.00]  | val loss: 6.254475, val acc: 0.1194
+
+Pruning prunable layer with index 5:
+==>>> Prunable layer 5 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 5 | pruned [5.00]  | val loss: 1.245437, val acc: 0.6976
+==>>> Prunable layer 5 | pruned [10.00]  | val loss: 1.246100, val acc: 0.6976
+==>>> Prunable layer 5 | pruned [15.00]  | val loss: 1.246774, val acc: 0.6975
+==>>> Prunable layer 5 | pruned [20.00]  | val loss: 1.248245, val acc: 0.6964
+==>>> Prunable layer 5 | pruned [25.00]  | val loss: 1.251913, val acc: 0.6962
+==>>> Prunable layer 5 | pruned [30.00]  | val loss: 1.254974, val acc: 0.6958
+==>>> Prunable layer 5 | pruned [35.00]  | val loss: 1.257529, val acc: 0.6946
+==>>> Prunable layer 5 | pruned [40.00]  | val loss: 1.260736, val acc: 0.6947
+==>>> Prunable layer 5 | pruned [45.00]  | val loss: 1.270762, val acc: 0.6917
+==>>> Prunable layer 5 | pruned [50.00]  | val loss: 1.294670, val acc: 0.6862
+==>>> Prunable layer 5 | pruned [55.00]  | val loss: 1.334569, val acc: 0.6777
+==>>> Prunable layer 5 | pruned [60.00]  | val loss: 1.409436, val acc: 0.6630
+==>>> Prunable layer 5 | pruned [65.00]  | val loss: 1.481491, val acc: 0.6483
+==>>> Prunable layer 5 | pruned [70.00]  | val loss: 1.550789, val acc: 0.6343
+==>>> Prunable layer 5 | pruned [75.00]  | val loss: 1.794198, val acc: 0.5865
+==>>> Prunable layer 5 | pruned [80.00]  | val loss: 2.249342, val acc: 0.5112
+==>>> Prunable layer 5 | pruned [85.00]  | val loss: 3.281433, val acc: 0.3765
+==>>> Prunable layer 5 | pruned [90.00]  | val loss: 4.227988, val acc: 0.2594
+==>>> Prunable layer 5 | pruned [95.00]  | val loss: 7.036764, val acc: 0.0652
+==>>> Prunable layer 5 | pruned [100.00]  | val loss: 9.673537, val acc: 0.0035
+
+Pruning prunable layer with index 6:
+==>>> Prunable layer 6 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 6 | pruned [5.00]  | val loss: 1.245504, val acc: 0.6974
+==>>> Prunable layer 6 | pruned [10.00]  | val loss: 1.246094, val acc: 0.6973
+==>>> Prunable layer 6 | pruned [15.00]  | val loss: 1.245551, val acc: 0.6975
+==>>> Prunable layer 6 | pruned [20.00]  | val loss: 1.245670, val acc: 0.6977
+==>>> Prunable layer 6 | pruned [25.00]  | val loss: 1.245371, val acc: 0.6975
+==>>> Prunable layer 6 | pruned [30.00]  | val loss: 1.247535, val acc: 0.6962
+==>>> Prunable layer 6 | pruned [35.00]  | val loss: 1.250236, val acc: 0.6958
+==>>> Prunable layer 6 | pruned [40.00]  | val loss: 1.252995, val acc: 0.6945
+==>>> Prunable layer 6 | pruned [45.00]  | val loss: 1.255992, val acc: 0.6937
+==>>> Prunable layer 6 | pruned [50.00]  | val loss: 1.262615, val acc: 0.6929
+==>>> Prunable layer 6 | pruned [55.00]  | val loss: 1.270634, val acc: 0.6907
+==>>> Prunable layer 6 | pruned [60.00]  | val loss: 1.297553, val acc: 0.6843
+==>>> Prunable layer 6 | pruned [65.00]  | val loss: 1.314181, val acc: 0.6805
+==>>> Prunable layer 6 | pruned [70.00]  | val loss: 1.366153, val acc: 0.6708
+==>>> Prunable layer 6 | pruned [75.00]  | val loss: 1.479676, val acc: 0.6464
+==>>> Prunable layer 6 | pruned [80.00]  | val loss: 1.662931, val acc: 0.6105
+==>>> Prunable layer 6 | pruned [85.00]  | val loss: 2.309036, val acc: 0.5002
+==>>> Prunable layer 6 | pruned [90.00]  | val loss: 4.324684, val acc: 0.2649
+==>>> Prunable layer 6 | pruned [95.00]  | val loss: 7.884996, val acc: 0.0635
+==>>> Prunable layer 6 | pruned [100.00]  | val loss: 10.882605, val acc: 0.0025
+
+Pruning prunable layer with index 7:
+==>>> Prunable layer 7 | pruned [0.01]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 7 | pruned [5.00]  | val loss: 1.245513, val acc: 0.6972
+==>>> Prunable layer 7 | pruned [10.01]  | val loss: 1.245553, val acc: 0.6972
+==>>> Prunable layer 7 | pruned [15.00]  | val loss: 1.246874, val acc: 0.6974
+==>>> Prunable layer 7 | pruned [20.01]  | val loss: 1.247848, val acc: 0.6973
+==>>> Prunable layer 7 | pruned [25.00]  | val loss: 1.249932, val acc: 0.6964
+==>>> Prunable layer 7 | pruned [30.00]  | val loss: 1.251748, val acc: 0.6957
+==>>> Prunable layer 7 | pruned [35.00]  | val loss: 1.257072, val acc: 0.6942
+==>>> Prunable layer 7 | pruned [40.00]  | val loss: 1.260985, val acc: 0.6937
+==>>> Prunable layer 7 | pruned [45.00]  | val loss: 1.265587, val acc: 0.6923
+==>>> Prunable layer 7 | pruned [50.00]  | val loss: 1.282254, val acc: 0.6880
+==>>> Prunable layer 7 | pruned [55.00]  | val loss: 1.309304, val acc: 0.6828
+==>>> Prunable layer 7 | pruned [60.00]  | val loss: 1.312583, val acc: 0.6814
+==>>> Prunable layer 7 | pruned [65.00]  | val loss: 1.328021, val acc: 0.6784
+==>>> Prunable layer 7 | pruned [70.00]  | val loss: 1.374044, val acc: 0.6694
+==>>> Prunable layer 7 | pruned [75.00]  | val loss: 1.402817, val acc: 0.6632
+==>>> Prunable layer 7 | pruned [79.99]  | val loss: 1.441549, val acc: 0.6530
+==>>> Prunable layer 7 | pruned [85.00]  | val loss: 1.542539, val acc: 0.6306
+==>>> Prunable layer 7 | pruned [89.99]  | val loss: 1.735845, val acc: 0.5911
+==>>> Prunable layer 7 | pruned [95.00]  | val loss: 2.825022, val acc: 0.4051
+==>>> Prunable layer 7 | pruned [100.00]  | val loss: 7.892736, val acc: 0.0426
+
+Pruning prunable layer with index 8:
+==>>> Prunable layer 8 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 8 | pruned [5.00]  | val loss: 1.245573, val acc: 0.6976
+==>>> Prunable layer 8 | pruned [10.00]  | val loss: 1.245756, val acc: 0.6972
+==>>> Prunable layer 8 | pruned [15.00]  | val loss: 1.245689, val acc: 0.6975
+==>>> Prunable layer 8 | pruned [20.00]  | val loss: 1.245750, val acc: 0.6975
+==>>> Prunable layer 8 | pruned [25.00]  | val loss: 1.247613, val acc: 0.6971
+==>>> Prunable layer 8 | pruned [30.00]  | val loss: 1.248529, val acc: 0.6970
+==>>> Prunable layer 8 | pruned [35.00]  | val loss: 1.249959, val acc: 0.6967
+==>>> Prunable layer 8 | pruned [40.00]  | val loss: 1.251534, val acc: 0.6961
+==>>> Prunable layer 8 | pruned [45.00]  | val loss: 1.256014, val acc: 0.6951
+==>>> Prunable layer 8 | pruned [50.00]  | val loss: 1.260240, val acc: 0.6946
+==>>> Prunable layer 8 | pruned [55.00]  | val loss: 1.265644, val acc: 0.6922
+==>>> Prunable layer 8 | pruned [60.00]  | val loss: 1.270264, val acc: 0.6916
+==>>> Prunable layer 8 | pruned [65.00]  | val loss: 1.285419, val acc: 0.6885
+==>>> Prunable layer 8 | pruned [70.00]  | val loss: 1.305410, val acc: 0.6848
+==>>> Prunable layer 8 | pruned [75.00]  | val loss: 1.344949, val acc: 0.6758
+==>>> Prunable layer 8 | pruned [80.00]  | val loss: 1.391524, val acc: 0.6660
+==>>> Prunable layer 8 | pruned [85.00]  | val loss: 1.542406, val acc: 0.6344
+==>>> Prunable layer 8 | pruned [90.00]  | val loss: 1.967796, val acc: 0.5561
+==>>> Prunable layer 8 | pruned [95.00]  | val loss: 3.872258, val acc: 0.2874
+==>>> Prunable layer 8 | pruned [100.00]  | val loss: 7.829932, val acc: 0.0231
+
+Pruning prunable layer with index 9:
+==>>> Prunable layer 9 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 9 | pruned [5.00]  | val loss: 1.245439, val acc: 0.6975
+==>>> Prunable layer 9 | pruned [10.00]  | val loss: 1.245361, val acc: 0.6974
+==>>> Prunable layer 9 | pruned [15.00]  | val loss: 1.245665, val acc: 0.6976
+==>>> Prunable layer 9 | pruned [20.00]  | val loss: 1.245814, val acc: 0.6971
+==>>> Prunable layer 9 | pruned [25.00]  | val loss: 1.246147, val acc: 0.6973
+==>>> Prunable layer 9 | pruned [30.00]  | val loss: 1.246468, val acc: 0.6973
+==>>> Prunable layer 9 | pruned [35.00]  | val loss: 1.249430, val acc: 0.6960
+==>>> Prunable layer 9 | pruned [40.00]  | val loss: 1.251504, val acc: 0.6951
+==>>> Prunable layer 9 | pruned [45.00]  | val loss: 1.253911, val acc: 0.6947
+==>>> Prunable layer 9 | pruned [50.00]  | val loss: 1.255840, val acc: 0.6941
+==>>> Prunable layer 9 | pruned [55.00]  | val loss: 1.260489, val acc: 0.6931
+==>>> Prunable layer 9 | pruned [60.00]  | val loss: 1.270317, val acc: 0.6912
+==>>> Prunable layer 9 | pruned [65.00]  | val loss: 1.280191, val acc: 0.6893
+==>>> Prunable layer 9 | pruned [70.00]  | val loss: 1.294182, val acc: 0.6865
+==>>> Prunable layer 9 | pruned [75.00]  | val loss: 1.321855, val acc: 0.6796
+==>>> Prunable layer 9 | pruned [80.00]  | val loss: 1.366238, val acc: 0.6710
+==>>> Prunable layer 9 | pruned [85.00]  | val loss: 1.432436, val acc: 0.6563
+==>>> Prunable layer 9 | pruned [90.00]  | val loss: 1.528156, val acc: 0.6367
+==>>> Prunable layer 9 | pruned [95.00]  | val loss: 1.840889, val acc: 0.5743
+==>>> Prunable layer 9 | pruned [100.00]  | val loss: 8.852448, val acc: 0.0160
+
+Pruning prunable layer with index 10:
+==>>> Prunable layer 10 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 10 | pruned [5.00]  | val loss: 1.245431, val acc: 0.6976
+==>>> Prunable layer 10 | pruned [10.00]  | val loss: 1.245631, val acc: 0.6975
+==>>> Prunable layer 10 | pruned [15.00]  | val loss: 1.245315, val acc: 0.6973
+==>>> Prunable layer 10 | pruned [20.00]  | val loss: 1.245941, val acc: 0.6975
+==>>> Prunable layer 10 | pruned [25.00]  | val loss: 1.245129, val acc: 0.6971
+==>>> Prunable layer 10 | pruned [30.00]  | val loss: 1.245746, val acc: 0.6977
+==>>> Prunable layer 10 | pruned [35.00]  | val loss: 1.246778, val acc: 0.6970
+==>>> Prunable layer 10 | pruned [40.00]  | val loss: 1.249666, val acc: 0.6959
+==>>> Prunable layer 10 | pruned [45.00]  | val loss: 1.254102, val acc: 0.6948
+==>>> Prunable layer 10 | pruned [50.00]  | val loss: 1.260959, val acc: 0.6939
+==>>> Prunable layer 10 | pruned [55.00]  | val loss: 1.273474, val acc: 0.6908
+==>>> Prunable layer 10 | pruned [60.00]  | val loss: 1.292839, val acc: 0.6865
+==>>> Prunable layer 10 | pruned [65.00]  | val loss: 1.314987, val acc: 0.6828
+==>>> Prunable layer 10 | pruned [70.00]  | val loss: 1.347310, val acc: 0.6756
+==>>> Prunable layer 10 | pruned [75.00]  | val loss: 1.437252, val acc: 0.6570
+==>>> Prunable layer 10 | pruned [80.00]  | val loss: 1.567084, val acc: 0.6295
+==>>> Prunable layer 10 | pruned [85.00]  | val loss: 1.869343, val acc: 0.5690
+==>>> Prunable layer 10 | pruned [90.00]  | val loss: 2.819324, val acc: 0.4071
+==>>> Prunable layer 10 | pruned [95.00]  | val loss: 5.409275, val acc: 0.1237
+==>>> Prunable layer 10 | pruned [100.00]  | val loss: 10.342694, val acc: 0.0011
+
+Pruning prunable layer with index 11:
+==>>> Prunable layer 11 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 11 | pruned [5.00]  | val loss: 1.245419, val acc: 0.6976
+==>>> Prunable layer 11 | pruned [10.00]  | val loss: 1.245235, val acc: 0.6976
+==>>> Prunable layer 11 | pruned [15.00]  | val loss: 1.245360, val acc: 0.6977
+==>>> Prunable layer 11 | pruned [20.00]  | val loss: 1.245550, val acc: 0.6973
+==>>> Prunable layer 11 | pruned [25.00]  | val loss: 1.245536, val acc: 0.6969
+==>>> Prunable layer 11 | pruned [30.00]  | val loss: 1.246003, val acc: 0.6961
+==>>> Prunable layer 11 | pruned [35.00]  | val loss: 1.245575, val acc: 0.6966
+==>>> Prunable layer 11 | pruned [40.00]  | val loss: 1.247545, val acc: 0.6963
+==>>> Prunable layer 11 | pruned [45.00]  | val loss: 1.249345, val acc: 0.6962
+==>>> Prunable layer 11 | pruned [50.00]  | val loss: 1.251075, val acc: 0.6957
+==>>> Prunable layer 11 | pruned [55.00]  | val loss: 1.256824, val acc: 0.6941
+==>>> Prunable layer 11 | pruned [60.00]  | val loss: 1.268809, val acc: 0.6919
+==>>> Prunable layer 11 | pruned [65.00]  | val loss: 1.287709, val acc: 0.6877
+==>>> Prunable layer 11 | pruned [70.00]  | val loss: 1.306776, val acc: 0.6826
+==>>> Prunable layer 11 | pruned [75.00]  | val loss: 1.341888, val acc: 0.6750
+==>>> Prunable layer 11 | pruned [80.00]  | val loss: 1.426191, val acc: 0.6564
+==>>> Prunable layer 11 | pruned [85.00]  | val loss: 1.599017, val acc: 0.6189
+==>>> Prunable layer 11 | pruned [90.00]  | val loss: 2.069375, val acc: 0.5290
+==>>> Prunable layer 11 | pruned [95.00]  | val loss: 3.563073, val acc: 0.3103
+==>>> Prunable layer 11 | pruned [100.00]  | val loss: 11.973242, val acc: 0.0016
+
+Pruning prunable layer with index 12:
+==>>> Prunable layer 12 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 12 | pruned [5.00]  | val loss: 1.245487, val acc: 0.6976
+==>>> Prunable layer 12 | pruned [10.00]  | val loss: 1.245571, val acc: 0.6975
+==>>> Prunable layer 12 | pruned [15.00]  | val loss: 1.245381, val acc: 0.6978
+==>>> Prunable layer 12 | pruned [20.00]  | val loss: 1.245500, val acc: 0.6974
+==>>> Prunable layer 12 | pruned [25.00]  | val loss: 1.245465, val acc: 0.6976
+==>>> Prunable layer 12 | pruned [30.00]  | val loss: 1.245154, val acc: 0.6974
+==>>> Prunable layer 12 | pruned [35.00]  | val loss: 1.245674, val acc: 0.6979
+==>>> Prunable layer 12 | pruned [40.00]  | val loss: 1.245530, val acc: 0.6979
+==>>> Prunable layer 12 | pruned [45.00]  | val loss: 1.246168, val acc: 0.6972
+==>>> Prunable layer 12 | pruned [50.00]  | val loss: 1.245860, val acc: 0.6972
+==>>> Prunable layer 12 | pruned [55.00]  | val loss: 1.246674, val acc: 0.6971
+==>>> Prunable layer 12 | pruned [60.00]  | val loss: 1.246935, val acc: 0.6972
+==>>> Prunable layer 12 | pruned [65.00]  | val loss: 1.248011, val acc: 0.6966
+==>>> Prunable layer 12 | pruned [70.00]  | val loss: 1.250725, val acc: 0.6961
+==>>> Prunable layer 12 | pruned [75.00]  | val loss: 1.252607, val acc: 0.6953
+==>>> Prunable layer 12 | pruned [80.00]  | val loss: 1.257798, val acc: 0.6933
+==>>> Prunable layer 12 | pruned [85.00]  | val loss: 1.265380, val acc: 0.6918
+==>>> Prunable layer 12 | pruned [90.00]  | val loss: 1.275624, val acc: 0.6897
+==>>> Prunable layer 12 | pruned [95.00]  | val loss: 1.290166, val acc: 0.6857
+==>>> Prunable layer 12 | pruned [100.00]  | val loss: 1.345009, val acc: 0.6734
+
+Pruning prunable layer with index 13:
+==>>> Prunable layer 13 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 13 | pruned [5.00]  | val loss: 1.245504, val acc: 0.6975
+==>>> Prunable layer 13 | pruned [10.00]  | val loss: 1.245358, val acc: 0.6977
+==>>> Prunable layer 13 | pruned [15.00]  | val loss: 1.245539, val acc: 0.6976
+==>>> Prunable layer 13 | pruned [20.00]  | val loss: 1.246306, val acc: 0.6971
+==>>> Prunable layer 13 | pruned [25.00]  | val loss: 1.246953, val acc: 0.6967
+==>>> Prunable layer 13 | pruned [30.00]  | val loss: 1.247750, val acc: 0.6965
+==>>> Prunable layer 13 | pruned [35.00]  | val loss: 1.248760, val acc: 0.6958
+==>>> Prunable layer 13 | pruned [40.00]  | val loss: 1.250932, val acc: 0.6950
+==>>> Prunable layer 13 | pruned [45.00]  | val loss: 1.256364, val acc: 0.6947
+==>>> Prunable layer 13 | pruned [50.00]  | val loss: 1.262505, val acc: 0.6934
+==>>> Prunable layer 13 | pruned [55.00]  | val loss: 1.279446, val acc: 0.6906
+==>>> Prunable layer 13 | pruned [60.00]  | val loss: 1.295807, val acc: 0.6864
+==>>> Prunable layer 13 | pruned [65.00]  | val loss: 1.339836, val acc: 0.6769
+==>>> Prunable layer 13 | pruned [70.00]  | val loss: 1.402362, val acc: 0.6638
+==>>> Prunable layer 13 | pruned [75.00]  | val loss: 1.526492, val acc: 0.6374
+==>>> Prunable layer 13 | pruned [80.00]  | val loss: 1.869661, val acc: 0.5709
+==>>> Prunable layer 13 | pruned [85.00]  | val loss: 2.948444, val acc: 0.3937
+==>>> Prunable layer 13 | pruned [90.00]  | val loss: 5.523284, val acc: 0.1282
+==>>> Prunable layer 13 | pruned [95.00]  | val loss: 9.660893, val acc: 0.0167
+==>>> Prunable layer 13 | pruned [100.00]  | val loss: 15.849512, val acc: 0.0032
+
+Pruning prunable layer with index 14:
+==>>> Prunable layer 14 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 14 | pruned [5.00]  | val loss: 1.245444, val acc: 0.6976
+==>>> Prunable layer 14 | pruned [10.00]  | val loss: 1.245463, val acc: 0.6974
+==>>> Prunable layer 14 | pruned [15.00]  | val loss: 1.245580, val acc: 0.6969
+==>>> Prunable layer 14 | pruned [20.00]  | val loss: 1.245957, val acc: 0.6969
+==>>> Prunable layer 14 | pruned [25.00]  | val loss: 1.246150, val acc: 0.6967
+==>>> Prunable layer 14 | pruned [30.00]  | val loss: 1.246499, val acc: 0.6968
+==>>> Prunable layer 14 | pruned [35.00]  | val loss: 1.247321, val acc: 0.6969
+==>>> Prunable layer 14 | pruned [40.00]  | val loss: 1.247817, val acc: 0.6968
+==>>> Prunable layer 14 | pruned [45.00]  | val loss: 1.250721, val acc: 0.6965
+==>>> Prunable layer 14 | pruned [50.00]  | val loss: 1.253883, val acc: 0.6956
+==>>> Prunable layer 14 | pruned [55.00]  | val loss: 1.257161, val acc: 0.6946
+==>>> Prunable layer 14 | pruned [60.00]  | val loss: 1.261453, val acc: 0.6934
+==>>> Prunable layer 14 | pruned [65.00]  | val loss: 1.268031, val acc: 0.6913
+==>>> Prunable layer 14 | pruned [70.00]  | val loss: 1.280838, val acc: 0.6883
+==>>> Prunable layer 14 | pruned [75.00]  | val loss: 1.298501, val acc: 0.6849
+==>>> Prunable layer 14 | pruned [80.00]  | val loss: 1.330147, val acc: 0.6777
+==>>> Prunable layer 14 | pruned [85.00]  | val loss: 1.370716, val acc: 0.6692
+==>>> Prunable layer 14 | pruned [90.00]  | val loss: 1.479293, val acc: 0.6456
+==>>> Prunable layer 14 | pruned [95.00]  | val loss: 1.724113, val acc: 0.5953
+==>>> Prunable layer 14 | pruned [100.00]  | val loss: 7.112131, val acc: 0.0329
+
+Pruning prunable layer with index 15:
+==>>> Prunable layer 15 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 15 | pruned [5.00]  | val loss: 1.245520, val acc: 0.6975
+==>>> Prunable layer 15 | pruned [10.00]  | val loss: 1.245811, val acc: 0.6974
+==>>> Prunable layer 15 | pruned [15.00]  | val loss: 1.245736, val acc: 0.6970
+==>>> Prunable layer 15 | pruned [20.00]  | val loss: 1.246162, val acc: 0.6971
+==>>> Prunable layer 15 | pruned [25.00]  | val loss: 1.246853, val acc: 0.6969
+==>>> Prunable layer 15 | pruned [30.00]  | val loss: 1.248449, val acc: 0.6972
+==>>> Prunable layer 15 | pruned [35.00]  | val loss: 1.250522, val acc: 0.6956
+==>>> Prunable layer 15 | pruned [40.00]  | val loss: 1.253535, val acc: 0.6944
+==>>> Prunable layer 15 | pruned [45.00]  | val loss: 1.256693, val acc: 0.6940
+==>>> Prunable layer 15 | pruned [50.00]  | val loss: 1.263798, val acc: 0.6916
+==>>> Prunable layer 15 | pruned [55.00]  | val loss: 1.276080, val acc: 0.6888
+==>>> Prunable layer 15 | pruned [60.00]  | val loss: 1.294672, val acc: 0.6848
+==>>> Prunable layer 15 | pruned [65.00]  | val loss: 1.317445, val acc: 0.6802
+==>>> Prunable layer 15 | pruned [70.00]  | val loss: 1.375939, val acc: 0.6660
+==>>> Prunable layer 15 | pruned [75.00]  | val loss: 1.464227, val acc: 0.6492
+==>>> Prunable layer 15 | pruned [80.00]  | val loss: 1.692365, val acc: 0.6075
+==>>> Prunable layer 15 | pruned [85.00]  | val loss: 2.231535, val acc: 0.5246
+==>>> Prunable layer 15 | pruned [90.00]  | val loss: 3.790005, val acc: 0.2940
+==>>> Prunable layer 15 | pruned [95.00]  | val loss: 6.287435, val acc: 0.0331
+==>>> Prunable layer 15 | pruned [100.00]  | val loss: 9.274504, val acc: 0.0018
+
+Pruning prunable layer with index 16:
+==>>> Prunable layer 16 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 16 | pruned [5.00]  | val loss: 1.245411, val acc: 0.6976
+==>>> Prunable layer 16 | pruned [10.00]  | val loss: 1.245666, val acc: 0.6972
+==>>> Prunable layer 16 | pruned [15.00]  | val loss: 1.245894, val acc: 0.6977
+==>>> Prunable layer 16 | pruned [20.00]  | val loss: 1.246343, val acc: 0.6974
+==>>> Prunable layer 16 | pruned [25.00]  | val loss: 1.246326, val acc: 0.6974
+==>>> Prunable layer 16 | pruned [30.00]  | val loss: 1.245739, val acc: 0.6973
+==>>> Prunable layer 16 | pruned [35.00]  | val loss: 1.245750, val acc: 0.6967
+==>>> Prunable layer 16 | pruned [40.00]  | val loss: 1.247210, val acc: 0.6957
+==>>> Prunable layer 16 | pruned [45.00]  | val loss: 1.249114, val acc: 0.6956
+==>>> Prunable layer 16 | pruned [50.00]  | val loss: 1.253505, val acc: 0.6940
+==>>> Prunable layer 16 | pruned [55.00]  | val loss: 1.260644, val acc: 0.6918
+==>>> Prunable layer 16 | pruned [60.00]  | val loss: 1.274984, val acc: 0.6895
+==>>> Prunable layer 16 | pruned [65.00]  | val loss: 1.297855, val acc: 0.6862
+==>>> Prunable layer 16 | pruned [70.00]  | val loss: 1.342134, val acc: 0.6791
+==>>> Prunable layer 16 | pruned [75.00]  | val loss: 1.432742, val acc: 0.6662
+==>>> Prunable layer 16 | pruned [80.00]  | val loss: 1.689478, val acc: 0.6406
+==>>> Prunable layer 16 | pruned [85.00]  | val loss: 2.197287, val acc: 0.5948
+==>>> Prunable layer 16 | pruned [90.00]  | val loss: 3.464289, val acc: 0.4705
+==>>> Prunable layer 16 | pruned [95.00]  | val loss: 5.211394, val acc: 0.2175
+==>>> Prunable layer 16 | pruned [100.00]  | val loss: 6.047095, val acc: 0.0484
+
+Pruning prunable layer with index 17:
+==>>> Prunable layer 17 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 17 | pruned [5.00]  | val loss: 1.245446, val acc: 0.6976
+==>>> Prunable layer 17 | pruned [10.00]  | val loss: 1.245375, val acc: 0.6975
+==>>> Prunable layer 17 | pruned [15.00]  | val loss: 1.245377, val acc: 0.6977
+==>>> Prunable layer 17 | pruned [20.00]  | val loss: 1.245061, val acc: 0.6974
+==>>> Prunable layer 17 | pruned [25.00]  | val loss: 1.244887, val acc: 0.6973
+==>>> Prunable layer 17 | pruned [30.00]  | val loss: 1.245771, val acc: 0.6969
+==>>> Prunable layer 17 | pruned [35.00]  | val loss: 1.246487, val acc: 0.6966
+==>>> Prunable layer 17 | pruned [40.00]  | val loss: 1.246553, val acc: 0.6966
+==>>> Prunable layer 17 | pruned [45.00]  | val loss: 1.248052, val acc: 0.6961
+==>>> Prunable layer 17 | pruned [50.00]  | val loss: 1.250817, val acc: 0.6948
+==>>> Prunable layer 17 | pruned [55.00]  | val loss: 1.251837, val acc: 0.6942
+==>>> Prunable layer 17 | pruned [60.00]  | val loss: 1.257164, val acc: 0.6932
+==>>> Prunable layer 17 | pruned [65.00]  | val loss: 1.264434, val acc: 0.6913
+==>>> Prunable layer 17 | pruned [70.00]  | val loss: 1.274085, val acc: 0.6891
+==>>> Prunable layer 17 | pruned [75.00]  | val loss: 1.291557, val acc: 0.6860
+==>>> Prunable layer 17 | pruned [80.00]  | val loss: 1.332114, val acc: 0.6792
+==>>> Prunable layer 17 | pruned [85.00]  | val loss: 1.382139, val acc: 0.6728
+==>>> Prunable layer 17 | pruned [90.00]  | val loss: 1.467030, val acc: 0.6618
+==>>> Prunable layer 17 | pruned [95.00]  | val loss: 1.569782, val acc: 0.6438
+==>>> Prunable layer 17 | pruned [100.00]  | val loss: 2.165465, val acc: 0.5592
+
+Pruning prunable layer with index 18:
+==>>> Prunable layer 18 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 18 | pruned [5.00]  | val loss: 1.245523, val acc: 0.6976
+==>>> Prunable layer 18 | pruned [10.00]  | val loss: 1.245680, val acc: 0.6974
+==>>> Prunable layer 18 | pruned [15.00]  | val loss: 1.246416, val acc: 0.6972
+==>>> Prunable layer 18 | pruned [20.00]  | val loss: 1.246986, val acc: 0.6974
+==>>> Prunable layer 18 | pruned [25.00]  | val loss: 1.248208, val acc: 0.6973
+==>>> Prunable layer 18 | pruned [30.00]  | val loss: 1.250880, val acc: 0.6969
+==>>> Prunable layer 18 | pruned [35.00]  | val loss: 1.254028, val acc: 0.6963
+==>>> Prunable layer 18 | pruned [40.00]  | val loss: 1.258394, val acc: 0.6959
+==>>> Prunable layer 18 | pruned [45.00]  | val loss: 1.267823, val acc: 0.6947
+==>>> Prunable layer 18 | pruned [50.00]  | val loss: 1.281430, val acc: 0.6928
+==>>> Prunable layer 18 | pruned [55.00]  | val loss: 1.302780, val acc: 0.6899
+==>>> Prunable layer 18 | pruned [60.00]  | val loss: 1.328634, val acc: 0.6865
+==>>> Prunable layer 18 | pruned [65.00]  | val loss: 1.370068, val acc: 0.6814
+==>>> Prunable layer 18 | pruned [70.00]  | val loss: 1.426290, val acc: 0.6732
+==>>> Prunable layer 18 | pruned [75.00]  | val loss: 1.523408, val acc: 0.6594
+==>>> Prunable layer 18 | pruned [80.00]  | val loss: 1.689193, val acc: 0.6310
+==>>> Prunable layer 18 | pruned [85.00]  | val loss: 1.955378, val acc: 0.5882
+==>>> Prunable layer 18 | pruned [90.00]  | val loss: 2.615224, val acc: 0.4985
+==>>> Prunable layer 18 | pruned [95.00]  | val loss: 4.599238, val acc: 0.2942
+==>>> Prunable layer 18 | pruned [100.00]  | val loss: 16.593083, val acc: 0.0010
+
+Pruning prunable layer with index 19:
+==>>> Prunable layer 19 | pruned [0.00]  | val loss: 1.245477, val acc: 0.6976
+==>>> Prunable layer 19 | pruned [5.00]  | val loss: 1.245436, val acc: 0.6977
+==>>> Prunable layer 19 | pruned [10.00]  | val loss: 1.245419, val acc: 0.6975
+==>>> Prunable layer 19 | pruned [15.00]  | val loss: 1.245643, val acc: 0.6974
+==>>> Prunable layer 19 | pruned [20.00]  | val loss: 1.245815, val acc: 0.6970
+==>>> Prunable layer 19 | pruned [25.00]  | val loss: 1.246306, val acc: 0.6969
+==>>> Prunable layer 19 | pruned [30.00]  | val loss: 1.247115, val acc: 0.6964
+==>>> Prunable layer 19 | pruned [35.00]  | val loss: 1.248488, val acc: 0.6961
+==>>> Prunable layer 19 | pruned [40.00]  | val loss: 1.251027, val acc: 0.6950
+==>>> Prunable layer 19 | pruned [45.00]  | val loss: 1.254855, val acc: 0.6946
+==>>> Prunable layer 19 | pruned [50.00]  | val loss: 1.260375, val acc: 0.6930
+==>>> Prunable layer 19 | pruned [55.00]  | val loss: 1.267388, val acc: 0.6911
+==>>> Prunable layer 19 | pruned [60.00]  | val loss: 1.277561, val acc: 0.6890
+==>>> Prunable layer 19 | pruned [65.00]  | val loss: 1.290669, val acc: 0.6849
+==>>> Prunable layer 19 | pruned [70.00]  | val loss: 1.313983, val acc: 0.6800
+==>>> Prunable layer 19 | pruned [75.00]  | val loss: 1.349427, val acc: 0.6719
+==>>> Prunable layer 19 | pruned [80.00]  | val loss: 1.406889, val acc: 0.6587
+==>>> Prunable layer 19 | pruned [85.00]  | val loss: 1.522940, val acc: 0.6340
+==>>> Prunable layer 19 | pruned [90.00]  | val loss: 1.740792, val acc: 0.5931
+==>>> Prunable layer 19 | pruned [95.00]  | val loss: 2.315574, val acc: 0.5029
+==>>> Prunable layer 19 | pruned [100.00]  | val loss: 6.671911, val acc: 0.0055
