@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Aug 16 21:34:33 2020
+Last assessed on Wed Nov 24 17:39:04 2021
 
 @author: tibrayev
 """
@@ -38,7 +39,8 @@ class LBL_prune_class():
 
     def __repr__(self):
         status_msg = 'prune_v0_lbl with the following parameters: \n'\
-                     '  total_weights={}\n'.format(self.total_weights)
+                     '  tile_size={}\n'\
+                     '  total_weights={}\n'.format(self.tile_size, self.total_weights)
         return status_msg
     
     def count_total_weights(self, model):

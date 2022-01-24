@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jun 17 19:28:50 2021
+Last assessed on Wed Nov 24 20:38:44 2021
+
 
 @author: tibrayev
 
@@ -53,17 +55,16 @@ parser.add_argument('--checkpoint',     default=None,           type=str,   help
 parser.add_argument('--batch_size',     default=128,            type=int,   help='Batch size for data loading')
 parser.add_argument('--parallel',       default=False,          type=bool,  help='Flag to whether parallelize model over multiple GPUs')
 parser.add_argument('--valid_split',    default=0.000,          type=float, help='Fraction of training set dedicated for validation')
-#parser.add_argument('--cfg_dir',        default=None,           type=str,   help='Path to configuration file')
 parser.add_argument('--w_tol',          default=1.0e-3,         type=float, help='Weight tolerance to consider prunable weights')
 parser.add_argument('--lambda_g',       default=0.0005,         type=float, help='GroupLasso lambda factor')
 parser.add_argument('--lambda_l2',      default=0.0005,         type=float, help='L2 Regularization lambda factor')
-parser.add_argument('--save_dir',       default='xb_tile',      type=str,   help='Name of the subfolder to store logs and checkpoints')
+parser.add_argument('--save_dir',       default='pretrained',   type=str,   help='Name of the subfolder to store logs and checkpoints')
 parser.add_argument('--tile_size',      default=64,             type=int,   help='Logical crossbar (tile) size')
 parser.add_argument('--weight_quant',   default=1,              type=int,   help='The number of bits assumed to be used for weight quantization')
 #training arguments
-parser.add_argument('--lr',             default=0.1,            type=float, help='Initial learning rate during training')
+parser.add_argument('--lr',             default=0.01,           type=float, help='Initial learning rate during training')
 #pruning arguments
-parser.add_argument('--pr_structure',   defeault='xb_tile',     type=str,   help='Type of structure to assume as one group', choices=['xb_tile', 'xb_row', 'xb_column'])
+parser.add_argument('--pr_structure',   default='xb_tile',      type=str,   help='Type of structure to assume as one group', choices=['xb_tile', 'xb_row', 'xb_column'])
 parser.add_argument('--prs', nargs='+', default=None,           type=float, help='Layer-by-layer pruning ratios to which network needs to be pruned')
 
 
@@ -86,7 +87,9 @@ WEIGHT_TOL      = args.w_tol
 LAMBDA_G        = args.lambda_g
 LAMBDA_L2REG    = args.lambda_l2
 PR_STRUCTURE    = args.pr_structure
-LOG             = 'GroupLassoFor_{}/'.format(PR_STRUCTURE) + args.save_dir
+TILE_SIZE       = args.tile_size
+WEIGHT_QUANT    = args.weight_quant
+LOG             = 'GroupLassoFor_{}/'.format(PR_STRUCTURE) + 'tile_size{}x{}/'.format(TILE_SIZE, TILE_SIZE) + args.save_dir
 
 VERSION         = 'GroupLassoFor_{}_lambdas_l2reg{}_lambda_g{}_tol{}'.format(PR_STRUCTURE, LAMBDA_L2REG, LAMBDA_G, WEIGHT_TOL)
 
@@ -228,8 +231,8 @@ prune = GroupLassoForXB(model, device,
                         pruning_structure = PR_STRUCTURE,
                         lambda_g = LAMBDA_G, 
                         tol = WEIGHT_TOL,
-                        tile_size = args.tile_size,
-                        weight_quantization = args.weight_quant)
+                        tile_size = TILE_SIZE,
+                        weight_quantization = WEIGHT_QUANT)
 
 f.write("\n==>> {}\n\n".format(prune))
 

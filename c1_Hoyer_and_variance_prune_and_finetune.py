@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Nov  2 22:57:08 2020
-Last assessed on Fri Dec 25 18:56:23 2020
+Last assessed on Sun Nov 21 22:31:12 2021
 
 @author: tibrayev
 
@@ -55,11 +55,9 @@ parser.add_argument('--batch_size',     default=128,            type=int,   help
 parser.add_argument('--parallel',       default=False,          type=bool,  help='Flag to whether parallelize model over multiple GPUs')
 parser.add_argument('--valid_split',    default=0.000,          type=float, help='Fraction of training set dedicated for validation')
 parser.add_argument('--log',            default=None,           type=str,   help='Path to the log file')
-#parser.add_argument('--cfg_dir',        default=None,           type=str,   help='Path to configuration file')
 parser.add_argument('--w_tol',          default=1.0e-3,         type=float, help='Weight tolerance to consider prunable weights')
 parser.add_argument('--tile_size',      default=64,             type=int,   help='Logical crossbar (tile) size')
 parser.add_argument('--weight_quant',   default=1,              type=int,   help='The number of bits assumed to be used for weight quantization')
-#parser.add_argument('--lr',             default=0.1,            type=float, help='Initial learning rate during training')
 parser.add_argument('--prs', nargs='+', default=None,           type=float, help='Layer-by-layer pruning ratios to which network needs to be pruned')
 
 
@@ -77,6 +75,10 @@ CKPT_DIR        = args.checkpoint
 BATCH_SIZE      = args.batch_size
 PARALLEL        = args.parallel
 VALID_SPLIT     = args.valid_split
+
+WEIGHT_TOL      = args.w_tol
+TILE_SIZE       = args.tile_size
+WEIGHT_QUANT    = args.weight_quant
 
 
 if DATASET == 'CIFAR10':    
@@ -197,9 +199,9 @@ elif CKPT_DIR is not None:
 prune = HoyerAndVariance(model, device,
                          lambda_variance = 0.0,
                          lambda_mean = 0.0,
-                         tol = args.w_tol,
-                         tile_size = args.tile_size,
-                         weight_quantization = args.weight_quant)
+                         tol = WEIGHT_TOL,
+                         tile_size = TILE_SIZE,
+                         weight_quantization = WEIGHT_QUANT)
 
 f.write("\n==>> {}\n\n".format(prune))
 

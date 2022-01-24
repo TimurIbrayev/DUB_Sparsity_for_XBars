@@ -1,0 +1,809 @@
+
+*******************************************************************
+==>> Run on: 2021-07-29 16:07:44
+==>> Seed was set to: 1
+==>> Dataset used: imagenet2012
+==>> Batch size: 256
+==>> Total training batches: 5005
+==>> Total validation batches: 0
+==>> Total testing batches: 196
+DataParallel(
+  (module): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer3): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (layer4): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+    (fc): Linear(in_features=512, out_features=1000, bias=True)
+  )
+)
+Pretrained model was loaded!
+Total prunable modules: 20
+
+==>> GroupLassoForXB with the following parameters: 
+  tile_size=(64, 64)
+  total_prune_layers=20
+  total_weights=11166912
+  total_tiles=2727
+  total_structures=2727
+  tol=0.001
+  lambda_g=0.001
+
+
+==>> Starting training from scratch!
+==>> Optimizer settings: SGD (
+Parameter Group 0
+    dampening: 0
+    initial_lr: 0.01
+    lr: 0.01
+    momentum: 0.9
+    nesterov: False
+    weight_decay: 0.0005
+
+Parameter Group 1
+    dampening: 0
+    initial_lr: 0.01
+    lr: 0.01
+    momentum: 0.9
+    nesterov: False
+    weight_decay: 0.0005
+)
+==>> LR scheduler type: <class 'torch.optim.lr_scheduler.MultiStepLR'>
+==>> LR scheduler state: {'milestones': Counter({30: 1, 60: 1, 90: 1}), 'gamma': 0.1, 'base_lrs': [0.01, 0.01], 'last_epoch': 0, '_step_count': 1, '_get_lr_called_within_step': False, '_last_lr': [0.01, 0.01]}
+==>> Number of training epochs: 120
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 4.980489, acc: 0.5995, almost zeros: 622625/11166912
+==>>> cls loss: 1.740270	 grouplasso loss: 3.240219	
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 4.866038, acc: 0.5888, almost zeros: 706488/11166912
+==>>> cls loss: 1.795322	 grouplasso loss: 3.070716	
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 4.753183, acc: 0.5802, almost zeros: 801902/11166912
+==>>> cls loss: 1.841289	 grouplasso loss: 2.911894	
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 4.653934, acc: 0.5712, almost zeros: 906865/11166912
+==>>> cls loss: 1.888632	 grouplasso loss: 2.765302	
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 4.569300, acc: 0.5621, almost zeros: 1013147/11166912
+==>>> cls loss: 1.937369	 grouplasso loss: 2.631931	
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 4.568937, acc: 0.5621, almost zeros: 1013913/11166912
+==>>> cls loss: 1.937638	 grouplasso loss: 2.631298	
+==>>> CLEAN VALIDATE | epoch: 0, batch index: 196, val loss: 1.910221, val acc: 0.5515
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 4.104331, acc: 0.5152, almost zeros: 1114398/11166912
+==>>> cls loss: 2.191465	 grouplasso loss: 1.912866	
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 4.074490, acc: 0.5072, almost zeros: 1198335/11166912
+==>>> cls loss: 2.233887	 grouplasso loss: 1.840603	
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 4.055329, acc: 0.4992, almost zeros: 1272317/11166912
+==>>> cls loss: 2.275902	 grouplasso loss: 1.779427	
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 4.041067, acc: 0.4923, almost zeros: 1334546/11166912
+==>>> cls loss: 2.313796	 grouplasso loss: 1.727271	
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 4.027856, acc: 0.4865, almost zeros: 1390652/11166912
+==>>> cls loss: 2.345364	 grouplasso loss: 1.682492	
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 4.027895, acc: 0.4864, almost zeros: 1391273/11166912
+==>>> cls loss: 2.345611	 grouplasso loss: 1.682284	
+==>>> CLEAN VALIDATE | epoch: 1, batch index: 196, val loss: 2.227056, val acc: 0.4890
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 3.938170, acc: 0.4596, almost zeros: 1432322/11166912
+==>>> cls loss: 2.486812	 grouplasso loss: 1.451358	
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 3.941192, acc: 0.4551, almost zeros: 1469824/11166912
+==>>> cls loss: 2.509672	 grouplasso loss: 1.431520	
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 3.941704, acc: 0.4520, almost zeros: 1501068/11166912
+==>>> cls loss: 2.527220	 grouplasso loss: 1.414484	
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 3.944089, acc: 0.4491, almost zeros: 1532302/11166912
+==>>> cls loss: 2.544521	 grouplasso loss: 1.399568	
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 3.945561, acc: 0.4468, almost zeros: 1557910/11166912
+==>>> cls loss: 2.559175	 grouplasso loss: 1.386385	
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 3.945473, acc: 0.4468, almost zeros: 1558257/11166912
+==>>> cls loss: 2.559149	 grouplasso loss: 1.386324	
+==>>> CLEAN VALIDATE | epoch: 2, batch index: 196, val loss: 2.351426, val acc: 0.4676
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 3.926379, acc: 0.4374, almost zeros: 1577135/11166912
+==>>> cls loss: 2.609673	 grouplasso loss: 1.316706	
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 3.933112, acc: 0.4355, almost zeros: 1599788/11166912
+==>>> cls loss: 2.623311	 grouplasso loss: 1.309800	
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 3.938747, acc: 0.4331, almost zeros: 1616534/11166912
+==>>> cls loss: 2.635188	 grouplasso loss: 1.303559	
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 3.941359, acc: 0.4319, almost zeros: 1633112/11166912
+==>>> cls loss: 2.643672	 grouplasso loss: 1.297687	
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 3.940526, acc: 0.4309, almost zeros: 1651347/11166912
+==>>> cls loss: 2.648320	 grouplasso loss: 1.292206	
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 3.940671, acc: 0.4309, almost zeros: 1652442/11166912
+==>>> cls loss: 2.648492	 grouplasso loss: 1.292179	
+==>>> CLEAN VALIDATE | epoch: 3, batch index: 196, val loss: 2.396564, val acc: 0.4546
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 3.923321, acc: 0.4292, almost zeros: 1660340/11166912
+==>>> cls loss: 2.660219	 grouplasso loss: 1.263102	
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 3.929054, acc: 0.4270, almost zeros: 1677377/11166912
+==>>> cls loss: 2.668740	 grouplasso loss: 1.260314	
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 3.932705, acc: 0.4261, almost zeros: 1689257/11166912
+==>>> cls loss: 2.675445	 grouplasso loss: 1.257260	
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 3.935227, acc: 0.4250, almost zeros: 1702215/11166912
+==>>> cls loss: 2.680861	 grouplasso loss: 1.254366	
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 3.938660, acc: 0.4241, almost zeros: 1714902/11166912
+==>>> cls loss: 2.687103	 grouplasso loss: 1.251557	
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 3.938733, acc: 0.4241, almost zeros: 1714188/11166912
+==>>> cls loss: 2.687191	 grouplasso loss: 1.251543	
+==>>> CLEAN VALIDATE | epoch: 4, batch index: 196, val loss: 2.403240, val acc: 0.4578
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 3.925314, acc: 0.4234, almost zeros: 1723312/11166912
+==>>> cls loss: 2.690331	 grouplasso loss: 1.234983	
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 3.933230, acc: 0.4217, almost zeros: 1730206/11166912
+==>>> cls loss: 2.699867	 grouplasso loss: 1.233363	
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 3.936507, acc: 0.4209, almost zeros: 1739769/11166912
+==>>> cls loss: 2.704647	 grouplasso loss: 1.231860	
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 3.936465, acc: 0.4205, almost zeros: 1752252/11166912
+==>>> cls loss: 2.706396	 grouplasso loss: 1.230069	
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 3.939286, acc: 0.4198, almost zeros: 1758146/11166912
+==>>> cls loss: 2.710919	 grouplasso loss: 1.228367	
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 3.939392, acc: 0.4198, almost zeros: 1758005/11166912
+==>>> cls loss: 2.711034	 grouplasso loss: 1.228359	
+==>>> CLEAN VALIDATE | epoch: 5, batch index: 196, val loss: 2.455155, val acc: 0.4494
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 3.934361, acc: 0.4182, almost zeros: 1762145/11166912
+==>>> cls loss: 2.714402	 grouplasso loss: 1.219959	
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 3.933558, acc: 0.4182, almost zeros: 1768967/11166912
+==>>> cls loss: 2.714501	 grouplasso loss: 1.219057	
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 3.935752, acc: 0.4180, almost zeros: 1779983/11166912
+==>>> cls loss: 2.717597	 grouplasso loss: 1.218156	
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 3.939238, acc: 0.4176, almost zeros: 1788974/11166912
+==>>> cls loss: 2.722079	 grouplasso loss: 1.217159	
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 3.940215, acc: 0.4172, almost zeros: 1793560/11166912
+==>>> cls loss: 2.724124	 grouplasso loss: 1.216091	
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 3.940084, acc: 0.4172, almost zeros: 1792903/11166912
+==>>> cls loss: 2.723998	 grouplasso loss: 1.216086	
+==>>> CLEAN VALIDATE | epoch: 6, batch index: 196, val loss: 2.448567, val acc: 0.4515
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 3.926103, acc: 0.4185, almost zeros: 1796278/11166912
+==>>> cls loss: 2.715743	 grouplasso loss: 1.210360	
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 3.934134, acc: 0.4175, almost zeros: 1805051/11166912
+==>>> cls loss: 2.724200	 grouplasso loss: 1.209934	
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 3.936723, acc: 0.4165, almost zeros: 1812621/11166912
+==>>> cls loss: 2.727556	 grouplasso loss: 1.209167	
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 3.938618, acc: 0.4161, almost zeros: 1818702/11166912
+==>>> cls loss: 2.730198	 grouplasso loss: 1.208420	
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 3.940350, acc: 0.4155, almost zeros: 1824509/11166912
+==>>> cls loss: 2.732717	 grouplasso loss: 1.207633	
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 3.940259, acc: 0.4155, almost zeros: 1824629/11166912
+==>>> cls loss: 2.732630	 grouplasso loss: 1.207629	
+==>>> CLEAN VALIDATE | epoch: 7, batch index: 196, val loss: 2.469317, val acc: 0.4447
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 3.920363, acc: 0.4173, almost zeros: 1829028/11166912
+==>>> cls loss: 2.717564	 grouplasso loss: 1.202799	
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 3.927433, acc: 0.4166, almost zeros: 1830218/11166912
+==>>> cls loss: 2.724545	 grouplasso loss: 1.202889	
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 3.936575, acc: 0.4148, almost zeros: 1837238/11166912
+==>>> cls loss: 2.733832	 grouplasso loss: 1.202743	
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 3.937807, acc: 0.4145, almost zeros: 1844490/11166912
+==>>> cls loss: 2.735504	 grouplasso loss: 1.202303	
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 3.938473, acc: 0.4142, almost zeros: 1849894/11166912
+==>>> cls loss: 2.736992	 grouplasso loss: 1.201482	
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 3.938604, acc: 0.4142, almost zeros: 1849946/11166912
+==>>> cls loss: 2.737126	 grouplasso loss: 1.201478	
+==>>> CLEAN VALIDATE | epoch: 8, batch index: 196, val loss: 2.472587, val acc: 0.4455
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 3.928187, acc: 0.4156, almost zeros: 1851129/11166912
+==>>> cls loss: 2.730963	 grouplasso loss: 1.197224	
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 3.929893, acc: 0.4156, almost zeros: 1860751/11166912
+==>>> cls loss: 2.733184	 grouplasso loss: 1.196709	
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 3.932848, acc: 0.4145, almost zeros: 1863874/11166912
+==>>> cls loss: 2.736716	 grouplasso loss: 1.196132	
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 3.936717, acc: 0.4139, almost zeros: 1867991/11166912
+==>>> cls loss: 2.740924	 grouplasso loss: 1.195793	
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 3.939044, acc: 0.4135, almost zeros: 1874447/11166912
+==>>> cls loss: 2.743699	 grouplasso loss: 1.195346	
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 3.938992, acc: 0.4135, almost zeros: 1874299/11166912
+==>>> cls loss: 2.743649	 grouplasso loss: 1.195343	
+==>>> CLEAN VALIDATE | epoch: 9, batch index: 196, val loss: 2.506159, val acc: 0.4372
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 3.923031, acc: 0.4157, almost zeros: 1878803/11166912
+==>>> cls loss: 2.730742	 grouplasso loss: 1.192289	
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 3.933150, acc: 0.4142, almost zeros: 1883341/11166912
+==>>> cls loss: 2.740409	 grouplasso loss: 1.192741	
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 3.935782, acc: 0.4133, almost zeros: 1886412/11166912
+==>>> cls loss: 2.743345	 grouplasso loss: 1.192438	
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 3.937703, acc: 0.4128, almost zeros: 1896489/11166912
+==>>> cls loss: 2.745659	 grouplasso loss: 1.192044	
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 3.938218, acc: 0.4127, almost zeros: 1900959/11166912
+==>>> cls loss: 2.746667	 grouplasso loss: 1.191550	
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 3.938268, acc: 0.4127, almost zeros: 1902183/11166912
+==>>> cls loss: 2.746721	 grouplasso loss: 1.191548	
+==>>> CLEAN VALIDATE | epoch: 10, batch index: 196, val loss: 2.479259, val acc: 0.4393
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 3.915797, acc: 0.4167, almost zeros: 1899793/11166912
+==>>> cls loss: 2.726421	 grouplasso loss: 1.189376	
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 3.927647, acc: 0.4146, almost zeros: 1905996/11166912
+==>>> cls loss: 2.738071	 grouplasso loss: 1.189576	
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 3.932552, acc: 0.4132, almost zeros: 1912019/11166912
+==>>> cls loss: 2.743298	 grouplasso loss: 1.189253	
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 3.936490, acc: 0.4125, almost zeros: 1916945/11166912
+==>>> cls loss: 2.747693	 grouplasso loss: 1.188797	
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 3.937024, acc: 0.4125, almost zeros: 1924880/11166912
+==>>> cls loss: 2.748658	 grouplasso loss: 1.188366	
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 3.937054, acc: 0.4125, almost zeros: 1924587/11166912
+==>>> cls loss: 2.748690	 grouplasso loss: 1.188364	
+==>>> CLEAN VALIDATE | epoch: 11, batch index: 196, val loss: 2.460222, val acc: 0.4446
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 3.920666, acc: 0.4137, almost zeros: 1928726/11166912
+==>>> cls loss: 2.735041	 grouplasso loss: 1.185625	
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 3.925103, acc: 0.4133, almost zeros: 1932294/11166912
+==>>> cls loss: 2.739453	 grouplasso loss: 1.185650	
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 3.927912, acc: 0.4127, almost zeros: 1942315/11166912
+==>>> cls loss: 2.742614	 grouplasso loss: 1.185299	
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 3.931321, acc: 0.4120, almost zeros: 1944833/11166912
+==>>> cls loss: 2.746492	 grouplasso loss: 1.184828	
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 3.932513, acc: 0.4119, almost zeros: 1954266/11166912
+==>>> cls loss: 2.748139	 grouplasso loss: 1.184374	
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 3.932522, acc: 0.4119, almost zeros: 1953525/11166912
+==>>> cls loss: 2.748151	 grouplasso loss: 1.184371	
+==>>> CLEAN VALIDATE | epoch: 12, batch index: 196, val loss: 2.463098, val acc: 0.4458
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 3.920022, acc: 0.4144, almost zeros: 1957510/11166912
+==>>> cls loss: 2.738372	 grouplasso loss: 1.181649	
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 3.925730, acc: 0.4133, almost zeros: 1967009/11166912
+==>>> cls loss: 2.743856	 grouplasso loss: 1.181874	
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 3.928365, acc: 0.4128, almost zeros: 1974684/11166912
+==>>> cls loss: 2.746798	 grouplasso loss: 1.181567	
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 3.929268, acc: 0.4125, almost zeros: 1985260/11166912
+==>>> cls loss: 2.748290	 grouplasso loss: 1.180977	
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 3.930821, acc: 0.4120, almost zeros: 1995243/11166912
+==>>> cls loss: 2.750374	 grouplasso loss: 1.180447	
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 3.930792, acc: 0.4120, almost zeros: 1996316/11166912
+==>>> cls loss: 2.750348	 grouplasso loss: 1.180444	
+==>>> CLEAN VALIDATE | epoch: 13, batch index: 196, val loss: 2.451249, val acc: 0.4470
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 3.916296, acc: 0.4127, almost zeros: 1997709/11166912
+==>>> cls loss: 2.739047	 grouplasso loss: 1.177249	
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 3.919974, acc: 0.4126, almost zeros: 2016333/11166912
+==>>> cls loss: 2.742649	 grouplasso loss: 1.177325	
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 3.923790, acc: 0.4124, almost zeros: 2027207/11166912
+==>>> cls loss: 2.746817	 grouplasso loss: 1.176973	
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 3.927355, acc: 0.4118, almost zeros: 2046762/11166912
+==>>> cls loss: 2.750911	 grouplasso loss: 1.176443	
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 3.927889, acc: 0.4115, almost zeros: 2065556/11166912
+==>>> cls loss: 2.752104	 grouplasso loss: 1.175785	
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 3.927980, acc: 0.4115, almost zeros: 2065516/11166912
+==>>> cls loss: 2.752197	 grouplasso loss: 1.175783	
+==>>> CLEAN VALIDATE | epoch: 14, batch index: 196, val loss: 2.524146, val acc: 0.4316
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 3.908821, acc: 0.4149, almost zeros: 2093683/11166912
+==>>> cls loss: 2.736550	 grouplasso loss: 1.172271	
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 3.920982, acc: 0.4122, almost zeros: 2118897/11166912
+==>>> cls loss: 2.749216	 grouplasso loss: 1.171766	
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 3.921010, acc: 0.4118, almost zeros: 2161369/11166912
+==>>> cls loss: 2.750184	 grouplasso loss: 1.170826	
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 3.921420, acc: 0.4117, almost zeros: 2209050/11166912
+==>>> cls loss: 2.751819	 grouplasso loss: 1.169602	
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 3.922143, acc: 0.4113, almost zeros: 2255632/11166912
+==>>> cls loss: 2.753884	 grouplasso loss: 1.168259	
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 3.922265, acc: 0.4113, almost zeros: 2255926/11166912
+==>>> cls loss: 2.754012	 grouplasso loss: 1.168253	
+==>>> CLEAN VALIDATE | epoch: 15, batch index: 196, val loss: 2.472405, val acc: 0.4418
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 3.903873, acc: 0.4127, almost zeros: 2289561/11166912
+==>>> cls loss: 2.742606	 grouplasso loss: 1.161268	
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 3.908318, acc: 0.4117, almost zeros: 2329455/11166912
+==>>> cls loss: 2.747997	 grouplasso loss: 1.160321	
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 3.908170, acc: 0.4118, almost zeros: 2364621/11166912
+==>>> cls loss: 2.749002	 grouplasso loss: 1.159168	
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 3.908903, acc: 0.4116, almost zeros: 2383216/11166912
+==>>> cls loss: 2.750747	 grouplasso loss: 1.158156	
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 3.910653, acc: 0.4112, almost zeros: 2398170/11166912
+==>>> cls loss: 2.753254	 grouplasso loss: 1.157398	
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 3.910657, acc: 0.4112, almost zeros: 2398589/11166912
+==>>> cls loss: 2.753262	 grouplasso loss: 1.157395	
+==>>> CLEAN VALIDATE | epoch: 16, batch index: 196, val loss: 2.736839, val acc: 0.3987
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 3.890454, acc: 0.4144, almost zeros: 2413277/11166912
+==>>> cls loss: 2.737189	 grouplasso loss: 1.153266	
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 3.899118, acc: 0.4128, almost zeros: 2433063/11166912
+==>>> cls loss: 2.746064	 grouplasso loss: 1.153054	
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 3.900232, acc: 0.4122, almost zeros: 2450971/11166912
+==>>> cls loss: 2.747402	 grouplasso loss: 1.152830	
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 3.901806, acc: 0.4119, almost zeros: 2474946/11166912
+==>>> cls loss: 2.749346	 grouplasso loss: 1.152460	
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 3.902495, acc: 0.4115, almost zeros: 2502914/11166912
+==>>> cls loss: 2.750766	 grouplasso loss: 1.151729	
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 3.902512, acc: 0.4115, almost zeros: 2503219/11166912
+==>>> cls loss: 2.750787	 grouplasso loss: 1.151725	
+==>>> CLEAN VALIDATE | epoch: 17, batch index: 196, val loss: 2.436410, val acc: 0.4504
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 3.888220, acc: 0.4130, almost zeros: 2528412/11166912
+==>>> cls loss: 2.741191	 grouplasso loss: 1.147029	
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 3.890306, acc: 0.4124, almost zeros: 2563689/11166912
+==>>> cls loss: 2.743715	 grouplasso loss: 1.146591	
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 3.892634, acc: 0.4121, almost zeros: 2611440/11166912
+==>>> cls loss: 2.746415	 grouplasso loss: 1.146219	
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 3.896558, acc: 0.4115, almost zeros: 2658496/11166912
+==>>> cls loss: 2.751297	 grouplasso loss: 1.145262	
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 3.896550, acc: 0.4113, almost zeros: 2675438/11166912
+==>>> cls loss: 2.752477	 grouplasso loss: 1.144072	
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 3.896581, acc: 0.4113, almost zeros: 2675983/11166912
+==>>> cls loss: 2.752515	 grouplasso loss: 1.144066	
+==>>> CLEAN VALIDATE | epoch: 18, batch index: 196, val loss: 2.511008, val acc: 0.4372
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 3.870559, acc: 0.4164, almost zeros: 2673472/11166912
+==>>> cls loss: 2.732608	 grouplasso loss: 1.137951	
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 3.879128, acc: 0.4147, almost zeros: 2677911/11166912
+==>>> cls loss: 2.741125	 grouplasso loss: 1.138003	
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 3.882961, acc: 0.4134, almost zeros: 2682692/11166912
+==>>> cls loss: 2.745011	 grouplasso loss: 1.137950	
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 3.884990, acc: 0.4131, almost zeros: 2687338/11166912
+==>>> cls loss: 2.747100	 grouplasso loss: 1.137890	
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 3.887260, acc: 0.4124, almost zeros: 2689242/11166912
+==>>> cls loss: 2.749394	 grouplasso loss: 1.137866	
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 3.887309, acc: 0.4124, almost zeros: 2689816/11166912
+==>>> cls loss: 2.749443	 grouplasso loss: 1.137866	
+==>>> CLEAN VALIDATE | epoch: 19, batch index: 196, val loss: 2.499376, val acc: 0.4365
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 3.881632, acc: 0.4129, almost zeros: 2687630/11166912
+==>>> cls loss: 2.744091	 grouplasso loss: 1.137542	
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 3.882381, acc: 0.4129, almost zeros: 2695914/11166912
+==>>> cls loss: 2.744530	 grouplasso loss: 1.137852	
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 3.883983, acc: 0.4126, almost zeros: 2703033/11166912
+==>>> cls loss: 2.746119	 grouplasso loss: 1.137865	
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 3.886546, acc: 0.4117, almost zeros: 2706882/11166912
+==>>> cls loss: 2.748903	 grouplasso loss: 1.137643	
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 3.887220, acc: 0.4117, almost zeros: 2708714/11166912
+==>>> cls loss: 2.749911	 grouplasso loss: 1.137309	
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 3.887377, acc: 0.4117, almost zeros: 2709113/11166912
+==>>> cls loss: 2.750070	 grouplasso loss: 1.137307	
+==>>> CLEAN VALIDATE | epoch: 20, batch index: 196, val loss: 2.452462, val acc: 0.4432
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 3.871858, acc: 0.4154, almost zeros: 2712391/11166912
+==>>> cls loss: 2.735813	 grouplasso loss: 1.136044	
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 3.879966, acc: 0.4143, almost zeros: 2716208/11166912
+==>>> cls loss: 2.743342	 grouplasso loss: 1.136624	
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 3.885435, acc: 0.4128, almost zeros: 2719652/11166912
+==>>> cls loss: 2.748791	 grouplasso loss: 1.136644	
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 3.888555, acc: 0.4120, almost zeros: 2729622/11166912
+==>>> cls loss: 2.752076	 grouplasso loss: 1.136479	
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 3.887578, acc: 0.4119, almost zeros: 2738718/11166912
+==>>> cls loss: 2.751494	 grouplasso loss: 1.136084	
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 3.887631, acc: 0.4119, almost zeros: 2738354/11166912
+==>>> cls loss: 2.751549	 grouplasso loss: 1.136082	
+==>>> CLEAN VALIDATE | epoch: 21, batch index: 196, val loss: 2.454155, val acc: 0.4490
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 3.871316, acc: 0.4146, almost zeros: 2745813/11166912
+==>>> cls loss: 2.737338	 grouplasso loss: 1.133978	
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 3.878412, acc: 0.4135, almost zeros: 2747049/11166912
+==>>> cls loss: 2.744006	 grouplasso loss: 1.134406	
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 3.883013, acc: 0.4127, almost zeros: 2757560/11166912
+==>>> cls loss: 2.748499	 grouplasso loss: 1.134514	
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 3.885668, acc: 0.4117, almost zeros: 2767502/11166912
+==>>> cls loss: 2.751391	 grouplasso loss: 1.134277	
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 3.886184, acc: 0.4115, almost zeros: 2776071/11166912
+==>>> cls loss: 2.752268	 grouplasso loss: 1.133916	
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 3.886083, acc: 0.4115, almost zeros: 2776295/11166912
+==>>> cls loss: 2.752169	 grouplasso loss: 1.133914	
+==>>> CLEAN VALIDATE | epoch: 22, batch index: 196, val loss: 2.457654, val acc: 0.4429
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 3.871872, acc: 0.4140, almost zeros: 2788402/11166912
+==>>> cls loss: 2.739829	 grouplasso loss: 1.132043	
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 3.868546, acc: 0.4148, almost zeros: 2803932/11166912
+==>>> cls loss: 2.736782	 grouplasso loss: 1.131763	
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 3.871995, acc: 0.4139, almost zeros: 2813224/11166912
+==>>> cls loss: 2.740545	 grouplasso loss: 1.131450	
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 3.878055, acc: 0.4127, almost zeros: 2827521/11166912
+==>>> cls loss: 2.746735	 grouplasso loss: 1.131320	
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 3.880201, acc: 0.4125, almost zeros: 2847137/11166912
+==>>> cls loss: 2.749116	 grouplasso loss: 1.131085	
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 3.880266, acc: 0.4125, almost zeros: 2847970/11166912
+==>>> cls loss: 2.749184	 grouplasso loss: 1.131082	
+==>>> CLEAN VALIDATE | epoch: 23, batch index: 196, val loss: 2.595979, val acc: 0.4220
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 3.865187, acc: 0.4143, almost zeros: 2866949/11166912
+==>>> cls loss: 2.737183	 grouplasso loss: 1.128004	
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 3.869551, acc: 0.4133, almost zeros: 2885351/11166912
+==>>> cls loss: 2.741682	 grouplasso loss: 1.127870	
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 3.873767, acc: 0.4121, almost zeros: 2898327/11166912
+==>>> cls loss: 2.746331	 grouplasso loss: 1.127436	
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 3.875352, acc: 0.4117, almost zeros: 2910893/11166912
+==>>> cls loss: 2.748381	 grouplasso loss: 1.126972	
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 3.876691, acc: 0.4118, almost zeros: 2920435/11166912
+==>>> cls loss: 2.750342	 grouplasso loss: 1.126348	
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 3.876714, acc: 0.4117, almost zeros: 2920898/11166912
+==>>> cls loss: 2.750368	 grouplasso loss: 1.126346	
+==>>> CLEAN VALIDATE | epoch: 24, batch index: 196, val loss: 2.582300, val acc: 0.4259
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 3.859583, acc: 0.4141, almost zeros: 2929160/11166912
+==>>> cls loss: 2.735955	 grouplasso loss: 1.123627	
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 3.866689, acc: 0.4132, almost zeros: 2924585/11166912
+==>>> cls loss: 2.743130	 grouplasso loss: 1.123559	
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 3.870909, acc: 0.4124, almost zeros: 2927881/11166912
+==>>> cls loss: 2.747399	 grouplasso loss: 1.123510	
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 3.871632, acc: 0.4122, almost zeros: 2932539/11166912
+==>>> cls loss: 2.748398	 grouplasso loss: 1.123234	
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 3.873775, acc: 0.4119, almost zeros: 2931262/11166912
+==>>> cls loss: 2.750673	 grouplasso loss: 1.123102	
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 3.873757, acc: 0.4119, almost zeros: 2930670/11166912
+==>>> cls loss: 2.750656	 grouplasso loss: 1.123101	
+==>>> CLEAN VALIDATE | epoch: 25, batch index: 196, val loss: 2.394294, val acc: 0.4585
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 3.856762, acc: 0.4157, almost zeros: 2934163/11166912
+==>>> cls loss: 2.734500	 grouplasso loss: 1.122262	
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 3.866832, acc: 0.4137, almost zeros: 2937553/11166912
+==>>> cls loss: 2.744543	 grouplasso loss: 1.122289	
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 3.868924, acc: 0.4128, almost zeros: 2939056/11166912
+==>>> cls loss: 2.746528	 grouplasso loss: 1.122397	
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 3.868565, acc: 0.4126, almost zeros: 2945685/11166912
+==>>> cls loss: 2.746261	 grouplasso loss: 1.122304	
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 3.871671, acc: 0.4119, almost zeros: 2940456/11166912
+==>>> cls loss: 2.749525	 grouplasso loss: 1.122146	
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 3.871662, acc: 0.4119, almost zeros: 2940750/11166912
+==>>> cls loss: 2.749516	 grouplasso loss: 1.122146	
+==>>> CLEAN VALIDATE | epoch: 26, batch index: 196, val loss: 2.494622, val acc: 0.4368
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 3.848596, acc: 0.4150, almost zeros: 2944401/11166912
+==>>> cls loss: 2.726876	 grouplasso loss: 1.121721	
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 3.859601, acc: 0.4132, almost zeros: 2943232/11166912
+==>>> cls loss: 2.737585	 grouplasso loss: 1.122016	
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 3.863625, acc: 0.4129, almost zeros: 2948830/11166912
+==>>> cls loss: 2.741540	 grouplasso loss: 1.122085	
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 3.865930, acc: 0.4124, almost zeros: 2951275/11166912
+==>>> cls loss: 2.744011	 grouplasso loss: 1.121918	
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 3.867549, acc: 0.4123, almost zeros: 2953895/11166912
+==>>> cls loss: 2.746077	 grouplasso loss: 1.121472	
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 3.867643, acc: 0.4123, almost zeros: 2954480/11166912
+==>>> cls loss: 2.746173	 grouplasso loss: 1.121470	
+==>>> CLEAN VALIDATE | epoch: 27, batch index: 196, val loss: 2.532978, val acc: 0.4267
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 3.853023, acc: 0.4147, almost zeros: 2953558/11166912
+==>>> cls loss: 2.733282	 grouplasso loss: 1.119742	
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 3.862427, acc: 0.4129, almost zeros: 2955323/11166912
+==>>> cls loss: 2.742035	 grouplasso loss: 1.120392	
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 3.865038, acc: 0.4130, almost zeros: 2959600/11166912
+==>>> cls loss: 2.744594	 grouplasso loss: 1.120444	
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 3.866783, acc: 0.4125, almost zeros: 2963587/11166912
+==>>> cls loss: 2.746282	 grouplasso loss: 1.120501	
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 3.868476, acc: 0.4121, almost zeros: 2968681/11166912
+==>>> cls loss: 2.748081	 grouplasso loss: 1.120396	
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 3.868464, acc: 0.4121, almost zeros: 2967984/11166912
+==>>> cls loss: 2.748069	 grouplasso loss: 1.120395	
+==>>> CLEAN VALIDATE | epoch: 28, batch index: 196, val loss: 2.552739, val acc: 0.4263
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 3.855159, acc: 0.4140, almost zeros: 2965893/11166912
+==>>> cls loss: 2.735193	 grouplasso loss: 1.119966	
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 3.860999, acc: 0.4134, almost zeros: 2970269/11166912
+==>>> cls loss: 2.740740	 grouplasso loss: 1.120259	
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 3.863711, acc: 0.4129, almost zeros: 2971056/11166912
+==>>> cls loss: 2.743531	 grouplasso loss: 1.120180	
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 3.864756, acc: 0.4131, almost zeros: 2977860/11166912
+==>>> cls loss: 2.744860	 grouplasso loss: 1.119895	
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 3.866740, acc: 0.4126, almost zeros: 2983350/11166912
+==>>> cls loss: 2.747165	 grouplasso loss: 1.119575	
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 3.866723, acc: 0.4126, almost zeros: 2983422/11166912
+==>>> cls loss: 2.747150	 grouplasso loss: 1.119574	
+==>>> CLEAN VALIDATE | epoch: 29, batch index: 196, val loss: 2.448101, val acc: 0.4489
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 3.476618, acc: 0.4843, almost zeros: 3061780/11166912
+==>>> cls loss: 2.371614	 grouplasso loss: 1.105004	
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 3.405488, acc: 0.4946, almost zeros: 3133854/11166912
+==>>> cls loss: 2.313609	 grouplasso loss: 1.091879	
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 3.357711, acc: 0.5010, almost zeros: 3207590/11166912
+==>>> cls loss: 2.278675	 grouplasso loss: 1.079036	
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 3.320045, acc: 0.5057, almost zeros: 3280509/11166912
+==>>> cls loss: 2.253578	 grouplasso loss: 1.066467	
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 3.288806, acc: 0.5092, almost zeros: 3351280/11166912
+==>>> cls loss: 2.234629	 grouplasso loss: 1.054178	
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 3.288699, acc: 0.5093, almost zeros: 3351940/11166912
+==>>> cls loss: 2.234582	 grouplasso loss: 1.054117	
+==>>> CLEAN VALIDATE | epoch: 30, batch index: 196, val loss: 1.752660, val acc: 0.5845
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 3.115207, acc: 0.5274, almost zeros: 3422869/11166912
+==>>> cls loss: 2.133116	 grouplasso loss: 0.982091	
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 3.095710, acc: 0.5291, almost zeros: 3492608/11166912
+==>>> cls loss: 2.124548	 grouplasso loss: 0.971162	
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 3.082536, acc: 0.5299, almost zeros: 3558639/11166912
+==>>> cls loss: 2.121985	 grouplasso loss: 0.960551	
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 3.068742, acc: 0.5306, almost zeros: 3625221/11166912
+==>>> cls loss: 2.118480	 grouplasso loss: 0.950262	
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 3.056521, acc: 0.5311, almost zeros: 3689051/11166912
+==>>> cls loss: 2.116215	 grouplasso loss: 0.940306	
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 3.056539, acc: 0.5311, almost zeros: 3689269/11166912
+==>>> cls loss: 2.116282	 grouplasso loss: 0.940257	
+==>>> CLEAN VALIDATE | epoch: 31, batch index: 196, val loss: 1.715119, val acc: 0.5911
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 2.954051, acc: 0.5405, almost zeros: 3747339/11166912
+==>>> cls loss: 2.071494	 grouplasso loss: 0.882557	
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 2.952362, acc: 0.5388, almost zeros: 3802106/11166912
+==>>> cls loss: 2.078149	 grouplasso loss: 0.874213	
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 2.945456, acc: 0.5387, almost zeros: 3852949/11166912
+==>>> cls loss: 2.079267	 grouplasso loss: 0.866190	
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 2.939830, acc: 0.5384, almost zeros: 3901754/11166912
+==>>> cls loss: 2.081340	 grouplasso loss: 0.858490	
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 2.934510, acc: 0.5379, almost zeros: 3946456/11166912
+==>>> cls loss: 2.083391	 grouplasso loss: 0.851118	
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 2.934419, acc: 0.5379, almost zeros: 3946421/11166912
+==>>> cls loss: 2.083337	 grouplasso loss: 0.851082	
+==>>> CLEAN VALIDATE | epoch: 32, batch index: 196, val loss: 1.712408, val acc: 0.5925
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 2.877963, acc: 0.5425, almost zeros: 3980529/11166912
+==>>> cls loss: 2.069104	 grouplasso loss: 0.808859	
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 2.876570, acc: 0.5405, almost zeros: 4016573/11166912
+==>>> cls loss: 2.073560	 grouplasso loss: 0.803010	
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 2.874379, acc: 0.5401, almost zeros: 4045953/11166912
+==>>> cls loss: 2.076947	 grouplasso loss: 0.797432	
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 2.870927, acc: 0.5392, almost zeros: 4073160/11166912
+==>>> cls loss: 2.078807	 grouplasso loss: 0.792120	
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 2.867678, acc: 0.5387, almost zeros: 4099772/11166912
+==>>> cls loss: 2.080606	 grouplasso loss: 0.787072	
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 2.867685, acc: 0.5387, almost zeros: 4100168/11166912
+==>>> cls loss: 2.080638	 grouplasso loss: 0.787047	
+==>>> CLEAN VALIDATE | epoch: 33, batch index: 196, val loss: 1.690899, val acc: 0.5963
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 2.823178, acc: 0.5411, almost zeros: 4118579/11166912
+==>>> cls loss: 2.064876	 grouplasso loss: 0.758303	
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 2.826153, acc: 0.5404, almost zeros: 4135772/11166912
+==>>> cls loss: 2.071709	 grouplasso loss: 0.754444	
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 2.825839, acc: 0.5397, almost zeros: 4153780/11166912
+==>>> cls loss: 2.075055	 grouplasso loss: 0.750783	
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 2.825599, acc: 0.5391, almost zeros: 4166837/11166912
+==>>> cls loss: 2.078309	 grouplasso loss: 0.747290	
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 2.825286, acc: 0.5384, almost zeros: 4178544/11166912
+==>>> cls loss: 2.081316	 grouplasso loss: 0.743970	
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 2.825338, acc: 0.5384, almost zeros: 4178454/11166912
+==>>> cls loss: 2.081384	 grouplasso loss: 0.743954	
+==>>> CLEAN VALIDATE | epoch: 34, batch index: 196, val loss: 1.719766, val acc: 0.5916
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 2.793124, acc: 0.5416, almost zeros: 4186158/11166912
+==>>> cls loss: 2.068116	 grouplasso loss: 0.725008	
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 2.795511, acc: 0.5406, almost zeros: 4195125/11166912
+==>>> cls loss: 2.073053	 grouplasso loss: 0.722459	
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 2.797115, acc: 0.5393, almost zeros: 4200396/11166912
+==>>> cls loss: 2.077080	 grouplasso loss: 0.720035	
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 2.798803, acc: 0.5382, almost zeros: 4208207/11166912
+==>>> cls loss: 2.081081	 grouplasso loss: 0.717722	
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 2.800705, acc: 0.5374, almost zeros: 4211726/11166912
+==>>> cls loss: 2.085175	 grouplasso loss: 0.715529	
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 2.800615, acc: 0.5374, almost zeros: 4212079/11166912
+==>>> cls loss: 2.085096	 grouplasso loss: 0.715519	
+==>>> CLEAN VALIDATE | epoch: 35, batch index: 196, val loss: 1.731685, val acc: 0.5876
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 2.772978, acc: 0.5403, almost zeros: 4214152/11166912
+==>>> cls loss: 2.069973	 grouplasso loss: 0.703005	
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 2.784796, acc: 0.5375, almost zeros: 4213983/11166912
+==>>> cls loss: 2.083414	 grouplasso loss: 0.701382	
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 2.786395, acc: 0.5369, almost zeros: 4216920/11166912
+==>>> cls loss: 2.086563	 grouplasso loss: 0.699832	
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 2.787780, acc: 0.5365, almost zeros: 4219900/11166912
+==>>> cls loss: 2.089438	 grouplasso loss: 0.698342	
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 2.788001, acc: 0.5362, almost zeros: 4221290/11166912
+==>>> cls loss: 2.091104	 grouplasso loss: 0.696896	
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 2.788151, acc: 0.5362, almost zeros: 4221655/11166912
+==>>> cls loss: 2.091262	 grouplasso loss: 0.696889	
+==>>> CLEAN VALIDATE | epoch: 36, batch index: 196, val loss: 1.715349, val acc: 0.5903
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 2.770666, acc: 0.5394, almost zeros: 4221282/11166912
+==>>> cls loss: 2.082160	 grouplasso loss: 0.688505	
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 2.775300, acc: 0.5379, almost zeros: 4219569/11166912
+==>>> cls loss: 2.087847	 grouplasso loss: 0.687453	
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 2.776431, acc: 0.5370, almost zeros: 4219947/11166912
+==>>> cls loss: 2.089982	 grouplasso loss: 0.686450	
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 2.778146, acc: 0.5361, almost zeros: 4221965/11166912
+==>>> cls loss: 2.092676	 grouplasso loss: 0.685470	
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 2.782009, acc: 0.5351, almost zeros: 4221448/11166912
+==>>> cls loss: 2.097489	 grouplasso loss: 0.684520	
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 2.782079, acc: 0.5351, almost zeros: 4221473/11166912
+==>>> cls loss: 2.097564	 grouplasso loss: 0.684515	
+==>>> CLEAN VALIDATE | epoch: 37, batch index: 196, val loss: 1.728167, val acc: 0.5895
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 2.766465, acc: 0.5379, almost zeros: 4220003/11166912
+==>>> cls loss: 2.087379	 grouplasso loss: 0.679086	
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 2.769957, acc: 0.5364, almost zeros: 4216329/11166912
+==>>> cls loss: 2.091541	 grouplasso loss: 0.678416	
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 2.770395, acc: 0.5359, almost zeros: 4218141/11166912
+==>>> cls loss: 2.092625	 grouplasso loss: 0.677770	
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 2.773032, acc: 0.5354, almost zeros: 4216236/11166912
+==>>> cls loss: 2.095879	 grouplasso loss: 0.677153	
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 2.775440, acc: 0.5347, almost zeros: 4216366/11166912
+==>>> cls loss: 2.098897	 grouplasso loss: 0.676543	
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 2.775473, acc: 0.5347, almost zeros: 4216511/11166912
+==>>> cls loss: 2.098933	 grouplasso loss: 0.676540	
+==>>> CLEAN VALIDATE | epoch: 38, batch index: 196, val loss: 1.720924, val acc: 0.5900
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 2.759267, acc: 0.5377, almost zeros: 4212835/11166912
+==>>> cls loss: 2.086232	 grouplasso loss: 0.673035	
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 2.762587, acc: 0.5368, almost zeros: 4210009/11166912
+==>>> cls loss: 2.089970	 grouplasso loss: 0.672617	
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 2.765209, acc: 0.5360, almost zeros: 4209532/11166912
+==>>> cls loss: 2.092992	 grouplasso loss: 0.672216	
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 2.768735, acc: 0.5353, almost zeros: 4207906/11166912
+==>>> cls loss: 2.096912	 grouplasso loss: 0.671823	
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 2.772138, acc: 0.5347, almost zeros: 4207949/11166912
+==>>> cls loss: 2.100701	 grouplasso loss: 0.671438	
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 2.772171, acc: 0.5347, almost zeros: 4207990/11166912
+==>>> cls loss: 2.100735	 grouplasso loss: 0.671436	
+==>>> CLEAN VALIDATE | epoch: 39, batch index: 196, val loss: 1.748537, val acc: 0.5831
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 2.754966, acc: 0.5382, almost zeros: 4199727/11166912
+==>>> cls loss: 2.085734	 grouplasso loss: 0.669232	
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 2.761319, acc: 0.5361, almost zeros: 4198267/11166912
+==>>> cls loss: 2.092329	 grouplasso loss: 0.668990	
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 2.765260, acc: 0.5359, almost zeros: 4198916/11166912
+==>>> cls loss: 2.096505	 grouplasso loss: 0.668755	
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 2.767827, acc: 0.5351, almost zeros: 4197458/11166912
+==>>> cls loss: 2.099297	 grouplasso loss: 0.668530	
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 2.770295, acc: 0.5345, almost zeros: 4197391/11166912
+==>>> cls loss: 2.101992	 grouplasso loss: 0.668303	
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 2.770333, acc: 0.5345, almost zeros: 4196768/11166912
+==>>> cls loss: 2.102031	 grouplasso loss: 0.668301	
+==>>> CLEAN VALIDATE | epoch: 40, batch index: 196, val loss: 1.767997, val acc: 0.5809
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 2.757287, acc: 0.5357, almost zeros: 4193023/11166912
+==>>> cls loss: 2.090273	 grouplasso loss: 0.667014	
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 2.764206, acc: 0.5349, almost zeros: 4187646/11166912
+==>>> cls loss: 2.097230	 grouplasso loss: 0.666975	
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 2.764988, acc: 0.5346, almost zeros: 4183254/11166912
+==>>> cls loss: 2.098107	 grouplasso loss: 0.666881	
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 2.768738, acc: 0.5340, almost zeros: 4182964/11166912
+==>>> cls loss: 2.101962	 grouplasso loss: 0.666776	
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 2.771970, acc: 0.5335, almost zeros: 4182648/11166912
+==>>> cls loss: 2.105300	 grouplasso loss: 0.666670	
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 2.772025, acc: 0.5335, almost zeros: 4182397/11166912
+==>>> cls loss: 2.105355	 grouplasso loss: 0.666670	
+==>>> CLEAN VALIDATE | epoch: 41, batch index: 196, val loss: 1.729190, val acc: 0.5902
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 2.750499, acc: 0.5378, almost zeros: 4174892/11166912
+==>>> cls loss: 2.084509	 grouplasso loss: 0.665991	
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 2.756566, acc: 0.5364, almost zeros: 4171781/11166912
+==>>> cls loss: 2.090625	 grouplasso loss: 0.665941	
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 2.758698, acc: 0.5357, almost zeros: 4173716/11166912
+==>>> cls loss: 2.092808	 grouplasso loss: 0.665891	
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 2.764425, acc: 0.5346, almost zeros: 4169576/11166912
+==>>> cls loss: 2.098585	 grouplasso loss: 0.665840	
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 2.768218, acc: 0.5338, almost zeros: 4170375/11166912
+==>>> cls loss: 2.102444	 grouplasso loss: 0.665774	
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 2.768252, acc: 0.5338, almost zeros: 4170702/11166912
+==>>> cls loss: 2.102478	 grouplasso loss: 0.665774	
+==>>> CLEAN VALIDATE | epoch: 42, batch index: 196, val loss: 1.726969, val acc: 0.5884
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 2.756372, acc: 0.5361, almost zeros: 4167077/11166912
+==>>> cls loss: 2.090963	 grouplasso loss: 0.665409	
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 2.763753, acc: 0.5349, almost zeros: 4165645/11166912
+==>>> cls loss: 2.098309	 grouplasso loss: 0.665444	
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 2.764982, acc: 0.5345, almost zeros: 4162793/11166912
+==>>> cls loss: 2.099522	 grouplasso loss: 0.665459	
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 2.766826, acc: 0.5341, almost zeros: 4164961/11166912
+==>>> cls loss: 2.101367	 grouplasso loss: 0.665459	
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 2.769252, acc: 0.5337, almost zeros: 4164244/11166912
+==>>> cls loss: 2.103791	 grouplasso loss: 0.665462	
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 2.769317, acc: 0.5337, almost zeros: 4164524/11166912
+==>>> cls loss: 2.103856	 grouplasso loss: 0.665462	
+==>>> CLEAN VALIDATE | epoch: 43, batch index: 196, val loss: 1.729101, val acc: 0.5902
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 2.748040, acc: 0.5380, almost zeros: 4160878/11166912
+==>>> cls loss: 2.082606	 grouplasso loss: 0.665434	
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 2.757261, acc: 0.5364, almost zeros: 4158033/11166912
+==>>> cls loss: 2.091740	 grouplasso loss: 0.665521	
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 2.762464, acc: 0.5348, almost zeros: 4156401/11166912
+==>>> cls loss: 2.096840	 grouplasso loss: 0.665623	
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 2.764411, acc: 0.5344, almost zeros: 4156091/11166912
+==>>> cls loss: 2.098722	 grouplasso loss: 0.665689	
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 2.766947, acc: 0.5339, almost zeros: 4155686/11166912
+==>>> cls loss: 2.101218	 grouplasso loss: 0.665729	
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 2.766945, acc: 0.5339, almost zeros: 4155138/11166912
+==>>> cls loss: 2.101216	 grouplasso loss: 0.665729	
+==>>> CLEAN VALIDATE | epoch: 44, batch index: 196, val loss: 1.733080, val acc: 0.5888
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 2.751602, acc: 0.5371, almost zeros: 4153783/11166912
+==>>> cls loss: 2.085687	 grouplasso loss: 0.665915	
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 2.756572, acc: 0.5364, almost zeros: 4149694/11166912
+==>>> cls loss: 2.090569	 grouplasso loss: 0.666003	
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 2.760653, acc: 0.5357, almost zeros: 4148343/11166912
+==>>> cls loss: 2.094568	 grouplasso loss: 0.666085	
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 2.766062, acc: 0.5346, almost zeros: 4146388/11166912
+==>>> cls loss: 2.099879	 grouplasso loss: 0.666183	
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 2.768409, acc: 0.5341, almost zeros: 4144818/11166912
+==>>> cls loss: 2.102138	 grouplasso loss: 0.666271	
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 2.768322, acc: 0.5342, almost zeros: 4144981/11166912
+==>>> cls loss: 2.102051	 grouplasso loss: 0.666271	
+==>>> CLEAN VALIDATE | epoch: 45, batch index: 196, val loss: 1.732917, val acc: 0.5895
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 2.754623, acc: 0.5363, almost zeros: 4141450/11166912
+==>>> cls loss: 2.087912	 grouplasso loss: 0.666711	
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 2.757558, acc: 0.5358, almost zeros: 4142074/11166912
+==>>> cls loss: 2.090732	 grouplasso loss: 0.666825	
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 2.761599, acc: 0.5352, almost zeros: 4139970/11166912
+==>>> cls loss: 2.094634	 grouplasso loss: 0.666965	
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 2.765496, acc: 0.5346, almost zeros: 4138850/11166912
+==>>> cls loss: 2.098405	 grouplasso loss: 0.667092	
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 2.767247, acc: 0.5343, almost zeros: 4140144/11166912
+==>>> cls loss: 2.100073	 grouplasso loss: 0.667174	
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 2.767269, acc: 0.5343, almost zeros: 4139685/11166912
+==>>> cls loss: 2.100095	 grouplasso loss: 0.667174	
+==>>> CLEAN VALIDATE | epoch: 46, batch index: 196, val loss: 1.723882, val acc: 0.5891
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 2.754953, acc: 0.5367, almost zeros: 4134397/11166912
+==>>> cls loss: 2.087375	 grouplasso loss: 0.667578	
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 2.759572, acc: 0.5353, almost zeros: 4132914/11166912
+==>>> cls loss: 2.091859	 grouplasso loss: 0.667712	
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 2.761328, acc: 0.5351, almost zeros: 4132392/11166912
+==>>> cls loss: 2.093472	 grouplasso loss: 0.667856	
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 2.764866, acc: 0.5343, almost zeros: 4131291/11166912
+==>>> cls loss: 2.096892	 grouplasso loss: 0.667974	
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 2.767897, acc: 0.5341, almost zeros: 4130074/11166912
+==>>> cls loss: 2.099812	 grouplasso loss: 0.668085	
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 2.767897, acc: 0.5341, almost zeros: 4130302/11166912
+==>>> cls loss: 2.099812	 grouplasso loss: 0.668086	
+==>>> CLEAN VALIDATE | epoch: 47, batch index: 196, val loss: 1.734771, val acc: 0.5903
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 2.754323, acc: 0.5381, almost zeros: 4128499/11166912
+==>>> cls loss: 2.085649	 grouplasso loss: 0.668674	
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 2.761048, acc: 0.5363, almost zeros: 4128199/11166912
+==>>> cls loss: 2.092278	 grouplasso loss: 0.668771	
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 2.763083, acc: 0.5358, almost zeros: 4126151/11166912
+==>>> cls loss: 2.094215	 grouplasso loss: 0.668868	
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 2.765262, acc: 0.5349, almost zeros: 4125544/11166912
+==>>> cls loss: 2.096308	 grouplasso loss: 0.668953	
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 2.767696, acc: 0.5347, almost zeros: 4124306/11166912
+==>>> cls loss: 2.098660	 grouplasso loss: 0.669035	
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 2.767626, acc: 0.5347, almost zeros: 4124500/11166912
+==>>> cls loss: 2.098590	 grouplasso loss: 0.669036	
+==>>> CLEAN VALIDATE | epoch: 48, batch index: 196, val loss: 1.743083, val acc: 0.5855
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 2.751543, acc: 0.5385, almost zeros: 4124489/11166912
+==>>> cls loss: 2.082108	 grouplasso loss: 0.669435	
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 2.755328, acc: 0.5379, almost zeros: 4121806/11166912
+==>>> cls loss: 2.085822	 grouplasso loss: 0.669506	
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 2.759281, acc: 0.5369, almost zeros: 4120609/11166912
+==>>> cls loss: 2.089634	 grouplasso loss: 0.669646	
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 2.764325, acc: 0.5361, almost zeros: 4122507/11166912
+==>>> cls loss: 2.094555	 grouplasso loss: 0.669771	
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 2.766766, acc: 0.5355, almost zeros: 4122398/11166912
+==>>> cls loss: 2.096884	 grouplasso loss: 0.669883	
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 2.766904, acc: 0.5355, almost zeros: 4122369/11166912
+==>>> cls loss: 2.097021	 grouplasso loss: 0.669883	
+==>>> CLEAN VALIDATE | epoch: 49, batch index: 196, val loss: 1.738645, val acc: 0.5866
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 2.752587, acc: 0.5390, almost zeros: 4116604/11166912
+==>>> cls loss: 2.082077	 grouplasso loss: 0.670509	
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 2.756257, acc: 0.5378, almost zeros: 4114965/11166912
+==>>> cls loss: 2.085600	 grouplasso loss: 0.670657	
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 2.762700, acc: 0.5365, almost zeros: 4113170/11166912
+==>>> cls loss: 2.091889	 grouplasso loss: 0.670811	
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 2.764706, acc: 0.5359, almost zeros: 4114488/11166912
+==>>> cls loss: 2.093741	 grouplasso loss: 0.670965	
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 2.769304, acc: 0.5351, almost zeros: 4112578/11166912
+==>>> cls loss: 2.098208	 grouplasso loss: 0.671096	
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 2.769277, acc: 0.5351, almost zeros: 4112316/11166912
+==>>> cls loss: 2.098180	 grouplasso loss: 0.671097	
+==>>> CLEAN VALIDATE | epoch: 50, batch index: 196, val loss: 1.767202, val acc: 0.5807
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 2.752485, acc: 0.5384, almost zeros: 4110827/11166912
+==>>> cls loss: 2.080662	 grouplasso loss: 0.671823	
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 2.757990, acc: 0.5373, almost zeros: 4109113/11166912
+==>>> cls loss: 2.086041	 grouplasso loss: 0.671949	
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 2.761241, acc: 0.5363, almost zeros: 4108471/11166912
+==>>> cls loss: 2.089183	 grouplasso loss: 0.672058	
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 2.766501, acc: 0.5355, almost zeros: 4110739/11166912
+==>>> cls loss: 2.094356	 grouplasso loss: 0.672145	
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 2.768449, acc: 0.5353, almost zeros: 4111554/11166912
+==>>> cls loss: 2.096223	 grouplasso loss: 0.672225	
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 2.768497, acc: 0.5354, almost zeros: 4111555/11166912
+==>>> cls loss: 2.096272	 grouplasso loss: 0.672226	
+==>>> CLEAN VALIDATE | epoch: 51, batch index: 196, val loss: 1.755361, val acc: 0.5835
+==>>> TRAIN-PRUNE | train epoch: 52, loss: 2.753040, acc: 0.5387, almost zeros: 4107159/11166912
+==>>> cls loss: 2.080331	 grouplasso loss: 0.672709	
+==>>> TRAIN-PRUNE | train epoch: 52, loss: 2.754653, acc: 0.5387, almost zeros: 4105180/11166912
+==>>> cls loss: 2.081821	 grouplasso loss: 0.672832	

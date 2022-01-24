@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jun 17 19:29:03 2021
+Last assessed on Wed Nov 24 20:38:44 2021
+
 
 @author: tibrayev
 """
@@ -28,17 +30,6 @@ _pair = _ntuple(2)
 _triple = _ntuple(3)
 _quadruple = _ntuple(4)
 
-
-class gradient_gate(torch.autograd.Function):
-    @staticmethod
-    def forward(ctx, input):
-        return input
-    
-    @staticmethod
-    def backward(ctx, grad_output):
-        grad_input  = grad_output.clone()
-        grad_input.masked_fill_(grad_input <= 0.0, 0.0)
-        return grad_input
 
 
 class GroupLassoForXB():

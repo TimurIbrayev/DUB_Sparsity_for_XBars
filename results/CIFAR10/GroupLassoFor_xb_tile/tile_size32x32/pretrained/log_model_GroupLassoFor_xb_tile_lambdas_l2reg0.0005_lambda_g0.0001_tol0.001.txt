@@ -1,0 +1,1013 @@
+
+*******************************************************************
+==>> Run on: 2021-12-22 17:51:58
+==>> Seed was set to: 1
+==>> Dataset used: CIFAR10
+==>> Batch size: 128
+==>> Total training batches: 391
+==>> Total validation batches: 0
+==>> Total testing batches: 79
+customizable_VGG(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace=True)
+    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (3): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU(inplace=True)
+    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (6): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): ReLU(inplace=True)
+    (8): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): ReLU(inplace=True)
+    (10): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (11): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (12): ReLU(inplace=True)
+    (13): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (14): ReLU(inplace=True)
+    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (16): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (17): ReLU(inplace=True)
+    (18): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (19): ReLU(inplace=True)
+    (20): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (classifier): Sequential(
+    (0): Linear(in_features=512, out_features=512, bias=True)
+    (1): ReLU(inplace=True)
+    (2): Dropout(p=0.5, inplace=False)
+    (3): Linear(in_features=512, out_features=512, bias=True)
+    (4): ReLU(inplace=True)
+    (5): Dropout(p=0.5, inplace=False)
+    (6): Linear(in_features=512, out_features=10, bias=True)
+  )
+)
+Pretrained model was loaded!
+Total prunable modules: 8
+
+==>> GroupLassoForXB with the following parameters: 
+  tile_size=(32, 32)
+  total_prune_layers=8
+  total_weights=9217728
+  total_tiles=9002
+  total_structures=9002
+  tol=0.001
+  lambda_g=0.0001
+
+
+==>> Starting training from scratch!
+==>> Optimizer settings: SGD (
+Parameter Group 0
+    dampening: 0
+    initial_lr: 0.01
+    lr: 0.01
+    momentum: 0.9
+    nesterov: False
+    weight_decay: 0.0005
+
+Parameter Group 1
+    dampening: 0
+    initial_lr: 0.01
+    lr: 0.01
+    momentum: 0.9
+    nesterov: False
+    weight_decay: 0.0005
+)
+==>> LR scheduler type: <class 'torch.optim.lr_scheduler.MultiStepLR'>
+==>> LR scheduler state: {'milestones': Counter({50: 1, 100: 1, 150: 1}), 'gamma': 0.1, 'base_lrs': [0.01, 0.01], 'last_epoch': 0, '_step_count': 1, '_get_lr_called_within_step': False, '_last_lr': [0.01, 0.01]}
+==>> Number of training epochs: 160
+==>>> TRAIN-PRUNE | train epoch: 0, loss: 0.343222, acc: 0.9566, almost zeros: 4294592/9217728
+==>>> cls loss: 0.133431	 grouplasso loss: 0.209790	
+==>>> CLEAN VALIDATE | epoch: 0, batch index: 79, val loss: 0.448552, val acc: 0.8757
+==>>> TRAIN-PRUNE | train epoch: 1, loss: 0.353255, acc: 0.9526, almost zeros: 4327624/9217728
+==>>> cls loss: 0.145250	 grouplasso loss: 0.208005	
+==>>> CLEAN VALIDATE | epoch: 1, batch index: 79, val loss: 0.478383, val acc: 0.8705
+==>>> TRAIN-PRUNE | train epoch: 2, loss: 0.347265, acc: 0.9538, almost zeros: 4360707/9217728
+==>>> cls loss: 0.140850	 grouplasso loss: 0.206415	
+==>>> CLEAN VALIDATE | epoch: 2, batch index: 79, val loss: 0.435805, val acc: 0.8801
+==>>> TRAIN-PRUNE | train epoch: 3, loss: 0.339468, acc: 0.9566, almost zeros: 4394247/9217728
+==>>> cls loss: 0.134887	 grouplasso loss: 0.204582	
+==>>> CLEAN VALIDATE | epoch: 3, batch index: 79, val loss: 0.482040, val acc: 0.8734
+==>>> TRAIN-PRUNE | train epoch: 4, loss: 0.340964, acc: 0.9555, almost zeros: 4426208/9217728
+==>>> cls loss: 0.138179	 grouplasso loss: 0.202785	
+==>>> CLEAN VALIDATE | epoch: 4, batch index: 79, val loss: 0.427197, val acc: 0.8826
+==>>> TRAIN-PRUNE | train epoch: 5, loss: 0.339923, acc: 0.9542, almost zeros: 4459937/9217728
+==>>> cls loss: 0.138891	 grouplasso loss: 0.201032	
+==>>> CLEAN VALIDATE | epoch: 5, batch index: 79, val loss: 0.391044, val acc: 0.8884
+==>>> TRAIN-PRUNE | train epoch: 6, loss: 0.330600, acc: 0.9574, almost zeros: 4491280/9217728
+==>>> cls loss: 0.131346	 grouplasso loss: 0.199254	
+==>>> CLEAN VALIDATE | epoch: 6, batch index: 79, val loss: 0.468938, val acc: 0.8780
+==>>> TRAIN-PRUNE | train epoch: 7, loss: 0.325730, acc: 0.9574, almost zeros: 4521403/9217728
+==>>> cls loss: 0.128166	 grouplasso loss: 0.197564	
+==>>> CLEAN VALIDATE | epoch: 7, batch index: 79, val loss: 0.418225, val acc: 0.8861
+==>>> TRAIN-PRUNE | train epoch: 8, loss: 0.324739, acc: 0.9585, almost zeros: 4552268/9217728
+==>>> cls loss: 0.128741	 grouplasso loss: 0.195998	
+==>>> CLEAN VALIDATE | epoch: 8, batch index: 79, val loss: 0.442468, val acc: 0.8766
+==>>> TRAIN-PRUNE | train epoch: 9, loss: 0.324993, acc: 0.9574, almost zeros: 4584733/9217728
+==>>> cls loss: 0.130581	 grouplasso loss: 0.194412	
+==>>> CLEAN VALIDATE | epoch: 9, batch index: 79, val loss: 0.400390, val acc: 0.8880
+==>>> TRAIN-PRUNE | train epoch: 10, loss: 0.320622, acc: 0.9584, almost zeros: 4610413/9217728
+==>>> cls loss: 0.127734	 grouplasso loss: 0.192888	
+==>>> CLEAN VALIDATE | epoch: 10, batch index: 79, val loss: 0.437880, val acc: 0.8853
+==>>> TRAIN-PRUNE | train epoch: 11, loss: 0.317923, acc: 0.9579, almost zeros: 4638426/9217728
+==>>> cls loss: 0.126344	 grouplasso loss: 0.191579	
+==>>> CLEAN VALIDATE | epoch: 11, batch index: 79, val loss: 0.487776, val acc: 0.8716
+==>>> TRAIN-PRUNE | train epoch: 12, loss: 0.319630, acc: 0.9570, almost zeros: 4664277/9217728
+==>>> cls loss: 0.129029	 grouplasso loss: 0.190602	
+==>>> CLEAN VALIDATE | epoch: 12, batch index: 79, val loss: 0.429578, val acc: 0.8853
+==>>> TRAIN-PRUNE | train epoch: 13, loss: 0.319922, acc: 0.9569, almost zeros: 4689905/9217728
+==>>> cls loss: 0.130459	 grouplasso loss: 0.189462	
+==>>> CLEAN VALIDATE | epoch: 13, batch index: 79, val loss: 0.435200, val acc: 0.8770
+==>>> TRAIN-PRUNE | train epoch: 14, loss: 0.316078, acc: 0.9574, almost zeros: 4716442/9217728
+==>>> cls loss: 0.127732	 grouplasso loss: 0.188346	
+==>>> CLEAN VALIDATE | epoch: 14, batch index: 79, val loss: 0.493395, val acc: 0.8677
+==>>> TRAIN-PRUNE | train epoch: 15, loss: 0.313835, acc: 0.9582, almost zeros: 4739615/9217728
+==>>> cls loss: 0.126424	 grouplasso loss: 0.187411	
+==>>> CLEAN VALIDATE | epoch: 15, batch index: 79, val loss: 0.504255, val acc: 0.8647
+==>>> TRAIN-PRUNE | train epoch: 16, loss: 0.315046, acc: 0.9580, almost zeros: 4763886/9217728
+==>>> cls loss: 0.128654	 grouplasso loss: 0.186392	
+==>>> CLEAN VALIDATE | epoch: 16, batch index: 79, val loss: 0.463538, val acc: 0.8749
+==>>> TRAIN-PRUNE | train epoch: 17, loss: 0.306112, acc: 0.9619, almost zeros: 4791713/9217728
+==>>> cls loss: 0.120885	 grouplasso loss: 0.185227	
+==>>> CLEAN VALIDATE | epoch: 17, batch index: 79, val loss: 0.457102, val acc: 0.8730
+==>>> TRAIN-PRUNE | train epoch: 18, loss: 0.303286, acc: 0.9606, almost zeros: 4816874/9217728
+==>>> cls loss: 0.119071	 grouplasso loss: 0.184215	
+==>>> CLEAN VALIDATE | epoch: 18, batch index: 79, val loss: 0.419455, val acc: 0.8851
+==>>> TRAIN-PRUNE | train epoch: 19, loss: 0.313312, acc: 0.9575, almost zeros: 4842294/9217728
+==>>> cls loss: 0.129993	 grouplasso loss: 0.183319	
+==>>> CLEAN VALIDATE | epoch: 19, batch index: 79, val loss: 0.408829, val acc: 0.8902
+==>>> TRAIN-PRUNE | train epoch: 20, loss: 0.307602, acc: 0.9590, almost zeros: 4866355/9217728
+==>>> cls loss: 0.125101	 grouplasso loss: 0.182501	
+==>>> CLEAN VALIDATE | epoch: 20, batch index: 79, val loss: 0.426254, val acc: 0.8817
+==>>> TRAIN-PRUNE | train epoch: 21, loss: 0.302592, acc: 0.9621, almost zeros: 4890193/9217728
+==>>> cls loss: 0.120988	 grouplasso loss: 0.181604	
+==>>> CLEAN VALIDATE | epoch: 21, batch index: 79, val loss: 0.412878, val acc: 0.8870
+==>>> TRAIN-PRUNE | train epoch: 22, loss: 0.303497, acc: 0.9600, almost zeros: 4909914/9217728
+==>>> cls loss: 0.122640	 grouplasso loss: 0.180857	
+==>>> CLEAN VALIDATE | epoch: 22, batch index: 79, val loss: 0.460700, val acc: 0.8766
+==>>> TRAIN-PRUNE | train epoch: 23, loss: 0.303960, acc: 0.9596, almost zeros: 4931430/9217728
+==>>> cls loss: 0.123687	 grouplasso loss: 0.180273	
+==>>> CLEAN VALIDATE | epoch: 23, batch index: 79, val loss: 0.446508, val acc: 0.8830
+==>>> TRAIN-PRUNE | train epoch: 24, loss: 0.301325, acc: 0.9601, almost zeros: 4951879/9217728
+==>>> cls loss: 0.121546	 grouplasso loss: 0.179780	
+==>>> CLEAN VALIDATE | epoch: 24, batch index: 79, val loss: 0.410734, val acc: 0.8831
+==>>> TRAIN-PRUNE | train epoch: 25, loss: 0.304526, acc: 0.9597, almost zeros: 4974940/9217728
+==>>> cls loss: 0.125323	 grouplasso loss: 0.179202	
+==>>> CLEAN VALIDATE | epoch: 25, batch index: 79, val loss: 0.426687, val acc: 0.8834
+==>>> TRAIN-PRUNE | train epoch: 26, loss: 0.298675, acc: 0.9614, almost zeros: 4996122/9217728
+==>>> cls loss: 0.120110	 grouplasso loss: 0.178565	
+==>>> CLEAN VALIDATE | epoch: 26, batch index: 79, val loss: 0.410249, val acc: 0.8841
+==>>> TRAIN-PRUNE | train epoch: 27, loss: 0.293691, acc: 0.9634, almost zeros: 5015609/9217728
+==>>> cls loss: 0.115813	 grouplasso loss: 0.177878	
+==>>> CLEAN VALIDATE | epoch: 27, batch index: 79, val loss: 0.425649, val acc: 0.8865
+==>>> TRAIN-PRUNE | train epoch: 28, loss: 0.292662, acc: 0.9628, almost zeros: 5037029/9217728
+==>>> cls loss: 0.115360	 grouplasso loss: 0.177303	
+==>>> CLEAN VALIDATE | epoch: 28, batch index: 79, val loss: 0.474863, val acc: 0.8738
+==>>> TRAIN-PRUNE | train epoch: 29, loss: 0.301766, acc: 0.9590, almost zeros: 5059187/9217728
+==>>> cls loss: 0.125037	 grouplasso loss: 0.176729	
+==>>> CLEAN VALIDATE | epoch: 29, batch index: 79, val loss: 0.462328, val acc: 0.8772
+==>>> TRAIN-PRUNE | train epoch: 30, loss: 0.302678, acc: 0.9582, almost zeros: 5080109/9217728
+==>>> cls loss: 0.126249	 grouplasso loss: 0.176428	
+==>>> CLEAN VALIDATE | epoch: 30, batch index: 79, val loss: 0.473966, val acc: 0.8747
+==>>> TRAIN-PRUNE | train epoch: 31, loss: 0.288116, acc: 0.9636, almost zeros: 5103132/9217728
+==>>> cls loss: 0.112303	 grouplasso loss: 0.175813	
+==>>> CLEAN VALIDATE | epoch: 31, batch index: 79, val loss: 0.453365, val acc: 0.8776
+==>>> TRAIN-PRUNE | train epoch: 32, loss: 0.292915, acc: 0.9624, almost zeros: 5125452/9217728
+==>>> cls loss: 0.117906	 grouplasso loss: 0.175009	
+==>>> CLEAN VALIDATE | epoch: 32, batch index: 79, val loss: 0.494168, val acc: 0.8711
+==>>> TRAIN-PRUNE | train epoch: 33, loss: 0.293362, acc: 0.9616, almost zeros: 5143775/9217728
+==>>> cls loss: 0.118778	 grouplasso loss: 0.174583	
+==>>> CLEAN VALIDATE | epoch: 33, batch index: 79, val loss: 0.439166, val acc: 0.8827
+==>>> TRAIN-PRUNE | train epoch: 34, loss: 0.291852, acc: 0.9614, almost zeros: 5165088/9217728
+==>>> cls loss: 0.117777	 grouplasso loss: 0.174075	
+==>>> CLEAN VALIDATE | epoch: 34, batch index: 79, val loss: 0.419970, val acc: 0.8844
+==>>> TRAIN-PRUNE | train epoch: 35, loss: 0.294642, acc: 0.9600, almost zeros: 5181639/9217728
+==>>> cls loss: 0.120990	 grouplasso loss: 0.173652	
+==>>> CLEAN VALIDATE | epoch: 35, batch index: 79, val loss: 0.464890, val acc: 0.8745
+==>>> TRAIN-PRUNE | train epoch: 36, loss: 0.296294, acc: 0.9606, almost zeros: 5200516/9217728
+==>>> cls loss: 0.122905	 grouplasso loss: 0.173389	
+==>>> CLEAN VALIDATE | epoch: 36, batch index: 79, val loss: 0.440983, val acc: 0.8795
+==>>> TRAIN-PRUNE | train epoch: 37, loss: 0.284618, acc: 0.9634, almost zeros: 5219149/9217728
+==>>> cls loss: 0.111568	 grouplasso loss: 0.173049	
+==>>> CLEAN VALIDATE | epoch: 37, batch index: 79, val loss: 0.454487, val acc: 0.8752
+==>>> TRAIN-PRUNE | train epoch: 38, loss: 0.286439, acc: 0.9634, almost zeros: 5241705/9217728
+==>>> cls loss: 0.113958	 grouplasso loss: 0.172481	
+==>>> CLEAN VALIDATE | epoch: 38, batch index: 79, val loss: 0.463987, val acc: 0.8731
+==>>> TRAIN-PRUNE | train epoch: 39, loss: 0.286701, acc: 0.9619, almost zeros: 5259338/9217728
+==>>> cls loss: 0.114608	 grouplasso loss: 0.172092	
+==>>> CLEAN VALIDATE | epoch: 39, batch index: 79, val loss: 0.466050, val acc: 0.8759
+==>>> TRAIN-PRUNE | train epoch: 40, loss: 0.291957, acc: 0.9610, almost zeros: 5277341/9217728
+==>>> cls loss: 0.120198	 grouplasso loss: 0.171759	
+==>>> CLEAN VALIDATE | epoch: 40, batch index: 79, val loss: 0.490649, val acc: 0.8664
+==>>> TRAIN-PRUNE | train epoch: 41, loss: 0.287928, acc: 0.9613, almost zeros: 5295753/9217728
+==>>> cls loss: 0.116451	 grouplasso loss: 0.171477	
+==>>> CLEAN VALIDATE | epoch: 41, batch index: 79, val loss: 0.463262, val acc: 0.8771
+==>>> TRAIN-PRUNE | train epoch: 42, loss: 0.285952, acc: 0.9625, almost zeros: 5314983/9217728
+==>>> cls loss: 0.114982	 grouplasso loss: 0.170970	
+==>>> CLEAN VALIDATE | epoch: 42, batch index: 79, val loss: 0.492374, val acc: 0.8673
+==>>> TRAIN-PRUNE | train epoch: 43, loss: 0.284225, acc: 0.9623, almost zeros: 5334124/9217728
+==>>> cls loss: 0.113672	 grouplasso loss: 0.170553	
+==>>> CLEAN VALIDATE | epoch: 43, batch index: 79, val loss: 0.448592, val acc: 0.8800
+==>>> TRAIN-PRUNE | train epoch: 44, loss: 0.288970, acc: 0.9606, almost zeros: 5349743/9217728
+==>>> cls loss: 0.118545	 grouplasso loss: 0.170425	
+==>>> CLEAN VALIDATE | epoch: 44, batch index: 79, val loss: 0.483739, val acc: 0.8689
+==>>> TRAIN-PRUNE | train epoch: 45, loss: 0.283229, acc: 0.9633, almost zeros: 5370244/9217728
+==>>> cls loss: 0.113206	 grouplasso loss: 0.170023	
+==>>> CLEAN VALIDATE | epoch: 45, batch index: 79, val loss: 0.444426, val acc: 0.8771
+==>>> TRAIN-PRUNE | train epoch: 46, loss: 0.287713, acc: 0.9612, almost zeros: 5386289/9217728
+==>>> cls loss: 0.117991	 grouplasso loss: 0.169722	
+==>>> CLEAN VALIDATE | epoch: 46, batch index: 79, val loss: 0.435950, val acc: 0.8829
+==>>> TRAIN-PRUNE | train epoch: 47, loss: 0.281427, acc: 0.9638, almost zeros: 5402974/9217728
+==>>> cls loss: 0.111910	 grouplasso loss: 0.169517	
+==>>> CLEAN VALIDATE | epoch: 47, batch index: 79, val loss: 0.436072, val acc: 0.8849
+==>>> TRAIN-PRUNE | train epoch: 48, loss: 0.280724, acc: 0.9623, almost zeros: 5423033/9217728
+==>>> cls loss: 0.111670	 grouplasso loss: 0.169054	
+==>>> CLEAN VALIDATE | epoch: 48, batch index: 79, val loss: 0.411112, val acc: 0.8917
+==>>> TRAIN-PRUNE | train epoch: 49, loss: 0.277865, acc: 0.9639, almost zeros: 5439922/9217728
+==>>> cls loss: 0.109142	 grouplasso loss: 0.168723	
+==>>> CLEAN VALIDATE | epoch: 49, batch index: 79, val loss: 0.443763, val acc: 0.8812
+==>>> TRAIN-PRUNE | train epoch: 50, loss: 0.220147, acc: 0.9844, almost zeros: 5443888/9217728
+==>>> cls loss: 0.051858	 grouplasso loss: 0.168289	
+==>>> CLEAN VALIDATE | epoch: 50, batch index: 79, val loss: 0.378922, val acc: 0.9021
+==>>> TRAIN-PRUNE | train epoch: 51, loss: 0.205232, acc: 0.9893, almost zeros: 5448049/9217728
+==>>> cls loss: 0.037264	 grouplasso loss: 0.167968	
+==>>> CLEAN VALIDATE | epoch: 51, batch index: 79, val loss: 0.382606, val acc: 0.9009
+==>>> TRAIN-PRUNE | train epoch: 52, loss: 0.199630, acc: 0.9900, almost zeros: 5452595/9217728
+==>>> cls loss: 0.031998	 grouplasso loss: 0.167632	
+==>>> CLEAN VALIDATE | epoch: 52, batch index: 79, val loss: 0.382141, val acc: 0.9030
+==>>> TRAIN-PRUNE | train epoch: 53, loss: 0.196248, acc: 0.9921, almost zeros: 5456798/9217728
+==>>> cls loss: 0.028969	 grouplasso loss: 0.167279	
+==>>> CLEAN VALIDATE | epoch: 53, batch index: 79, val loss: 0.387216, val acc: 0.9052
+==>>> TRAIN-PRUNE | train epoch: 54, loss: 0.193146, acc: 0.9927, almost zeros: 5461746/9217728
+==>>> cls loss: 0.026238	 grouplasso loss: 0.166908	
+==>>> CLEAN VALIDATE | epoch: 54, batch index: 79, val loss: 0.394791, val acc: 0.9048
+==>>> TRAIN-PRUNE | train epoch: 55, loss: 0.192062, acc: 0.9922, almost zeros: 5466661/9217728
+==>>> cls loss: 0.025542	 grouplasso loss: 0.166520	
+==>>> CLEAN VALIDATE | epoch: 55, batch index: 79, val loss: 0.397790, val acc: 0.9058
+==>>> TRAIN-PRUNE | train epoch: 56, loss: 0.189447, acc: 0.9933, almost zeros: 5471560/9217728
+==>>> cls loss: 0.023315	 grouplasso loss: 0.166132	
+==>>> CLEAN VALIDATE | epoch: 56, batch index: 79, val loss: 0.401463, val acc: 0.9037
+==>>> TRAIN-PRUNE | train epoch: 57, loss: 0.186740, acc: 0.9941, almost zeros: 5476601/9217728
+==>>> cls loss: 0.021008	 grouplasso loss: 0.165732	
+==>>> CLEAN VALIDATE | epoch: 57, batch index: 79, val loss: 0.404411, val acc: 0.9047
+==>>> TRAIN-PRUNE | train epoch: 58, loss: 0.185726, acc: 0.9940, almost zeros: 5481743/9217728
+==>>> cls loss: 0.020400	 grouplasso loss: 0.165326	
+==>>> CLEAN VALIDATE | epoch: 58, batch index: 79, val loss: 0.403139, val acc: 0.9044
+==>>> TRAIN-PRUNE | train epoch: 59, loss: 0.184383, acc: 0.9946, almost zeros: 5486862/9217728
+==>>> cls loss: 0.019463	 grouplasso loss: 0.164920	
+==>>> CLEAN VALIDATE | epoch: 59, batch index: 79, val loss: 0.406104, val acc: 0.9061
+==>>> TRAIN-PRUNE | train epoch: 60, loss: 0.183455, acc: 0.9948, almost zeros: 5492090/9217728
+==>>> cls loss: 0.018943	 grouplasso loss: 0.164512	
+==>>> CLEAN VALIDATE | epoch: 60, batch index: 79, val loss: 0.404364, val acc: 0.9065
+==>>> TRAIN-PRUNE | train epoch: 61, loss: 0.181220, acc: 0.9956, almost zeros: 5497215/9217728
+==>>> cls loss: 0.017119	 grouplasso loss: 0.164101	
+==>>> CLEAN VALIDATE | epoch: 61, batch index: 79, val loss: 0.407830, val acc: 0.9049
+==>>> TRAIN-PRUNE | train epoch: 62, loss: 0.182838, acc: 0.9944, almost zeros: 5502419/9217728
+==>>> cls loss: 0.019151	 grouplasso loss: 0.163687	
+==>>> CLEAN VALIDATE | epoch: 62, batch index: 79, val loss: 0.411042, val acc: 0.9045
+==>>> TRAIN-PRUNE | train epoch: 63, loss: 0.179312, acc: 0.9956, almost zeros: 5507041/9217728
+==>>> cls loss: 0.016026	 grouplasso loss: 0.163286	
+==>>> CLEAN VALIDATE | epoch: 63, batch index: 79, val loss: 0.406970, val acc: 0.9057
+==>>> TRAIN-PRUNE | train epoch: 64, loss: 0.178646, acc: 0.9959, almost zeros: 5512463/9217728
+==>>> cls loss: 0.015763	 grouplasso loss: 0.162884	
+==>>> CLEAN VALIDATE | epoch: 64, batch index: 79, val loss: 0.407168, val acc: 0.9062
+==>>> TRAIN-PRUNE | train epoch: 65, loss: 0.179399, acc: 0.9956, almost zeros: 5517756/9217728
+==>>> cls loss: 0.016927	 grouplasso loss: 0.162471	
+==>>> CLEAN VALIDATE | epoch: 65, batch index: 79, val loss: 0.410874, val acc: 0.9061
+==>>> TRAIN-PRUNE | train epoch: 66, loss: 0.177770, acc: 0.9959, almost zeros: 5522711/9217728
+==>>> cls loss: 0.015702	 grouplasso loss: 0.162068	
+==>>> CLEAN VALIDATE | epoch: 66, batch index: 79, val loss: 0.403821, val acc: 0.9073
+==>>> TRAIN-PRUNE | train epoch: 67, loss: 0.177123, acc: 0.9958, almost zeros: 5527914/9217728
+==>>> cls loss: 0.015458	 grouplasso loss: 0.161665	
+==>>> CLEAN VALIDATE | epoch: 67, batch index: 79, val loss: 0.414033, val acc: 0.9055
+==>>> TRAIN-PRUNE | train epoch: 68, loss: 0.176357, acc: 0.9962, almost zeros: 5533295/9217728
+==>>> cls loss: 0.015102	 grouplasso loss: 0.161256	
+==>>> CLEAN VALIDATE | epoch: 68, batch index: 79, val loss: 0.411203, val acc: 0.9045
+==>>> TRAIN-PRUNE | train epoch: 69, loss: 0.175400, acc: 0.9962, almost zeros: 5538334/9217728
+==>>> cls loss: 0.014549	 grouplasso loss: 0.160851	
+==>>> CLEAN VALIDATE | epoch: 69, batch index: 79, val loss: 0.412837, val acc: 0.9062
+==>>> TRAIN-PRUNE | train epoch: 70, loss: 0.174421, acc: 0.9967, almost zeros: 5543670/9217728
+==>>> cls loss: 0.013974	 grouplasso loss: 0.160447	
+==>>> CLEAN VALIDATE | epoch: 70, batch index: 79, val loss: 0.415679, val acc: 0.9056
+==>>> TRAIN-PRUNE | train epoch: 71, loss: 0.172761, acc: 0.9968, almost zeros: 5548859/9217728
+==>>> cls loss: 0.012722	 grouplasso loss: 0.160039	
+==>>> CLEAN VALIDATE | epoch: 71, batch index: 79, val loss: 0.421373, val acc: 0.9082
+==>>> TRAIN-PRUNE | train epoch: 72, loss: 0.173574, acc: 0.9967, almost zeros: 5554019/9217728
+==>>> cls loss: 0.013943	 grouplasso loss: 0.159630	
+==>>> CLEAN VALIDATE | epoch: 72, batch index: 79, val loss: 0.416906, val acc: 0.9062
+==>>> TRAIN-PRUNE | train epoch: 73, loss: 0.173707, acc: 0.9962, almost zeros: 5559174/9217728
+==>>> cls loss: 0.014481	 grouplasso loss: 0.159226	
+==>>> CLEAN VALIDATE | epoch: 73, batch index: 79, val loss: 0.412938, val acc: 0.9064
+==>>> TRAIN-PRUNE | train epoch: 74, loss: 0.172816, acc: 0.9966, almost zeros: 5564442/9217728
+==>>> cls loss: 0.013989	 grouplasso loss: 0.158828	
+==>>> CLEAN VALIDATE | epoch: 74, batch index: 79, val loss: 0.417884, val acc: 0.9058
+==>>> TRAIN-PRUNE | train epoch: 75, loss: 0.171134, acc: 0.9970, almost zeros: 5569687/9217728
+==>>> cls loss: 0.012705	 grouplasso loss: 0.158430	
+==>>> CLEAN VALIDATE | epoch: 75, batch index: 79, val loss: 0.416508, val acc: 0.9071
+==>>> TRAIN-PRUNE | train epoch: 76, loss: 0.171078, acc: 0.9968, almost zeros: 5574839/9217728
+==>>> cls loss: 0.013051	 grouplasso loss: 0.158027	
+==>>> CLEAN VALIDATE | epoch: 76, batch index: 79, val loss: 0.418427, val acc: 0.9079
+==>>> TRAIN-PRUNE | train epoch: 77, loss: 0.170026, acc: 0.9969, almost zeros: 5580152/9217728
+==>>> cls loss: 0.012398	 grouplasso loss: 0.157628	
+==>>> CLEAN VALIDATE | epoch: 77, batch index: 79, val loss: 0.412027, val acc: 0.9068
+==>>> TRAIN-PRUNE | train epoch: 78, loss: 0.169322, acc: 0.9969, almost zeros: 5585175/9217728
+==>>> cls loss: 0.012092	 grouplasso loss: 0.157230	
+==>>> CLEAN VALIDATE | epoch: 78, batch index: 79, val loss: 0.427198, val acc: 0.9052
+==>>> TRAIN-PRUNE | train epoch: 79, loss: 0.168732, acc: 0.9971, almost zeros: 5590090/9217728
+==>>> cls loss: 0.011891	 grouplasso loss: 0.156840	
+==>>> CLEAN VALIDATE | epoch: 79, batch index: 79, val loss: 0.420622, val acc: 0.9060
+==>>> TRAIN-PRUNE | train epoch: 80, loss: 0.168784, acc: 0.9970, almost zeros: 5595242/9217728
+==>>> cls loss: 0.012338	 grouplasso loss: 0.156446	
+==>>> CLEAN VALIDATE | epoch: 80, batch index: 79, val loss: 0.415014, val acc: 0.9073
+==>>> TRAIN-PRUNE | train epoch: 81, loss: 0.168147, acc: 0.9970, almost zeros: 5600275/9217728
+==>>> cls loss: 0.012094	 grouplasso loss: 0.156053	
+==>>> CLEAN VALIDATE | epoch: 81, batch index: 79, val loss: 0.425645, val acc: 0.9067
+==>>> TRAIN-PRUNE | train epoch: 82, loss: 0.167634, acc: 0.9973, almost zeros: 5605625/9217728
+==>>> cls loss: 0.011977	 grouplasso loss: 0.155657	
+==>>> CLEAN VALIDATE | epoch: 82, batch index: 79, val loss: 0.414167, val acc: 0.9068
+==>>> TRAIN-PRUNE | train epoch: 83, loss: 0.167489, acc: 0.9967, almost zeros: 5610524/9217728
+==>>> cls loss: 0.012225	 grouplasso loss: 0.155265	
+==>>> CLEAN VALIDATE | epoch: 83, batch index: 79, val loss: 0.415907, val acc: 0.9053
+==>>> TRAIN-PRUNE | train epoch: 84, loss: 0.166281, acc: 0.9971, almost zeros: 5615616/9217728
+==>>> cls loss: 0.011410	 grouplasso loss: 0.154871	
+==>>> CLEAN VALIDATE | epoch: 84, batch index: 79, val loss: 0.416693, val acc: 0.9066
+==>>> TRAIN-PRUNE | train epoch: 85, loss: 0.166076, acc: 0.9971, almost zeros: 5620794/9217728
+==>>> cls loss: 0.011589	 grouplasso loss: 0.154487	
+==>>> CLEAN VALIDATE | epoch: 85, batch index: 79, val loss: 0.414278, val acc: 0.9065
+==>>> TRAIN-PRUNE | train epoch: 86, loss: 0.166365, acc: 0.9969, almost zeros: 5626001/9217728
+==>>> cls loss: 0.012258	 grouplasso loss: 0.154107	
+==>>> CLEAN VALIDATE | epoch: 86, batch index: 79, val loss: 0.412410, val acc: 0.9082
+==>>> TRAIN-PRUNE | train epoch: 87, loss: 0.165165, acc: 0.9974, almost zeros: 5631257/9217728
+==>>> cls loss: 0.011438	 grouplasso loss: 0.153727	
+==>>> CLEAN VALIDATE | epoch: 87, batch index: 79, val loss: 0.418115, val acc: 0.9076
+==>>> TRAIN-PRUNE | train epoch: 88, loss: 0.163937, acc: 0.9977, almost zeros: 5636081/9217728
+==>>> cls loss: 0.010586	 grouplasso loss: 0.153352	
+==>>> CLEAN VALIDATE | epoch: 88, batch index: 79, val loss: 0.418355, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 89, loss: 0.164115, acc: 0.9973, almost zeros: 5641063/9217728
+==>>> cls loss: 0.011141	 grouplasso loss: 0.152974	
+==>>> CLEAN VALIDATE | epoch: 89, batch index: 79, val loss: 0.413478, val acc: 0.9061
+==>>> TRAIN-PRUNE | train epoch: 90, loss: 0.164126, acc: 0.9971, almost zeros: 5646216/9217728
+==>>> cls loss: 0.011533	 grouplasso loss: 0.152592	
+==>>> CLEAN VALIDATE | epoch: 90, batch index: 79, val loss: 0.422052, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 91, loss: 0.163713, acc: 0.9973, almost zeros: 5651451/9217728
+==>>> cls loss: 0.011497	 grouplasso loss: 0.152216	
+==>>> CLEAN VALIDATE | epoch: 91, batch index: 79, val loss: 0.411414, val acc: 0.9087
+==>>> TRAIN-PRUNE | train epoch: 92, loss: 0.163807, acc: 0.9969, almost zeros: 5656352/9217728
+==>>> cls loss: 0.011966	 grouplasso loss: 0.151841	
+==>>> CLEAN VALIDATE | epoch: 92, batch index: 79, val loss: 0.417199, val acc: 0.9080
+==>>> TRAIN-PRUNE | train epoch: 93, loss: 0.163012, acc: 0.9970, almost zeros: 5661054/9217728
+==>>> cls loss: 0.011543	 grouplasso loss: 0.151469	
+==>>> CLEAN VALIDATE | epoch: 93, batch index: 79, val loss: 0.420468, val acc: 0.9073
+==>>> TRAIN-PRUNE | train epoch: 94, loss: 0.163068, acc: 0.9970, almost zeros: 5666095/9217728
+==>>> cls loss: 0.011965	 grouplasso loss: 0.151104	
+==>>> CLEAN VALIDATE | epoch: 94, batch index: 79, val loss: 0.419500, val acc: 0.9078
+==>>> TRAIN-PRUNE | train epoch: 95, loss: 0.161450, acc: 0.9976, almost zeros: 5670864/9217728
+==>>> cls loss: 0.010712	 grouplasso loss: 0.150737	
+==>>> CLEAN VALIDATE | epoch: 95, batch index: 79, val loss: 0.413469, val acc: 0.9077
+==>>> TRAIN-PRUNE | train epoch: 96, loss: 0.161558, acc: 0.9974, almost zeros: 5675561/9217728
+==>>> cls loss: 0.011177	 grouplasso loss: 0.150381	
+==>>> CLEAN VALIDATE | epoch: 96, batch index: 79, val loss: 0.413633, val acc: 0.9065
+==>>> TRAIN-PRUNE | train epoch: 97, loss: 0.161138, acc: 0.9976, almost zeros: 5680416/9217728
+==>>> cls loss: 0.011116	 grouplasso loss: 0.150022	
+==>>> CLEAN VALIDATE | epoch: 97, batch index: 79, val loss: 0.415578, val acc: 0.9089
+==>>> TRAIN-PRUNE | train epoch: 98, loss: 0.160177, acc: 0.9978, almost zeros: 5685333/9217728
+==>>> cls loss: 0.010514	 grouplasso loss: 0.149663	
+==>>> CLEAN VALIDATE | epoch: 98, batch index: 79, val loss: 0.419158, val acc: 0.9068
+==>>> TRAIN-PRUNE | train epoch: 99, loss: 0.159820, acc: 0.9978, almost zeros: 5689885/9217728
+==>>> cls loss: 0.010514	 grouplasso loss: 0.149306	
+==>>> CLEAN VALIDATE | epoch: 99, batch index: 79, val loss: 0.409647, val acc: 0.9087
+==>>> TRAIN-PRUNE | train epoch: 100, loss: 0.158430, acc: 0.9982, almost zeros: 5690364/9217728
+==>>> cls loss: 0.009318	 grouplasso loss: 0.149112	
+==>>> CLEAN VALIDATE | epoch: 100, batch index: 79, val loss: 0.410834, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 101, loss: 0.159786, acc: 0.9976, almost zeros: 5690865/9217728
+==>>> cls loss: 0.010712	 grouplasso loss: 0.149075	
+==>>> CLEAN VALIDATE | epoch: 101, batch index: 79, val loss: 0.411892, val acc: 0.9090
+==>>> TRAIN-PRUNE | train epoch: 102, loss: 0.158861, acc: 0.9977, almost zeros: 5691305/9217728
+==>>> cls loss: 0.009823	 grouplasso loss: 0.149038	
+==>>> CLEAN VALIDATE | epoch: 102, batch index: 79, val loss: 0.410672, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 103, loss: 0.158160, acc: 0.9982, almost zeros: 5691905/9217728
+==>>> cls loss: 0.009160	 grouplasso loss: 0.149001	
+==>>> CLEAN VALIDATE | epoch: 103, batch index: 79, val loss: 0.411720, val acc: 0.9092
+==>>> TRAIN-PRUNE | train epoch: 104, loss: 0.158358, acc: 0.9981, almost zeros: 5692312/9217728
+==>>> cls loss: 0.009395	 grouplasso loss: 0.148963	
+==>>> CLEAN VALIDATE | epoch: 104, batch index: 79, val loss: 0.411255, val acc: 0.9087
+==>>> TRAIN-PRUNE | train epoch: 105, loss: 0.158095, acc: 0.9982, almost zeros: 5692822/9217728
+==>>> cls loss: 0.009169	 grouplasso loss: 0.148926	
+==>>> CLEAN VALIDATE | epoch: 105, batch index: 79, val loss: 0.411999, val acc: 0.9094
+==>>> TRAIN-PRUNE | train epoch: 106, loss: 0.157900, acc: 0.9981, almost zeros: 5693347/9217728
+==>>> cls loss: 0.009011	 grouplasso loss: 0.148889	
+==>>> CLEAN VALIDATE | epoch: 106, batch index: 79, val loss: 0.411772, val acc: 0.9087
+==>>> TRAIN-PRUNE | train epoch: 107, loss: 0.158331, acc: 0.9981, almost zeros: 5693898/9217728
+==>>> cls loss: 0.009479	 grouplasso loss: 0.148851	
+==>>> CLEAN VALIDATE | epoch: 107, batch index: 79, val loss: 0.412121, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 108, loss: 0.158002, acc: 0.9982, almost zeros: 5694387/9217728
+==>>> cls loss: 0.009188	 grouplasso loss: 0.148814	
+==>>> CLEAN VALIDATE | epoch: 108, batch index: 79, val loss: 0.412811, val acc: 0.9096
+==>>> TRAIN-PRUNE | train epoch: 109, loss: 0.158074, acc: 0.9984, almost zeros: 5694985/9217728
+==>>> cls loss: 0.009297	 grouplasso loss: 0.148777	
+==>>> CLEAN VALIDATE | epoch: 109, batch index: 79, val loss: 0.412646, val acc: 0.9090
+==>>> TRAIN-PRUNE | train epoch: 110, loss: 0.157871, acc: 0.9982, almost zeros: 5695440/9217728
+==>>> cls loss: 0.009131	 grouplasso loss: 0.148740	
+==>>> CLEAN VALIDATE | epoch: 110, batch index: 79, val loss: 0.411879, val acc: 0.9085
+==>>> TRAIN-PRUNE | train epoch: 111, loss: 0.157349, acc: 0.9984, almost zeros: 5695943/9217728
+==>>> cls loss: 0.008646	 grouplasso loss: 0.148703	
+==>>> CLEAN VALIDATE | epoch: 111, batch index: 79, val loss: 0.411948, val acc: 0.9080
+==>>> TRAIN-PRUNE | train epoch: 112, loss: 0.157451, acc: 0.9985, almost zeros: 5696399/9217728
+==>>> cls loss: 0.008785	 grouplasso loss: 0.148666	
+==>>> CLEAN VALIDATE | epoch: 112, batch index: 79, val loss: 0.413173, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 113, loss: 0.157164, acc: 0.9983, almost zeros: 5696993/9217728
+==>>> cls loss: 0.008536	 grouplasso loss: 0.148628	
+==>>> CLEAN VALIDATE | epoch: 113, batch index: 79, val loss: 0.413078, val acc: 0.9082
+==>>> TRAIN-PRUNE | train epoch: 114, loss: 0.157248, acc: 0.9984, almost zeros: 5697454/9217728
+==>>> cls loss: 0.008657	 grouplasso loss: 0.148591	
+==>>> CLEAN VALIDATE | epoch: 114, batch index: 79, val loss: 0.413654, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 115, loss: 0.157390, acc: 0.9983, almost zeros: 5697979/9217728
+==>>> cls loss: 0.008837	 grouplasso loss: 0.148553	
+==>>> CLEAN VALIDATE | epoch: 115, batch index: 79, val loss: 0.414200, val acc: 0.9081
+==>>> TRAIN-PRUNE | train epoch: 116, loss: 0.157752, acc: 0.9980, almost zeros: 5698486/9217728
+==>>> cls loss: 0.009236	 grouplasso loss: 0.148516	
+==>>> CLEAN VALIDATE | epoch: 116, batch index: 79, val loss: 0.412611, val acc: 0.9089
+==>>> TRAIN-PRUNE | train epoch: 117, loss: 0.157560, acc: 0.9980, almost zeros: 5698843/9217728
+==>>> cls loss: 0.009082	 grouplasso loss: 0.148478	
+==>>> CLEAN VALIDATE | epoch: 117, batch index: 79, val loss: 0.414523, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 118, loss: 0.157146, acc: 0.9984, almost zeros: 5699463/9217728
+==>>> cls loss: 0.008705	 grouplasso loss: 0.148441	
+==>>> CLEAN VALIDATE | epoch: 118, batch index: 79, val loss: 0.413631, val acc: 0.9100
+==>>> TRAIN-PRUNE | train epoch: 119, loss: 0.157491, acc: 0.9981, almost zeros: 5699924/9217728
+==>>> cls loss: 0.009087	 grouplasso loss: 0.148404	
+==>>> CLEAN VALIDATE | epoch: 119, batch index: 79, val loss: 0.413134, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 120, loss: 0.157256, acc: 0.9984, almost zeros: 5700432/9217728
+==>>> cls loss: 0.008889	 grouplasso loss: 0.148367	
+==>>> CLEAN VALIDATE | epoch: 120, batch index: 79, val loss: 0.414091, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 121, loss: 0.156803, acc: 0.9985, almost zeros: 5700894/9217728
+==>>> cls loss: 0.008473	 grouplasso loss: 0.148330	
+==>>> CLEAN VALIDATE | epoch: 121, batch index: 79, val loss: 0.413364, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 122, loss: 0.157655, acc: 0.9980, almost zeros: 5701461/9217728
+==>>> cls loss: 0.009362	 grouplasso loss: 0.148293	
+==>>> CLEAN VALIDATE | epoch: 122, batch index: 79, val loss: 0.413663, val acc: 0.9090
+==>>> TRAIN-PRUNE | train epoch: 123, loss: 0.157204, acc: 0.9982, almost zeros: 5702002/9217728
+==>>> cls loss: 0.008948	 grouplasso loss: 0.148255	
+==>>> CLEAN VALIDATE | epoch: 123, batch index: 79, val loss: 0.414061, val acc: 0.9090
+==>>> TRAIN-PRUNE | train epoch: 124, loss: 0.156688, acc: 0.9986, almost zeros: 5702456/9217728
+==>>> cls loss: 0.008469	 grouplasso loss: 0.148218	
+==>>> CLEAN VALIDATE | epoch: 124, batch index: 79, val loss: 0.415328, val acc: 0.9082
+==>>> TRAIN-PRUNE | train epoch: 125, loss: 0.157624, acc: 0.9980, almost zeros: 5703073/9217728
+==>>> cls loss: 0.009443	 grouplasso loss: 0.148181	
+==>>> CLEAN VALIDATE | epoch: 125, batch index: 79, val loss: 0.415433, val acc: 0.9085
+==>>> TRAIN-PRUNE | train epoch: 126, loss: 0.156960, acc: 0.9984, almost zeros: 5703494/9217728
+==>>> cls loss: 0.008816	 grouplasso loss: 0.148144	
+==>>> CLEAN VALIDATE | epoch: 126, batch index: 79, val loss: 0.415055, val acc: 0.9089
+==>>> TRAIN-PRUNE | train epoch: 127, loss: 0.157178, acc: 0.9980, almost zeros: 5704069/9217728
+==>>> cls loss: 0.009071	 grouplasso loss: 0.148107	
+==>>> CLEAN VALIDATE | epoch: 127, batch index: 79, val loss: 0.414697, val acc: 0.9094
+==>>> TRAIN-PRUNE | train epoch: 128, loss: 0.157228, acc: 0.9979, almost zeros: 5704591/9217728
+==>>> cls loss: 0.009158	 grouplasso loss: 0.148070	
+==>>> CLEAN VALIDATE | epoch: 128, batch index: 79, val loss: 0.414381, val acc: 0.9089
+==>>> TRAIN-PRUNE | train epoch: 129, loss: 0.156318, acc: 0.9985, almost zeros: 5705058/9217728
+==>>> cls loss: 0.008285	 grouplasso loss: 0.148033	
+==>>> CLEAN VALIDATE | epoch: 129, batch index: 79, val loss: 0.415231, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 130, loss: 0.156298, acc: 0.9983, almost zeros: 5705578/9217728
+==>>> cls loss: 0.008302	 grouplasso loss: 0.147995	
+==>>> CLEAN VALIDATE | epoch: 130, batch index: 79, val loss: 0.416996, val acc: 0.9085
+==>>> TRAIN-PRUNE | train epoch: 131, loss: 0.156520, acc: 0.9984, almost zeros: 5706105/9217728
+==>>> cls loss: 0.008562	 grouplasso loss: 0.147958	
+==>>> CLEAN VALIDATE | epoch: 131, batch index: 79, val loss: 0.415946, val acc: 0.9087
+==>>> TRAIN-PRUNE | train epoch: 132, loss: 0.156999, acc: 0.9982, almost zeros: 5706602/9217728
+==>>> cls loss: 0.009079	 grouplasso loss: 0.147920	
+==>>> CLEAN VALIDATE | epoch: 132, batch index: 79, val loss: 0.414813, val acc: 0.9094
+==>>> TRAIN-PRUNE | train epoch: 133, loss: 0.156550, acc: 0.9984, almost zeros: 5707173/9217728
+==>>> cls loss: 0.008666	 grouplasso loss: 0.147883	
+==>>> CLEAN VALIDATE | epoch: 133, batch index: 79, val loss: 0.416432, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 134, loss: 0.156703, acc: 0.9984, almost zeros: 5707678/9217728
+==>>> cls loss: 0.008857	 grouplasso loss: 0.147846	
+==>>> CLEAN VALIDATE | epoch: 134, batch index: 79, val loss: 0.414351, val acc: 0.9086
+==>>> TRAIN-PRUNE | train epoch: 135, loss: 0.156740, acc: 0.9983, almost zeros: 5708146/9217728
+==>>> cls loss: 0.008930	 grouplasso loss: 0.147810	
+==>>> CLEAN VALIDATE | epoch: 135, batch index: 79, val loss: 0.415030, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 136, loss: 0.156398, acc: 0.9983, almost zeros: 5708754/9217728
+==>>> cls loss: 0.008625	 grouplasso loss: 0.147773	
+==>>> CLEAN VALIDATE | epoch: 136, batch index: 79, val loss: 0.414919, val acc: 0.9093
+==>>> TRAIN-PRUNE | train epoch: 137, loss: 0.156045, acc: 0.9985, almost zeros: 5709342/9217728
+==>>> cls loss: 0.008310	 grouplasso loss: 0.147735	
+==>>> CLEAN VALIDATE | epoch: 137, batch index: 79, val loss: 0.414037, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 138, loss: 0.157062, acc: 0.9982, almost zeros: 5709747/9217728
+==>>> cls loss: 0.009364	 grouplasso loss: 0.147699	
+==>>> CLEAN VALIDATE | epoch: 138, batch index: 79, val loss: 0.414707, val acc: 0.9092
+==>>> TRAIN-PRUNE | train epoch: 139, loss: 0.155908, acc: 0.9985, almost zeros: 5710298/9217728
+==>>> cls loss: 0.008247	 grouplasso loss: 0.147661	
+==>>> CLEAN VALIDATE | epoch: 139, batch index: 79, val loss: 0.414658, val acc: 0.9090
+==>>> TRAIN-PRUNE | train epoch: 140, loss: 0.156300, acc: 0.9983, almost zeros: 5710786/9217728
+==>>> cls loss: 0.008676	 grouplasso loss: 0.147624	
+==>>> CLEAN VALIDATE | epoch: 140, batch index: 79, val loss: 0.415242, val acc: 0.9086
+==>>> TRAIN-PRUNE | train epoch: 141, loss: 0.155900, acc: 0.9987, almost zeros: 5711295/9217728
+==>>> cls loss: 0.008312	 grouplasso loss: 0.147587	
+==>>> CLEAN VALIDATE | epoch: 141, batch index: 79, val loss: 0.415071, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 142, loss: 0.155907, acc: 0.9983, almost zeros: 5711772/9217728
+==>>> cls loss: 0.008357	 grouplasso loss: 0.147550	
+==>>> CLEAN VALIDATE | epoch: 142, batch index: 79, val loss: 0.415892, val acc: 0.9096
+==>>> TRAIN-PRUNE | train epoch: 143, loss: 0.156361, acc: 0.9982, almost zeros: 5712282/9217728
+==>>> cls loss: 0.008848	 grouplasso loss: 0.147512	
+==>>> CLEAN VALIDATE | epoch: 143, batch index: 79, val loss: 0.414223, val acc: 0.9093
+==>>> TRAIN-PRUNE | train epoch: 144, loss: 0.156252, acc: 0.9983, almost zeros: 5712772/9217728
+==>>> cls loss: 0.008776	 grouplasso loss: 0.147476	
+==>>> CLEAN VALIDATE | epoch: 144, batch index: 79, val loss: 0.415171, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 145, loss: 0.156251, acc: 0.9983, almost zeros: 5713282/9217728
+==>>> cls loss: 0.008812	 grouplasso loss: 0.147440	
+==>>> CLEAN VALIDATE | epoch: 145, batch index: 79, val loss: 0.415222, val acc: 0.9083
+==>>> TRAIN-PRUNE | train epoch: 146, loss: 0.155462, acc: 0.9986, almost zeros: 5713823/9217728
+==>>> cls loss: 0.008060	 grouplasso loss: 0.147403	
+==>>> CLEAN VALIDATE | epoch: 146, batch index: 79, val loss: 0.416570, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 147, loss: 0.155876, acc: 0.9985, almost zeros: 5714311/9217728
+==>>> cls loss: 0.008510	 grouplasso loss: 0.147366	
+==>>> CLEAN VALIDATE | epoch: 147, batch index: 79, val loss: 0.414744, val acc: 0.9092
+==>>> TRAIN-PRUNE | train epoch: 148, loss: 0.155946, acc: 0.9983, almost zeros: 5714906/9217728
+==>>> cls loss: 0.008617	 grouplasso loss: 0.147329	
+==>>> CLEAN VALIDATE | epoch: 148, batch index: 79, val loss: 0.414900, val acc: 0.9087
+==>>> TRAIN-PRUNE | train epoch: 149, loss: 0.155241, acc: 0.9985, almost zeros: 5715418/9217728
+==>>> cls loss: 0.007949	 grouplasso loss: 0.147292	
+==>>> CLEAN VALIDATE | epoch: 149, batch index: 79, val loss: 0.415059, val acc: 0.9086
+==>>> TRAIN-PRUNE | train epoch: 150, loss: 0.155453, acc: 0.9986, almost zeros: 5715439/9217728
+==>>> cls loss: 0.008182	 grouplasso loss: 0.147271	
+==>>> CLEAN VALIDATE | epoch: 150, batch index: 79, val loss: 0.415296, val acc: 0.9086
+==>>> TRAIN-PRUNE | train epoch: 151, loss: 0.155756, acc: 0.9984, almost zeros: 5715503/9217728
+==>>> cls loss: 0.008488	 grouplasso loss: 0.147268	
+==>>> CLEAN VALIDATE | epoch: 151, batch index: 79, val loss: 0.415357, val acc: 0.9084
+==>>> TRAIN-PRUNE | train epoch: 152, loss: 0.155587, acc: 0.9985, almost zeros: 5715506/9217728
+==>>> cls loss: 0.008323	 grouplasso loss: 0.147264	
+==>>> CLEAN VALIDATE | epoch: 152, batch index: 79, val loss: 0.415221, val acc: 0.9086
+==>>> TRAIN-PRUNE | train epoch: 153, loss: 0.155294, acc: 0.9986, almost zeros: 5715594/9217728
+==>>> cls loss: 0.008034	 grouplasso loss: 0.147260	
+==>>> CLEAN VALIDATE | epoch: 153, batch index: 79, val loss: 0.415396, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 154, loss: 0.156157, acc: 0.9982, almost zeros: 5715647/9217728
+==>>> cls loss: 0.008900	 grouplasso loss: 0.147256	
+==>>> CLEAN VALIDATE | epoch: 154, batch index: 79, val loss: 0.415370, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 155, loss: 0.155636, acc: 0.9982, almost zeros: 5715698/9217728
+==>>> cls loss: 0.008384	 grouplasso loss: 0.147253	
+==>>> CLEAN VALIDATE | epoch: 155, batch index: 79, val loss: 0.415423, val acc: 0.9089
+==>>> TRAIN-PRUNE | train epoch: 156, loss: 0.155843, acc: 0.9982, almost zeros: 5715742/9217728
+==>>> cls loss: 0.008594	 grouplasso loss: 0.147249	
+==>>> CLEAN VALIDATE | epoch: 156, batch index: 79, val loss: 0.415390, val acc: 0.9091
+==>>> TRAIN-PRUNE | train epoch: 157, loss: 0.155810, acc: 0.9984, almost zeros: 5715797/9217728
+==>>> cls loss: 0.008565	 grouplasso loss: 0.147245	
+==>>> CLEAN VALIDATE | epoch: 157, batch index: 79, val loss: 0.415484, val acc: 0.9088
+==>>> TRAIN-PRUNE | train epoch: 158, loss: 0.155428, acc: 0.9985, almost zeros: 5715863/9217728
+==>>> cls loss: 0.008187	 grouplasso loss: 0.147242	
+==>>> CLEAN VALIDATE | epoch: 158, batch index: 79, val loss: 0.415419, val acc: 0.9089
+==>>> TRAIN-PRUNE | train epoch: 159, loss: 0.155878, acc: 0.9984, almost zeros: 5715930/9217728
+==>>> cls loss: 0.008640	 grouplasso loss: 0.147238	
+==>>> CLEAN VALIDATE | epoch: 159, batch index: 79, val loss: 0.415356, val acc: 0.9089
+Best val accuracy during training: 91.00
+==>> Total almost zero weights: 5699463/9217728 [61.83]
+==>> Total almost zeroes layerewise:
+Prunable layer 0:	 11/1728 [0.64]
+Prunable layer 1:	 12206/73728 [16.56]
+Prunable layer 2:	 72591/294912 [24.61]
+Prunable layer 3:	 83248/589824 [14.11]
+Prunable layer 4:	 204503/1179648 [17.34]
+Prunable layer 5:	 1200753/2359296 [50.89]
+Prunable layer 6:	 1982649/2359296 [84.04]
+Prunable layer 7:	 2143502/2359296 [90.85]
+==>> For tile size of (32, 32) and ADC resolution of 7 bits,
+the following is the tile sparsity histogram,
+based on ALMOST ZERO weights and BEFORE pruning:
+0.000:	5945
+0.500:	765
+0.750:	224
+0.875:	65
+0.938:	31
+0.969:	29
+0.984:	1943
+==>> Pruning fixed prune ratios based on tile sparsity: [2.37, 70.0, 75.0, 75.0, 90.0, 98.67, 99.84, 99.86]
+==>> Total pruned weights: 8144512/9217728 [88.36]
+==>> Total zeroes layerwise:
+Prunable layer 0:	 64/1728 [3.70]
+Prunable layer 1:	 34240/73728 [46.44]
+Prunable layer 2:	 166784/294912 [56.55]
+Prunable layer 3:	 328448/589824 [55.69]
+Prunable layer 4:	 805760/1179648 [68.31]
+Prunable layer 5:	 2171296/2359296 [92.03]
+Prunable layer 6:	 2310848/2359296 [97.95]
+Prunable layer 7:	 2327072/2359296 [98.63]
+==>> For tile size of (32, 32) and ADC resolution of 7 bits,
+the following is the tile sparsity histogram,
+based on PRUNED weights (= 0.0) AFTER pruning:
+0.000:	8
+0.500:	1060
+0.750:	1137
+0.875:	907
+0.938:	1359
+0.969:	898
+0.984:	3633
+==>>> POST-PRUNE PRE-FINE-TUNE MODEL EVAL ON VALIDATION SET | val loss: 0.426584, val acc: 0.8726
+==>> FINE_TUNE Optimizer settings: SGD (
+Parameter Group 0
+    dampening: 0
+    initial_lr: 0.01
+    lr: 0.01
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0.0
+)
+==>> FINE_TUNE LR scheduler type: <class 'torch.optim.lr_scheduler.MultiStepLR'>
+==>> FINE_TUNE LR scheduler state: {'milestones': Counter({50: 1, 100: 1, 150: 1}), 'gamma': 0.1, 'base_lrs': [0.01], 'last_epoch': 0, '_step_count': 1, '_get_lr_called_within_step': False, '_last_lr': [0.01]}
+==>> FINE_TUNE Number of training epochs: 200
+==>>> FINE-TUNE | fine-tune epoch: 0, loss: 0.156018, acc: 0.9609, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 0, batch index: 79, val loss: 0.341049, val acc: 0.8928
+==>>> FINE-TUNE | fine-tune epoch: 1, loss: 0.104174, acc: 0.9693, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 1, batch index: 79, val loss: 0.345348, val acc: 0.8964
+==>>> FINE-TUNE | fine-tune epoch: 2, loss: 0.088394, acc: 0.9736, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 2, batch index: 79, val loss: 0.343431, val acc: 0.9002
+==>>> FINE-TUNE | fine-tune epoch: 3, loss: 0.073391, acc: 0.9793, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 3, batch index: 79, val loss: 0.358694, val acc: 0.9015
+==>>> FINE-TUNE | fine-tune epoch: 4, loss: 0.065999, acc: 0.9813, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 4, batch index: 79, val loss: 0.359902, val acc: 0.9016
+==>>> FINE-TUNE | fine-tune epoch: 5, loss: 0.059947, acc: 0.9831, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 5, batch index: 79, val loss: 0.365557, val acc: 0.9010
+==>>> FINE-TUNE | fine-tune epoch: 6, loss: 0.054896, acc: 0.9842, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 6, batch index: 79, val loss: 0.365174, val acc: 0.9042
+==>>> FINE-TUNE | fine-tune epoch: 7, loss: 0.049675, acc: 0.9857, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 7, batch index: 79, val loss: 0.373414, val acc: 0.9031
+==>>> FINE-TUNE | fine-tune epoch: 8, loss: 0.045472, acc: 0.9868, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 8, batch index: 79, val loss: 0.378989, val acc: 0.9031
+==>>> FINE-TUNE | fine-tune epoch: 9, loss: 0.044739, acc: 0.9874, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 9, batch index: 79, val loss: 0.373521, val acc: 0.9033
+==>>> FINE-TUNE | fine-tune epoch: 10, loss: 0.040047, acc: 0.9890, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 10, batch index: 79, val loss: 0.380869, val acc: 0.9044
+==>>> FINE-TUNE | fine-tune epoch: 11, loss: 0.039311, acc: 0.9886, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 11, batch index: 79, val loss: 0.388073, val acc: 0.9033
+==>>> FINE-TUNE | fine-tune epoch: 12, loss: 0.035150, acc: 0.9902, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 12, batch index: 79, val loss: 0.391904, val acc: 0.9043
+==>>> FINE-TUNE | fine-tune epoch: 13, loss: 0.032931, acc: 0.9910, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 13, batch index: 79, val loss: 0.396631, val acc: 0.9045
+==>>> FINE-TUNE | fine-tune epoch: 14, loss: 0.032242, acc: 0.9909, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 14, batch index: 79, val loss: 0.397467, val acc: 0.9059
+==>>> FINE-TUNE | fine-tune epoch: 15, loss: 0.030718, acc: 0.9916, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 15, batch index: 79, val loss: 0.402622, val acc: 0.9047
+==>>> FINE-TUNE | fine-tune epoch: 16, loss: 0.028732, acc: 0.9918, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 16, batch index: 79, val loss: 0.407332, val acc: 0.9050
+==>>> FINE-TUNE | fine-tune epoch: 17, loss: 0.028354, acc: 0.9920, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 17, batch index: 79, val loss: 0.401980, val acc: 0.9043
+==>>> FINE-TUNE | fine-tune epoch: 18, loss: 0.025901, acc: 0.9929, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 18, batch index: 79, val loss: 0.409041, val acc: 0.9032
+==>>> FINE-TUNE | fine-tune epoch: 19, loss: 0.025701, acc: 0.9928, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 19, batch index: 79, val loss: 0.412617, val acc: 0.9053
+==>>> FINE-TUNE | fine-tune epoch: 20, loss: 0.024617, acc: 0.9930, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 20, batch index: 79, val loss: 0.419121, val acc: 0.9050
+==>>> FINE-TUNE | fine-tune epoch: 21, loss: 0.024075, acc: 0.9933, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 21, batch index: 79, val loss: 0.415047, val acc: 0.9045
+==>>> FINE-TUNE | fine-tune epoch: 22, loss: 0.022493, acc: 0.9939, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 22, batch index: 79, val loss: 0.421298, val acc: 0.9059
+==>>> FINE-TUNE | fine-tune epoch: 23, loss: 0.021474, acc: 0.9943, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 23, batch index: 79, val loss: 0.433912, val acc: 0.9059
+==>>> FINE-TUNE | fine-tune epoch: 24, loss: 0.021369, acc: 0.9942, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 24, batch index: 79, val loss: 0.427762, val acc: 0.9067
+==>>> FINE-TUNE | fine-tune epoch: 25, loss: 0.021042, acc: 0.9940, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 25, batch index: 79, val loss: 0.446369, val acc: 0.9032
+==>>> FINE-TUNE | fine-tune epoch: 26, loss: 0.019578, acc: 0.9948, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 26, batch index: 79, val loss: 0.438005, val acc: 0.9068
+==>>> FINE-TUNE | fine-tune epoch: 27, loss: 0.019216, acc: 0.9945, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 27, batch index: 79, val loss: 0.434766, val acc: 0.9056
+==>>> FINE-TUNE | fine-tune epoch: 28, loss: 0.018035, acc: 0.9949, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 28, batch index: 79, val loss: 0.435042, val acc: 0.9076
+==>>> FINE-TUNE | fine-tune epoch: 29, loss: 0.017689, acc: 0.9954, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 29, batch index: 79, val loss: 0.445361, val acc: 0.9043
+==>>> FINE-TUNE | fine-tune epoch: 30, loss: 0.017294, acc: 0.9955, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 30, batch index: 79, val loss: 0.433696, val acc: 0.9056
+==>>> FINE-TUNE | fine-tune epoch: 31, loss: 0.016535, acc: 0.9958, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 31, batch index: 79, val loss: 0.449662, val acc: 0.9046
+==>>> FINE-TUNE | fine-tune epoch: 32, loss: 0.016189, acc: 0.9959, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 32, batch index: 79, val loss: 0.452467, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 33, loss: 0.015784, acc: 0.9959, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 33, batch index: 79, val loss: 0.450627, val acc: 0.9061
+==>>> FINE-TUNE | fine-tune epoch: 34, loss: 0.015242, acc: 0.9955, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 34, batch index: 79, val loss: 0.452742, val acc: 0.9059
+==>>> FINE-TUNE | fine-tune epoch: 35, loss: 0.015655, acc: 0.9959, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 35, batch index: 79, val loss: 0.452696, val acc: 0.9069
+==>>> FINE-TUNE | fine-tune epoch: 36, loss: 0.014148, acc: 0.9959, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 36, batch index: 79, val loss: 0.458296, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 37, loss: 0.013836, acc: 0.9962, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 37, batch index: 79, val loss: 0.461130, val acc: 0.9060
+==>>> FINE-TUNE | fine-tune epoch: 38, loss: 0.013934, acc: 0.9963, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 38, batch index: 79, val loss: 0.460913, val acc: 0.9086
+==>>> FINE-TUNE | fine-tune epoch: 39, loss: 0.013661, acc: 0.9964, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 39, batch index: 79, val loss: 0.467273, val acc: 0.9049
+==>>> FINE-TUNE | fine-tune epoch: 40, loss: 0.013631, acc: 0.9961, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 40, batch index: 79, val loss: 0.467345, val acc: 0.9047
+==>>> FINE-TUNE | fine-tune epoch: 41, loss: 0.013476, acc: 0.9965, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 41, batch index: 79, val loss: 0.461625, val acc: 0.9065
+==>>> FINE-TUNE | fine-tune epoch: 42, loss: 0.011780, acc: 0.9971, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 42, batch index: 79, val loss: 0.463870, val acc: 0.9057
+==>>> FINE-TUNE | fine-tune epoch: 43, loss: 0.012194, acc: 0.9966, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 43, batch index: 79, val loss: 0.467847, val acc: 0.9071
+==>>> FINE-TUNE | fine-tune epoch: 44, loss: 0.013440, acc: 0.9963, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 44, batch index: 79, val loss: 0.464758, val acc: 0.9076
+==>>> FINE-TUNE | fine-tune epoch: 45, loss: 0.012676, acc: 0.9964, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 45, batch index: 79, val loss: 0.468788, val acc: 0.9064
+==>>> FINE-TUNE | fine-tune epoch: 46, loss: 0.011215, acc: 0.9972, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 46, batch index: 79, val loss: 0.472810, val acc: 0.9071
+==>>> FINE-TUNE | fine-tune epoch: 47, loss: 0.011039, acc: 0.9968, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 47, batch index: 79, val loss: 0.472490, val acc: 0.9074
+==>>> FINE-TUNE | fine-tune epoch: 48, loss: 0.010746, acc: 0.9973, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 48, batch index: 79, val loss: 0.479240, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 49, loss: 0.010519, acc: 0.9972, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 49, batch index: 79, val loss: 0.476199, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 50, loss: 0.009764, acc: 0.9975, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 50, batch index: 79, val loss: 0.472866, val acc: 0.9093
+==>>> FINE-TUNE | fine-tune epoch: 51, loss: 0.008996, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 51, batch index: 79, val loss: 0.473528, val acc: 0.9088
+==>>> FINE-TUNE | fine-tune epoch: 52, loss: 0.008918, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 52, batch index: 79, val loss: 0.474348, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 53, loss: 0.008833, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 53, batch index: 79, val loss: 0.476366, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 54, loss: 0.008746, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 54, batch index: 79, val loss: 0.475007, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 55, loss: 0.008829, acc: 0.9976, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 55, batch index: 79, val loss: 0.475164, val acc: 0.9087
+==>>> FINE-TUNE | fine-tune epoch: 56, loss: 0.009491, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 56, batch index: 79, val loss: 0.475772, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 57, loss: 0.008825, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 57, batch index: 79, val loss: 0.477226, val acc: 0.9086
+==>>> FINE-TUNE | fine-tune epoch: 58, loss: 0.008895, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 58, batch index: 79, val loss: 0.476698, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 59, loss: 0.008801, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 59, batch index: 79, val loss: 0.476148, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 60, loss: 0.009152, acc: 0.9974, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 60, batch index: 79, val loss: 0.475274, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 61, loss: 0.008582, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 61, batch index: 79, val loss: 0.475551, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 62, loss: 0.008801, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 62, batch index: 79, val loss: 0.474159, val acc: 0.9087
+==>>> FINE-TUNE | fine-tune epoch: 63, loss: 0.008710, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 63, batch index: 79, val loss: 0.475255, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 64, loss: 0.008219, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 64, batch index: 79, val loss: 0.474794, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 65, loss: 0.008547, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 65, batch index: 79, val loss: 0.475711, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 66, loss: 0.008942, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 66, batch index: 79, val loss: 0.477675, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 67, loss: 0.008356, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 67, batch index: 79, val loss: 0.476783, val acc: 0.9087
+==>>> FINE-TUNE | fine-tune epoch: 68, loss: 0.008148, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 68, batch index: 79, val loss: 0.479003, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 69, loss: 0.008424, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 69, batch index: 79, val loss: 0.476891, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 70, loss: 0.009088, acc: 0.9975, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 70, batch index: 79, val loss: 0.475703, val acc: 0.9087
+==>>> FINE-TUNE | fine-tune epoch: 71, loss: 0.008126, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 71, batch index: 79, val loss: 0.477479, val acc: 0.9086
+==>>> FINE-TUNE | fine-tune epoch: 72, loss: 0.008619, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 72, batch index: 79, val loss: 0.476315, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 73, loss: 0.008282, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 73, batch index: 79, val loss: 0.476358, val acc: 0.9069
+==>>> FINE-TUNE | fine-tune epoch: 74, loss: 0.009026, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 74, batch index: 79, val loss: 0.477197, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 75, loss: 0.007755, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 75, batch index: 79, val loss: 0.477983, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 76, loss: 0.008139, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 76, batch index: 79, val loss: 0.478722, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 77, loss: 0.008196, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 77, batch index: 79, val loss: 0.478106, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 78, loss: 0.008186, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 78, batch index: 79, val loss: 0.478603, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 79, loss: 0.008556, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 79, batch index: 79, val loss: 0.478632, val acc: 0.9086
+==>>> FINE-TUNE | fine-tune epoch: 80, loss: 0.008315, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 80, batch index: 79, val loss: 0.480588, val acc: 0.9073
+==>>> FINE-TUNE | fine-tune epoch: 81, loss: 0.008144, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 81, batch index: 79, val loss: 0.480705, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 82, loss: 0.007576, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 82, batch index: 79, val loss: 0.479687, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 83, loss: 0.008339, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 83, batch index: 79, val loss: 0.480178, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 84, loss: 0.008458, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 84, batch index: 79, val loss: 0.479502, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 85, loss: 0.008419, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 85, batch index: 79, val loss: 0.482775, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 86, loss: 0.008008, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 86, batch index: 79, val loss: 0.481746, val acc: 0.9074
+==>>> FINE-TUNE | fine-tune epoch: 87, loss: 0.007896, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 87, batch index: 79, val loss: 0.482471, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 88, loss: 0.007908, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 88, batch index: 79, val loss: 0.483972, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 89, loss: 0.008158, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 89, batch index: 79, val loss: 0.482171, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 90, loss: 0.007649, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 90, batch index: 79, val loss: 0.482088, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 91, loss: 0.008203, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 91, batch index: 79, val loss: 0.482550, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 92, loss: 0.007220, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 92, batch index: 79, val loss: 0.483506, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 93, loss: 0.007677, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 93, batch index: 79, val loss: 0.483095, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 94, loss: 0.007786, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 94, batch index: 79, val loss: 0.483763, val acc: 0.9086
+==>>> FINE-TUNE | fine-tune epoch: 95, loss: 0.007858, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 95, batch index: 79, val loss: 0.483123, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 96, loss: 0.007319, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 96, batch index: 79, val loss: 0.485082, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 97, loss: 0.007943, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 97, batch index: 79, val loss: 0.483094, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 98, loss: 0.007632, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 98, batch index: 79, val loss: 0.485124, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 99, loss: 0.007926, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 99, batch index: 79, val loss: 0.485404, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 100, loss: 0.008260, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 100, batch index: 79, val loss: 0.485189, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 101, loss: 0.007589, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 101, batch index: 79, val loss: 0.485073, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 102, loss: 0.008023, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 102, batch index: 79, val loss: 0.485084, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 103, loss: 0.007773, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 103, batch index: 79, val loss: 0.485277, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 104, loss: 0.007642, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 104, batch index: 79, val loss: 0.484966, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 105, loss: 0.007429, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 105, batch index: 79, val loss: 0.485121, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 106, loss: 0.007270, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 106, batch index: 79, val loss: 0.485178, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 107, loss: 0.007503, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 107, batch index: 79, val loss: 0.485095, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 108, loss: 0.007511, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 108, batch index: 79, val loss: 0.485064, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 109, loss: 0.007249, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 109, batch index: 79, val loss: 0.485162, val acc: 0.9075
+==>>> FINE-TUNE | fine-tune epoch: 110, loss: 0.007736, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 110, batch index: 79, val loss: 0.485050, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 111, loss: 0.007279, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 111, batch index: 79, val loss: 0.485034, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 112, loss: 0.007015, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 112, batch index: 79, val loss: 0.485287, val acc: 0.9076
+==>>> FINE-TUNE | fine-tune epoch: 113, loss: 0.007650, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 113, batch index: 79, val loss: 0.485242, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 114, loss: 0.007832, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 114, batch index: 79, val loss: 0.484946, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 115, loss: 0.007893, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 115, batch index: 79, val loss: 0.484866, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 116, loss: 0.006716, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 116, batch index: 79, val loss: 0.484952, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 117, loss: 0.007239, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 117, batch index: 79, val loss: 0.485123, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 118, loss: 0.007428, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 118, batch index: 79, val loss: 0.484952, val acc: 0.9076
+==>>> FINE-TUNE | fine-tune epoch: 119, loss: 0.007309, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 119, batch index: 79, val loss: 0.484791, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 120, loss: 0.008325, acc: 0.9976, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 120, batch index: 79, val loss: 0.484973, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 121, loss: 0.007566, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 121, batch index: 79, val loss: 0.485085, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 122, loss: 0.007293, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 122, batch index: 79, val loss: 0.485062, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 123, loss: 0.008406, acc: 0.9976, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 123, batch index: 79, val loss: 0.484837, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 124, loss: 0.007774, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 124, batch index: 79, val loss: 0.484952, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 125, loss: 0.007460, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 125, batch index: 79, val loss: 0.485197, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 126, loss: 0.007064, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 126, batch index: 79, val loss: 0.485312, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 127, loss: 0.007704, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 127, batch index: 79, val loss: 0.485114, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 128, loss: 0.007345, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 128, batch index: 79, val loss: 0.485243, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 129, loss: 0.007594, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 129, batch index: 79, val loss: 0.484970, val acc: 0.9085
+==>>> FINE-TUNE | fine-tune epoch: 130, loss: 0.008224, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 130, batch index: 79, val loss: 0.484915, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 131, loss: 0.007781, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 131, batch index: 79, val loss: 0.484911, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 132, loss: 0.007752, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 132, batch index: 79, val loss: 0.485087, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 133, loss: 0.007403, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 133, batch index: 79, val loss: 0.485351, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 134, loss: 0.007757, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 134, batch index: 79, val loss: 0.485351, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 135, loss: 0.007492, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 135, batch index: 79, val loss: 0.485299, val acc: 0.9077
+==>>> FINE-TUNE | fine-tune epoch: 136, loss: 0.007467, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 136, batch index: 79, val loss: 0.484947, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 137, loss: 0.007865, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 137, batch index: 79, val loss: 0.485117, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 138, loss: 0.007851, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 138, batch index: 79, val loss: 0.485082, val acc: 0.9078
+==>>> FINE-TUNE | fine-tune epoch: 139, loss: 0.007834, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 139, batch index: 79, val loss: 0.484902, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 140, loss: 0.006943, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 140, batch index: 79, val loss: 0.485104, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 141, loss: 0.007381, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 141, batch index: 79, val loss: 0.485190, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 142, loss: 0.006978, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 142, batch index: 79, val loss: 0.485130, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 143, loss: 0.007765, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 143, batch index: 79, val loss: 0.485330, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 144, loss: 0.007691, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 144, batch index: 79, val loss: 0.485267, val acc: 0.9079
+==>>> FINE-TUNE | fine-tune epoch: 145, loss: 0.008118, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 145, batch index: 79, val loss: 0.485330, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 146, loss: 0.007762, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 146, batch index: 79, val loss: 0.485189, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 147, loss: 0.007803, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 147, batch index: 79, val loss: 0.485425, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 148, loss: 0.007431, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 148, batch index: 79, val loss: 0.485506, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 149, loss: 0.007752, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 149, batch index: 79, val loss: 0.485359, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 150, loss: 0.007057, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 150, batch index: 79, val loss: 0.485346, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 151, loss: 0.008507, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 151, batch index: 79, val loss: 0.485352, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 152, loss: 0.007244, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 152, batch index: 79, val loss: 0.485341, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 153, loss: 0.007719, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 153, batch index: 79, val loss: 0.485351, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 154, loss: 0.007547, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 154, batch index: 79, val loss: 0.485362, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 155, loss: 0.007434, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 155, batch index: 79, val loss: 0.485388, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 156, loss: 0.006675, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 156, batch index: 79, val loss: 0.485413, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 157, loss: 0.007859, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 157, batch index: 79, val loss: 0.485382, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 158, loss: 0.007739, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 158, batch index: 79, val loss: 0.485411, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 159, loss: 0.007428, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 159, batch index: 79, val loss: 0.485414, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 160, loss: 0.007438, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 160, batch index: 79, val loss: 0.485429, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 161, loss: 0.008089, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 161, batch index: 79, val loss: 0.485434, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 162, loss: 0.007631, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 162, batch index: 79, val loss: 0.485393, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 163, loss: 0.007565, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 163, batch index: 79, val loss: 0.485410, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 164, loss: 0.007361, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 164, batch index: 79, val loss: 0.485435, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 165, loss: 0.007432, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 165, batch index: 79, val loss: 0.485469, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 166, loss: 0.007560, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 166, batch index: 79, val loss: 0.485498, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 167, loss: 0.007905, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 167, batch index: 79, val loss: 0.485481, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 168, loss: 0.007265, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 168, batch index: 79, val loss: 0.485505, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 169, loss: 0.007496, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 169, batch index: 79, val loss: 0.485492, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 170, loss: 0.007473, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 170, batch index: 79, val loss: 0.485526, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 171, loss: 0.006742, acc: 0.9988, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 171, batch index: 79, val loss: 0.485551, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 172, loss: 0.007110, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 172, batch index: 79, val loss: 0.485574, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 173, loss: 0.007311, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 173, batch index: 79, val loss: 0.485582, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 174, loss: 0.007391, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 174, batch index: 79, val loss: 0.485619, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 175, loss: 0.007601, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 175, batch index: 79, val loss: 0.485618, val acc: 0.9080
+==>>> FINE-TUNE | fine-tune epoch: 176, loss: 0.007707, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 176, batch index: 79, val loss: 0.485611, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 177, loss: 0.007705, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 177, batch index: 79, val loss: 0.485631, val acc: 0.9081
+==>>> FINE-TUNE | fine-tune epoch: 178, loss: 0.007753, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 178, batch index: 79, val loss: 0.485643, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 179, loss: 0.007855, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 179, batch index: 79, val loss: 0.485642, val acc: 0.9082
+==>>> FINE-TUNE | fine-tune epoch: 180, loss: 0.008150, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 180, batch index: 79, val loss: 0.485650, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 181, loss: 0.007296, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 181, batch index: 79, val loss: 0.485653, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 182, loss: 0.008111, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 182, batch index: 79, val loss: 0.485645, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 183, loss: 0.007358, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 183, batch index: 79, val loss: 0.485639, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 184, loss: 0.008459, acc: 0.9977, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 184, batch index: 79, val loss: 0.485634, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 185, loss: 0.007386, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 185, batch index: 79, val loss: 0.485604, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 186, loss: 0.008049, acc: 0.9978, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 186, batch index: 79, val loss: 0.485605, val acc: 0.9084
+==>>> FINE-TUNE | fine-tune epoch: 187, loss: 0.007700, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 187, batch index: 79, val loss: 0.485603, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 188, loss: 0.007197, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 188, batch index: 79, val loss: 0.485608, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 189, loss: 0.007224, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 189, batch index: 79, val loss: 0.485581, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 190, loss: 0.007662, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 190, batch index: 79, val loss: 0.485611, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 191, loss: 0.007412, acc: 0.9982, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 191, batch index: 79, val loss: 0.485621, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 192, loss: 0.007546, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 192, batch index: 79, val loss: 0.485636, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 193, loss: 0.007249, acc: 0.9984, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 193, batch index: 79, val loss: 0.485642, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 194, loss: 0.007469, acc: 0.9983, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 194, batch index: 79, val loss: 0.485661, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 195, loss: 0.007071, acc: 0.9985, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 195, batch index: 79, val loss: 0.485666, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 196, loss: 0.007751, acc: 0.9981, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 196, batch index: 79, val loss: 0.485683, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 197, loss: 0.007702, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 197, batch index: 79, val loss: 0.485688, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 198, loss: 0.007842, acc: 0.9979, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 198, batch index: 79, val loss: 0.485663, val acc: 0.9083
+==>>> FINE-TUNE | fine-tune epoch: 199, loss: 0.007503, acc: 0.9980, zeros: 8144512/9217728
+==>>> CLEAN VALIDATE | epoch: 199, batch index: 79, val loss: 0.485672, val acc: 0.9083
+Best val accuracy during fine-tuning: 90.93

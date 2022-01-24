@@ -46,7 +46,7 @@ torch.backends.cudnn.benchmark = False
 #NOTE: Remember that command line args are strings! Hence, any value actually will be treated as True. Hence, use this argument ONLY TO SPECIFY THAT PRETRAINED MODEL IS NEEDED! 
 #Otherwise, DO NOT USE --pretrained=False <= This is actually interpreted as => --pretrained='False' == args.pretrained = True
 #Same goes to --parallel flag (See note above about using boolean flags with argparse).
-parser = argparse.ArgumentParser(description='Perform layer-by-layer pruning based on given pruning ratios', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(description='Perform layer-by-layer pruning based on given pruning ratios given model trained with GroupLasso as input', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--dataset',        default='CIFAR10',      type=str,   help='Dataset name')
 parser.add_argument('--model',          default='vgg11',        type=str,   help='Model architecture to be trained')
 parser.add_argument('--pretrained',     default=False,          type=bool,  help='Flag to whether load pretrained model or not') 
@@ -76,8 +76,6 @@ VALID_SPLIT     = args.valid_split
 PRUNE_RATIOS    = args.prs
 TILE_SIZE       = args.tile_size
 
-LOG             = 'lbl_sensitivity/' + 'tile_size{}x{}/'.format(TILE_SIZE, TILE_SIZE)
-
 if DATASET == 'CIFAR10':    
     FINE_TUNE = {'MAX_EPOCHS':      200,
                  'MOMENTUM':        0.0,
@@ -94,14 +92,20 @@ elif DATASET == 'imagenet2012':
                  'LR_SCHEDULE':     [30, 60, 90],
                  'LR_SCHEDULE_GAMMA': 0.1}
 
-if not os.path.exists('./results/{}/{}'.format(DATASET, LOG)): os.makedirs('./results/{}/{}'.format(DATASET, LOG))
-SAVE_DIR = './results/{}/{}/checkpoint_lbl_prs_{}.pth'.format(DATASET, LOG, PRUNE_RATIOS)
+
+assert CKPT_DIR is not None, "This script anticipated model already trained with GroupLasso, provided by --ckpt_dir argument. But got None!"
+assert os.path.isfile(CKPT_DIR), "No file found at {}".format(CKPT_DIR)
+ROOT_DIR    = CKPT_DIR.split("checkpoint_")[0]
+MODEL_NAME  = CKPT_DIR.split("checkpoint_")[1].split(".pth")[0]
+
+PRUNE_FINE_TUNE_DIR = ROOT_DIR + 'checkpoint_prune_lbl_'+ MODEL_NAME + ".pth"
+LOG                 = ROOT_DIR + 'log_prune_lbl_'       + MODEL_NAME + ".txt"
 
 # Log
 if args.log == 'sys':
     f = sys.stdout
 elif args.log is None:
-    f = open('./results/{}/{}/log_lbl_prs_{}.txt'.format(DATASET, LOG, PRUNE_RATIOS), 'a', buffering=1)
+    f = open(LOG, 'a', buffering=1)
 elif args.log is not None:
 	f = open(args.log, 'a', buffering=1)
 else:
@@ -391,7 +395,7 @@ for epoch in range(num_epochs):
                     'train_acc': train_acc,
                     'valid_acc': valid_acc,
                     'tile_sparsity_hist': tile_sparsity_hist,
-                    }, SAVE_DIR)
+                    }, PRUNE_FINE_TUNE_DIR)
         
 f.write("Best val accuracy during fine-tuning: {:.2f}\n".format(best_val_acc))  
 

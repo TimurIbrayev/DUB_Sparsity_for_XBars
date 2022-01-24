@@ -46,22 +46,21 @@ torch.cuda.manual_seed_all(SEED)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-parser = argparse.ArgumentParser(description='Run One-Sided Variance on Hoyer training and perform pruning', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(description='Run part DUB of S-DUB for Crossbar (XB) training and perform pruning', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--dataset',        default='CIFAR10',      type=str,   help='Dataset name')
 parser.add_argument('--model',          default='vgg11',        type=str,   help='Model architecture to be trained')
-parser.add_argument('--pretrained',     default=False,          type=bool,  help='Flag to whether load pretrained model or not')
 parser.add_argument('--checkpoint',     default=None,           type=str,   help='Path to checkpoint file')
+parser.add_argument('--resume',         default=False,          type=bool,  help='Flag indicating whether checkpoint points to part S or intermediate checkpoint of part DUB')
 parser.add_argument('--batch_size',     default=128,            type=int,   help='Batch size for data loading')
 parser.add_argument('--parallel',       default=False,          type=bool,  help='Flag to whether parallelize model over multiple GPUs')
 parser.add_argument('--valid_split',    default=0.000,          type=float, help='Fraction of training set dedicated for validation')
 parser.add_argument('--w_tol',          default=1.0e-3,         type=float, help='Weight tolerance to consider prunable weights')
 parser.add_argument('--var_h_l',        default=0.0,            type=float, help='Inter Tile Variance over Hoyer Squared lambda factor')
 parser.add_argument('--l2reg_l',        default=0.0005,         type=float, help='L2 Regularization lambda factor')
-parser.add_argument('--save_dir',       default='pretrained',   type=str,   help='Name of the subfolder to store logs and checkpoints')
 parser.add_argument('--tile_size',      default=64,             type=int,   help='Logical crossbar (tile) size')
 parser.add_argument('--weight_quant',   default=1,              type=int,   help='The number of bits assumed to be used for weight quantization')
 #training arguments
-parser.add_argument('--lr',             default=0.1,            type=float, help='Initial learning rate during training')
+parser.add_argument('--lr',             default=0.01,           type=float, help='Initial learning rate during training')
 #pruning arguments
 parser.add_argument('--prs', nargs='+', default=None,           type=float, help='Layer-by-layer pruning ratios to which network needs to be pruned')
 
@@ -71,12 +70,13 @@ global args
 args = parser.parse_args()
 
 
-from c1_Hoyer_and_variance_class import HoyerAndVariance
+from c3_SDUB_class import part_DUB
 
 DATASET         = args.dataset
 MODEL           = args.model
-PRETRAINED      = args.pretrained
+PRETRAINED      = False
 CKPT_DIR        = args.checkpoint
+RESUME          = args.resume
 BATCH_SIZE      = args.batch_size
 PARALLEL        = args.parallel
 VALID_SPLIT     = args.valid_split
@@ -86,9 +86,6 @@ LAMBDA_VAR_H    = args.var_h_l
 LAMBDA_L2REG    = args.l2reg_l
 TILE_SIZE       = args.tile_size
 WEIGHT_QUANT    = args.weight_quant
-LOG             = 'GatedVarianceOverHoyer/' + 'tile_size{}x{}/'.format(TILE_SIZE, TILE_SIZE) + args.save_dir
-
-VERSION         = 'GatedVarianceOverHoyer_lambdas_l2reg{}_var_h{}_tol{}'.format(LAMBDA_L2REG, LAMBDA_VAR_H, WEIGHT_TOL)
 
 
 if DATASET == 'CIFAR10':
@@ -124,12 +121,14 @@ elif DATASET == 'imagenet2012':
                  'LR_SCHEDULE_GAMMA': 0.1}
 
 
-if not os.path.exists('./results/{}/{}'.format(DATASET, LOG)): os.makedirs('./results/{}/{}'.format(DATASET, LOG))
-SAVE_DIR        = './results/{}/{}/checkpoint_model_{}.pth'.format(DATASET, LOG, VERSION)
+assert CKPT_DIR is not None, "This script anticipated model already trained with part S of S-DUB, provided by --ckpt_dir argument. But got None!"
+assert os.path.isfile(CKPT_DIR), "No file found at {}".format(CKPT_DIR)
+ROOT_DIR            = CKPT_DIR.split("checkpoint_")[0]
+VERSION             = 'lambdas_l2reg{}_var_h{}_tol{}'.format(LAMBDA_L2REG, LAMBDA_VAR_H, WEIGHT_TOL)
 
-PRUNE_FINE_TUNE_DIR = './results/{}/{}/checkpoint_model_{}_pruned_finetuned.pth'.format(DATASET, LOG, VERSION)
-
-f = open('./results/{}/{}/log_model_{}.txt'.format(DATASET, LOG, VERSION), 'a', buffering=1)
+SAVE_DIR            = ROOT_DIR + 'checkpoint_S-DUB_part_DUB_{}_trained.pth'.format(VERSION)
+PRUNE_FINE_TUNE_DIR = ROOT_DIR + 'checkpoint_S-DUB_part_DUB_{}_pruned_finetuned.pth'.format(VERSION)
+f                   = open(ROOT_DIR + 'log_S-DUB_part_DUB_{}.txt'.format(VERSION), 'a', buffering=1)
 # f = sys.stdout
 
 # Timestamp
@@ -204,8 +203,13 @@ else:
 
 grad_requirement_dict = {name: param.requires_grad for name, param in model.named_parameters()}
 f.write("{}\n".format(model))
-if PRETRAINED: f.write("Pretrained model was loaded!\n")
 f.write("Total prunable modules: {}\n".format(len(prune_params)))
+
+
+ckpt = torch.load(CKPT_DIR, map_location=device)
+model.load_state_dict(ckpt['model'])
+masks = copy.deepcopy(ckpt['masks'])
+f.write("Pretrained model of part S was loaded from checkpoint: {}\n".format(CKPT_DIR))
 
 
 criterion = nn.CrossEntropyLoss()
@@ -223,19 +227,17 @@ else:
     lr_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=TRAIN['LR_SCHEDULE'], gamma = TRAIN['LR_SCHEDULE_GAMMA'])
 
 #%% Setting up pruning and retraining parameters.
-prune = HoyerAndVariance(model, device,
-                         lambda_variance = LAMBDA_VAR_H,
-                         tol = WEIGHT_TOL,
-                         tile_size = TILE_SIZE,
-                         weight_quantization = WEIGHT_QUANT)
+prune = part_DUB(model, device,
+                 lambda_variance = LAMBDA_VAR_H,
+                 tol = WEIGHT_TOL,
+                 tile_size = TILE_SIZE,
+                 weight_quantization = WEIGHT_QUANT)
 
 f.write("\n==>> {}\n\n".format(prune))
 
 #%% Updating model, optimizer, lr_scheduler, tracking variables, etc. if RESUME flag is specified...
-if CKPT_DIR is not None:
-    ckpt = torch.load(CKPT_DIR, map_location=device)
-    f.write("==>> Resuming training from loaded checkpoint from: {}\n".format(CKPT_DIR))    
-    model.load_state_dict(ckpt['model'])
+if RESUME:
+    f.write("==>> Resuming part DUB training from loaded checkpoint from: {}\n".format(CKPT_DIR))    
     optimizer.load_state_dict(ckpt['optimizer'])
     lr_scheduler.load_state_dict(ckpt['lr_scheduler'])
     start_epoch             = ckpt['epoch'] + 1
@@ -252,7 +254,7 @@ if CKPT_DIR is not None:
     valid_acc               = ckpt['valid_acc']
 
 else:
-    f.write("==>> Starting training from scratch!\n")
+    f.write("==>> Starting part DUB training from scratch!\n")
     start_epoch             = 0
     best_val_acc            = 0.0
     best_val_loss           = float('inf')
@@ -292,6 +294,10 @@ for epoch in range(start_epoch, num_epochs):
         loss = loss_cls + loss_variance_over_hoyer
         loss.backward()
         optimizer.step()
+
+        # zeroing-out pruned weights (This step is essential, if optimizer has momentum)
+        # Momentum will have update factor regardless zero gradients
+        prune.zero_out_weights(model, masks)
         
         count_almost_zeros, _ = prune.count_almost_zeros(model)
     
@@ -355,6 +361,7 @@ for epoch in range(start_epoch, num_epochs):
         
     torch.save({'SEED': SEED,
                 'model': model.state_dict(),
+                'masks': masks,
                 'best_msdict': best_msdict,
                 'best_epoch': best_epoch,
                 'best_val_acc': best_val_acc,
@@ -433,8 +440,7 @@ without any regularization or constraints on weight magnitude.
 """
 if SAVE_DIR:
     save = torch.load(SAVE_DIR, map_location=device)
-    model.load_state_dict(save['model'])
-	#model.load_state_dict(save['best_msdict'])
+    model.load_state_dict(save['best_msdict'])
 
 count_almost_zeros, count_almost_zeros_layerwise = prune.count_almost_zeros(model)
 f.write("==>> Total almost zero weights: {:.0f}/{} [{:.2f}]\n".format(count_almost_zeros, prune.total_weights, count_almost_zeros*100.0/prune.total_weights))
@@ -601,6 +607,7 @@ for epoch in range(num_epochs):
         
         torch.save({'SEED': SEED,
                     'model': model.state_dict(),
+                    'masks': masks,
                     'optimizer': optimizer.state_dict(),
                     'lr_scheduler': lr_scheduler.state_dict(),
                     'epoch': epoch,

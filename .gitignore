@@ -6,3 +6,4 @@ results/old_results
 results/imagenet2012/old_results
 results/CIFAR10/old_results
 *.pth
+results/CIFAR10/GatedVarianceOverHoyer/tile_size64x64/test*

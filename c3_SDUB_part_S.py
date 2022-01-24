@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov  2 22:57:08 2020
-Last assessed on Sun Nov 21 22:31:12 2021
+Created on Thu Jun 17 19:28:50 2021
+Last assessed on Wed Nov 24 20:38:44 2021
+
 
 @author: tibrayev
 
@@ -46,7 +47,7 @@ torch.cuda.manual_seed_all(SEED)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-parser = argparse.ArgumentParser(description='Run One-Sided Variance on Hoyer training and perform pruning', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(description='Run part S of S-DUB for Crossbar (XB) training and perform pruning', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--dataset',        default='CIFAR10',      type=str,   help='Dataset name')
 parser.add_argument('--model',          default='vgg11',        type=str,   help='Model architecture to be trained')
 parser.add_argument('--pretrained',     default=False,          type=bool,  help='Flag to whether load pretrained model or not')
@@ -55,14 +56,15 @@ parser.add_argument('--batch_size',     default=128,            type=int,   help
 parser.add_argument('--parallel',       default=False,          type=bool,  help='Flag to whether parallelize model over multiple GPUs')
 parser.add_argument('--valid_split',    default=0.000,          type=float, help='Fraction of training set dedicated for validation')
 parser.add_argument('--w_tol',          default=1.0e-3,         type=float, help='Weight tolerance to consider prunable weights')
-parser.add_argument('--var_h_l',        default=0.0,            type=float, help='Inter Tile Variance over Hoyer Squared lambda factor')
-parser.add_argument('--l2reg_l',        default=0.0005,         type=float, help='L2 Regularization lambda factor')
+parser.add_argument('--lambda_g',       default=0.0005,         type=float, help='GroupLasso lambda factor')
+parser.add_argument('--lambda_l2',      default=0.0005,         type=float, help='L2 Regularization lambda factor')
 parser.add_argument('--save_dir',       default='pretrained',   type=str,   help='Name of the subfolder to store logs and checkpoints')
 parser.add_argument('--tile_size',      default=64,             type=int,   help='Logical crossbar (tile) size')
 parser.add_argument('--weight_quant',   default=1,              type=int,   help='The number of bits assumed to be used for weight quantization')
 #training arguments
-parser.add_argument('--lr',             default=0.1,            type=float, help='Initial learning rate during training')
+parser.add_argument('--lr',             default=0.01,           type=float, help='Initial learning rate during training')
 #pruning arguments
+parser.add_argument('--pr_structure',   default='xb_tile',      type=str,   help='Type of structure to assume as one group', choices=['xb_tile', 'xb_row', 'xb_column'])
 parser.add_argument('--prs', nargs='+', default=None,           type=float, help='Layer-by-layer pruning ratios to which network needs to be pruned')
 
 
@@ -71,7 +73,7 @@ global args
 args = parser.parse_args()
 
 
-from c1_Hoyer_and_variance_class import HoyerAndVariance
+from c3_SDUB_class import part_S
 
 DATASET         = args.dataset
 MODEL           = args.model
@@ -82,13 +84,14 @@ PARALLEL        = args.parallel
 VALID_SPLIT     = args.valid_split
 
 WEIGHT_TOL      = args.w_tol
-LAMBDA_VAR_H    = args.var_h_l
-LAMBDA_L2REG    = args.l2reg_l
+LAMBDA_G        = args.lambda_g
+LAMBDA_L2REG    = args.lambda_l2
+PR_STRUCTURE    = args.pr_structure
 TILE_SIZE       = args.tile_size
 WEIGHT_QUANT    = args.weight_quant
-LOG             = 'GatedVarianceOverHoyer/' + 'tile_size{}x{}/'.format(TILE_SIZE, TILE_SIZE) + args.save_dir
+LOG             = 'S-DUB/' + '{}/'.format(PR_STRUCTURE) + 'tile_size{}x{}/'.format(TILE_SIZE, TILE_SIZE) + args.save_dir
 
-VERSION         = 'GatedVarianceOverHoyer_lambdas_l2reg{}_var_h{}_tol{}'.format(LAMBDA_L2REG, LAMBDA_VAR_H, WEIGHT_TOL)
+VERSION         = '{}_lambdas_l2reg{}_lambda_g{}_tol{}'.format(PR_STRUCTURE, LAMBDA_L2REG, LAMBDA_G, WEIGHT_TOL)
 
 
 if DATASET == 'CIFAR10':
@@ -125,11 +128,10 @@ elif DATASET == 'imagenet2012':
 
 
 if not os.path.exists('./results/{}/{}'.format(DATASET, LOG)): os.makedirs('./results/{}/{}'.format(DATASET, LOG))
-SAVE_DIR        = './results/{}/{}/checkpoint_model_{}.pth'.format(DATASET, LOG, VERSION)
 
-PRUNE_FINE_TUNE_DIR = './results/{}/{}/checkpoint_model_{}_pruned_finetuned.pth'.format(DATASET, LOG, VERSION)
-
-f = open('./results/{}/{}/log_model_{}.txt'.format(DATASET, LOG, VERSION), 'a', buffering=1)
+SAVE_DIR            = './results/{}/{}/checkpoint_S-DUB_part_S_{}_trained.pth'.format(DATASET, LOG, VERSION)
+PRUNE_FINE_TUNE_DIR = './results/{}/{}/checkpoint_S-DUB_part_S_{}_pruned_finetuned.pth'.format(DATASET, LOG, VERSION)
+f              = open('./results/{}/{}/log_S-DUB_part_S_{}.txt'.format(DATASET, LOG, VERSION), 'a', buffering=1)
 # f = sys.stdout
 
 # Timestamp
@@ -222,12 +224,14 @@ if VALID_SPLIT > 0.0:
 else:
     lr_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=TRAIN['LR_SCHEDULE'], gamma = TRAIN['LR_SCHEDULE_GAMMA'])
 
+
 #%% Setting up pruning and retraining parameters.
-prune = HoyerAndVariance(model, device,
-                         lambda_variance = LAMBDA_VAR_H,
-                         tol = WEIGHT_TOL,
-                         tile_size = TILE_SIZE,
-                         weight_quantization = WEIGHT_QUANT)
+prune = part_S(model, device,
+               pruning_structure = PR_STRUCTURE,
+               lambda_g = LAMBDA_G, 
+               tol = WEIGHT_TOL,
+               tile_size = TILE_SIZE,
+               weight_quantization = WEIGHT_QUANT)
 
 f.write("\n==>> {}\n\n".format(prune))
 
@@ -245,7 +249,7 @@ if CKPT_DIR is not None:
     best_msdict             = ckpt['best_msdict']
     train_loss              = ckpt['train_loss']
     train_loss_cls          = ckpt['train_loss_cls']
-    train_loss_variance     = ckpt['train_loss_variance']
+    train_loss_groups       = ckpt['train_loss_groups']
     train_acc               = ckpt['train_acc']
     train_almost_zeros      = ckpt['train_almost_zeros']
     valid_loss              = ckpt['valid_loss']
@@ -258,7 +262,7 @@ else:
     best_val_loss           = float('inf')
     train_loss              = []
     train_loss_cls          = []
-    train_loss_variance     = []
+    train_loss_groups       = []
     train_acc               = []
     train_almost_zeros      = []
     valid_loss              = []
@@ -277,7 +281,7 @@ for epoch in range(start_epoch, num_epochs):
     correct             = 0.0
     ave_loss            = 0.0
     ave_loss_cls        = 0.0
-    ave_loss_variance   = 0.0
+    ave_loss_groups     = 0.0
     total               = 0
     for batch_idx, (x_train, y_train) in enumerate(train_loader):
         x_train, y_train = x_train.to(device), y_train.to(device)
@@ -287,9 +291,9 @@ for epoch in range(start_epoch, num_epochs):
         output = model(x_norm)
         loss_cls = criterion(output, y_train)
 
-        loss_variance_over_hoyer = prune.compute_loss_with_gate(model)
+        loss_groups = prune.compute_loss(model)
 
-        loss = loss_cls + loss_variance_over_hoyer
+        loss = loss_cls + loss_groups
         loss.backward()
         optimizer.step()
         
@@ -300,24 +304,22 @@ for epoch in range(start_epoch, num_epochs):
         correct             += (predictions == y_train).sum().item()
         ave_loss            += loss.item()
         ave_loss_cls        += loss_cls.item()
-        ave_loss_variance   += loss_variance_over_hoyer.item()
+        ave_loss_groups     += loss_groups.item()
     
         if (batch_idx+1)%1000 == 0 or (batch_idx+1) == len(train_loader):
                 f.write('==>>> TRAIN-PRUNE | train epoch: {}, loss: {:.6f}, acc: {:.4f}, almost zeros: {}/{}\n'.format(
                         epoch, ave_loss*1.0/(batch_idx + 1), correct*1.0/total, count_almost_zeros, prune.total_weights))
-                f.write('==>>> cls loss: {:.6f}\t variance_over_hoyer loss: {:.6f}\t\n'.format(
-                        ave_loss_cls*1.0/(batch_idx + 1), ave_loss_variance*1.0/(batch_idx + 1)))
+                f.write('==>>> cls loss: {:.6f}\t grouplasso loss: {:.6f}\t\n'.format(
+                        ave_loss_cls*1.0/(batch_idx + 1), ave_loss_groups*1.0/(batch_idx + 1)))
     train_loss.append(ave_loss*1.0/(batch_idx + 1))
     train_loss_cls.append(ave_loss_cls*1.0/(batch_idx + 1))
-    train_loss_variance.append(ave_loss_variance*1.0/(batch_idx + 1))
+    train_loss_groups.append(ave_loss_groups*1.0/(batch_idx + 1))
     train_acc.append(correct*100.0/total)
     train_almost_zeros.append(count_almost_zeros)
 
 
 
 
-
-  
     # Evaluate on the clean val set
     model.eval()
     correct     = 0.0
@@ -366,7 +368,7 @@ for epoch in range(start_epoch, num_epochs):
                 'num_epochs': num_epochs,
                 'train_loss': train_loss,
                 'train_loss_cls': train_loss_cls,
-                'train_loss_variance': train_loss_variance,
+                'train_loss_groups': train_loss_groups,
                 'train_acc': train_acc,
                 'train_almost_zeros': train_almost_zeros,
                 'valid_loss': valid_loss,
@@ -433,8 +435,7 @@ without any regularization or constraints on weight magnitude.
 """
 if SAVE_DIR:
     save = torch.load(SAVE_DIR, map_location=device)
-    model.load_state_dict(save['model'])
-	#model.load_state_dict(save['best_msdict'])
+    model.load_state_dict(save['best_msdict'])
 
 count_almost_zeros, count_almost_zeros_layerwise = prune.count_almost_zeros(model)
 f.write("==>> Total almost zero weights: {:.0f}/{} [{:.2f}]\n".format(count_almost_zeros, prune.total_weights, count_almost_zeros*100.0/prune.total_weights))
@@ -453,6 +454,10 @@ for v, b in zip(vals, bins):
     f.write("{:.3f}:\t{}\n".format(b, v))
 
 
+
+
+
+
 if args.prs is not None:
     assert len(args.prs) == len(prune_params), "Prune ratios are specified, but not for all layers!"
     f.write("==>> Pruning fixed prune ratios based on tile sparsity: {}\n".format(args.prs))
@@ -461,7 +466,6 @@ if args.prs is not None:
 else:
     count_zeros, masks = prune.prune_based_on_tile_sparsity(model)
 f.write("==>> Total pruned weights: {:.0f}/{} [{:.2f}]\n".format(count_zeros, prune.total_weights, count_zeros*100.0/prune.total_weights))
-
 
 
 count_zeros, count_zeros_layerwise = prune.count_zeros(model)
@@ -601,6 +605,7 @@ for epoch in range(num_epochs):
         
         torch.save({'SEED': SEED,
                     'model': model.state_dict(),
+                    'masks': masks,
                     'optimizer': optimizer.state_dict(),
                     'lr_scheduler': lr_scheduler.state_dict(),
                     'epoch': epoch,
