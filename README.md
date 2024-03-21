@@ -1,7 +1,7 @@
 # DUB Sparsity
 The official code implementation for the paper titled "Pruning for Improved ADC Efficiency in Crossbar-based Analog In-memory Accelerators", which induces D.U.B. sparsity by regularizing the variance of $L_{0}$ norms of neighboring columns within the same crossbar.
 
-The paper can be found at [this link]().
+The paper can be found at [this link](https://arxiv.org/abs/2403.13082).
 
 
 # Contact Information
